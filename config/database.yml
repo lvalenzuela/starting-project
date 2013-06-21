@@ -12,11 +12,11 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: new_test
+  database: app_db
   pool: 5
-  username: root
+  username: dirtydeeds
   password: uncorderito
-  host: localhost
+  host: ec2-54-232-224-161.sa-east-1.compute.amazonaws.com
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
