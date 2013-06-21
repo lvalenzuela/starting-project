@@ -4,6 +4,6 @@ class AddNullMemoryType < ActiveRecord::Migration
   end
 
   def down
-    ComputersMemoria.where(:tipo => '-').destroy
+    ComputersMemoria.where(:tipo => '-').destroy_all
   end
 end

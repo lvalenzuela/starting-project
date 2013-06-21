@@ -57,6 +57,7 @@
 				<th>Largo</th>
 				<th>Ancho</th>
 				<th>Profundidad</th>
+				<th>Peso</th>
 				<th>Guardar</th>
 			</tr>
 		</thead>
@@ -102,12 +103,13 @@
 						<td><%= computer.ethernet%></td>
 						<td><%= computer.hdmi%></td>
 						<td><%= computer.vga%></td>
-						<td><%= computer.wifi%></td>
+						<td><%= ComputersWifi.find(computer.wifi).wifi%></td>
 						<td><%= computer.bluetooth%></td>
 						<td><%= computer.usb%></td>
 						<td><%= computer.largo%></td>
 						<td><%= computer.ancho%></td>
 						<td><%= computer.profundidad%></td>
+						<td><%= computer.peso%></td>
 						<td> </td>
 					</tr>
 				<% end %>
@@ -135,7 +137,7 @@
 					<td><%= c.select :memoria, options_for_select(@numbers_opt, 4)%></td>
 					<td><%= c.select :memoria_tipo, ComputersMemoria.all.collect{|m| [m.tipo, m.id]}, {:selected => 3}%></td>
 					<td><%= c.text_field :memoria_velocidad, :value => ' '%></td>
-					<td><%= c.text_field :memoria_max, :value => ' '%></td>
+					<td><%= c.select :memoria_max, options_for_select(@numbers_opt, 4)%></td>
 					<td><%= c.select :memoria_ranuras, options_for_select(@numbers_opt, 2)%></td>
 					<td><%= c.text_field :disco_capacidad, :value => ' '%></td>
 					<td><%= c.text_field :disco_velocidad, :value => ' '%></td>
@@ -155,12 +157,13 @@
 					<td><%= c.select :ethernet, options_for_select(@boolean_opt,0)%></td>
 					<td><%= c.select :hdmi, options_for_select(@boolean_opt,0)%></td>
 					<td><%= c.select :vga, options_for_select(@boolean_opt,0)%></td>
-					<td><%= c.select :wifi, options_for_select(@boolean_opt,0)%></td>
+					<td><%= c.select :wifi, ComputersWifi.all.collect{|w| [w.wifi, w.id]}%></td>
 					<td><%= c.select :bluetooth, options_for_select(@boolean_opt,0)%></td>
-					<td><%= c.select :usb, options_for_select(@boolean_opt,0)%></td>
+					<td><%= c.select :usb, options_for_select(@numbers_opt,1)%></td>
 					<td><%= c.text_field :largo, :value => ' '%></td>
-					<td><%= c.text_field :ancho, :value => ''%></td>
+					<td><%= c.text_field :ancho, :value => ' '%></td>
 					<td><%= c.text_field :profundidad, :value => ' '%></td>
+					<td><%= c.text_field :peso, :value => ' '%></td>
 					<td><%= submit_tag 'Guardar', :class => 'btn'%></td>
 				</tr>
 			<% end %>

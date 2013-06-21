@@ -17,7 +17,7 @@
 					<td><%= c.model.upcase %></td>
 					<td><%= CarsBodyStyle.find(c.body_style).body_style.capitalize%></td>
 					<td><%= c.version %></td>
-					<td><%= c.precio%></td>
+					<td><%= number_to_currency(c.precio, :unit => '$', :precision => 0)%></td>
 				</tr>
 				<% end %>
 			<% else %>

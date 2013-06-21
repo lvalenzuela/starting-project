@@ -158,7 +158,7 @@
 			</tr>
 			<tr>
 				<td>Wi-Fi</td>
-				<td><%= c.select :wifi, options_for_select(@boolean_opt, @computer.wifi) %></td>
+				<td><%= c.select :wifi, ComputersWifi.all.collect{|w| [w.wifi, w.id]} %></td>
 			</tr>
 			<tr>
 				<td>Bluetooth</td>
@@ -179,6 +179,10 @@
 			<tr>
 				<td>Profundidad[mm]</td>
 				<td><%= c.text_field :profundidad%></td>
+			</tr>
+			<tr>
+				<td>Peso</td>
+				<td><%= c.text_field :peso%></td>
 			</tr>
 			<tr>
 				<td>Editar</td>

@@ -8,7 +8,7 @@
 			<th>Marca Procesador</th>
 			<th>Modelo Procesador</th>
 			<th>Tamaño</th>
-			<th>Precio</th>
+			<th>Precio de Referencia</th>
 		</thead>
 		<tbody>
 			<% if !@computers.empty? %>
@@ -21,7 +21,7 @@
 						<td><%= ComputersProce.find(c.proce_marca).marca.upcase%></td>
 						<td><%= c.proce_version.upcase%></td>
 						<td><%= ComputersScreenSize.find(c.screen_size).size%></td>
-						<td><%= c.precio %></td>
+						<td><%= number_to_currency(c.precio, :unit => '$', :precision => 0) %></td>
 					</tr>
 				<% end %>
 			<% else %>

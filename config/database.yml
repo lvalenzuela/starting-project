@@ -16,7 +16,7 @@ development:
   pool: 5
   username: bonususer
   password: uncorderito
-  host: ec2-54-232-224-161.sa-east-1.compute.amazonaws.com
+  host: 54.232.224.161
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

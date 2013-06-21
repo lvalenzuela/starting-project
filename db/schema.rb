@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130621194424) do
+ActiveRecord::Schema.define(:version => 20130621221154) do
 
   create_table "cars", :force => true do |t|
     t.string   "image_reference",                      :default => "car_images/not_found.png"
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(:version => 20130621194424) do
     t.integer  "profundidad"
     t.datetime "created_at",                                                                                                     :null => false
     t.datetime "updated_at",                                                                                                     :null => false
+    t.string   "peso"
   end
 
   create_table "computers_categories", :force => true do |t|
@@ -205,6 +206,10 @@ ActiveRecord::Schema.define(:version => 20130621194424) do
     t.string   "sist_operativo"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "computers_wifis", :force => true do |t|
+    t.string "wifi"
   end
 
 end

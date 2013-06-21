@@ -6,4 +6,5 @@ class Computer < ActiveRecord::Base
   attr_accessible :lector_blue_ray, :grabador_blue_ray, :lector_dvd, :grabador_dvd
   attr_accessible :video_modelo, :video_memoria, :video_tipo_memoria, :webcam, :lector_tarjeta_memoria
   attr_accessible :ethernet, :hdmi, :vga, :wifi, :bluetooth, :usb, :largo, :ancho, :profundidad
+  attr_accessible :id, :peso
 end
