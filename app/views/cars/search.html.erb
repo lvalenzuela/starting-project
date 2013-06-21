@@ -1,0 +1,102 @@
+<div class="container">
+	<h1>Ando Viendo - Autos</h1>
+	<div class="row">
+		<div class="span3">
+			<div class="well sidevar-nav">
+				<%= form_for :search, :remote => true, :url => {:action => "search"}, :html => {:id => 'search_form'} do |s| %>
+					<h4>Detalles de Búsqueda</h4>
+					<table class="table table-condensed nav-table">
+						<tr>
+							<th colspan="2">Categoría</th>
+						</tr>
+							<tr>
+								<td><%= s.check_box :body_all, :checked => true, :onclick => "$('#search_form').submit()"%></td>
+								<td>Todas</td>
+							</tr>
+							<tr>
+								<td><%= s.check_box :cargo_van, :onclick => "$('#search_form').submit()", :class => 'body_style'%></td>
+								<td>Cargo Van / Furgon</td>
+							</tr>
+							<tr>
+								<td><%= s.check_box :coupe, :onclick => "$('#search_form').submit()", :class => 'body_style'%></td>
+								<td>Coupe</td>				
+							</tr>
+							<tr>
+								<td><%= s.check_box :suv_crossover, :onclick => "$('#search_form').submit()", :class => 'body_style'%></td>
+								<td>SUV / Crossover</td>				
+							</tr>
+							<tr>
+								<td><%= s.check_box :hatchback, :onclick => "$('#search_form').submit()", :class => 'body_style'%></td>
+								<td>Hatchback</td>				
+							</tr>
+							<tr>
+								<td><%= s.check_box :pick_up_simple, :onclick => "$('#search_form').submit()", :class => 'body_style'%></td>
+								<td>Pick Up Cabina Simple</td>				
+							</tr>
+							<tr>
+								<td><%= s.check_box :pick_up_doble, :onclick => "$('#search_form').submit()", :class => 'body_style'%></td>
+								<td>Pick Up Cabina Doble</td>				
+							</tr>
+							<tr>
+								<td><%= s.check_box :sedan, :onclick => "$('#search_form').submit()", :class => 'body_style'%></td>
+								<td>Sedán</td>				
+							</tr>
+							<tr>
+								<td><%= s.check_box :station_wagon, :onclick => "$('#search_form').submit()", :class => 'body_style'%></td>
+								<td>Station Wagon</td>				
+							</tr>
+							<tr>
+								<td><%= s.check_box :convertible, :onclick => "$('#search_form').submit()", :class => 'body_style'%></td>
+								<td>Convertible</td>				
+							</tr>
+						<tr>
+							<th colspan="2">Marca</th>
+						</tr>
+							<tr>
+								<td colspan="2"><%= s.select :marca, CarsMarca.all.collect{|m| [m.marca, m.id]},{:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
+							</tr>
+						<tr>
+							<th colspan="2">Transmision</th>
+						</tr>
+							<tr>
+								<td colspan="2"><%= s.select :transmision, CarsTransmision.all.collect{|trans| [trans.transmision, trans.id]}, {:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
+							</tr>
+						<tr>
+							<th colspan="2">Tracción</th>
+						</tr>
+							<tr>
+								<td colspan="2"><%= s.select :traccion, CarsTraccion.all.collect{|trac| [trac.traccion, trac.id]}, {:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
+							</tr>
+						<tr>
+							<th colspan="2">Combustible</th>
+						</tr>
+							<tr>
+								<td colspan="2"><%= s.select :combustible, CarsCombustible.all.collect{|c| [c.combustible, c.id]}, {:prompt => 'Todos'}, {:onchange => "$('#search_form').submit()"}%></td>
+							</tr>
+					</table>
+				<% end %>
+			</div>
+		</div>	
+		<div class="span9">
+			<%= render :partial => 'cars_table' %>
+		</div>
+	</div>
+</div>
+
+<script language="JavaScript">
+$('#search_body_all').click(function() {
+   if (this.checked) {
+       $('.body_style').each(function() {
+           this.checked = false;                        
+       });
+   }
+});
+
+$('.body_style').click(function() {
+   if (this.checked) {
+       $('#search_body_all').each(function() {
+           this.checked = false;                        
+       });
+   } 
+});
+</script>

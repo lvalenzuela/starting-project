@@ -1,0 +1,32 @@
+<div id="computers_table">
+	<table class="table product-table table-striped">
+		<thead>
+			<th>Imagen</th>
+			<th>Marca</th>
+			<th>Categoria</th>
+			<th>Modelo</th>
+			<th>Marca Procesador</th>
+			<th>Modelo Procesador</th>
+			<th>Tamaño</th>
+			<th>Precio</th>
+		</thead>
+		<tbody>
+			<% if !@computers.empty? %>
+				<% @computers.each do |c|%>
+					<tr>
+						<td><%= c.img_ref %></td>
+						<td><%= ComputersMarca.find(c.marca).nombre.upcase %></td>
+						<td><%= ComputersCategory.find(c.category).category%></td>
+						<td><%= c.modelo.upcase %></td>
+						<td><%= ComputersProce.find(c.proce_marca).marca.upcase%></td>
+						<td><%= c.proce_version.upcase%></td>
+						<td><%= ComputersScreenSize.find(c.screen_size).size%></td>
+						<td><%= c.precio %></td>
+					</tr>
+				<% end %>
+			<% else %>
+				<td colspan="8">No se ha podido encontrar productos con las caracteristicas requeridas</td>
+			<% end %>
+		</tbody>
+	</table>
+</div>

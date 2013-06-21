@@ -1,0 +1,329 @@
+<div class="container">
+	<h1>Edit Form</h1>
+
+	<%= form_for @car, :url => {:action => "update" , :id => @car.id} do |c|%>
+	<table class="table table-bordered table-stripped">
+		
+        <thead>
+		<tr>
+			<th class="span1">Atributo</th>
+			<th class="span7">Dato</th>
+		</tr>
+        </thead>
+        <tbody>
+		<%= c.hidden_field :id , :value => @car.id %>
+		<!-- CAR -->
+		<tr>
+			<th>Atributos Automovil</th>
+			<td> </td>
+		</tr>
+		<tr>
+			<td>Imagen</td>
+			<td><%= c.text_field :image_reference%></td>
+		</tr>
+		<tr>
+			<td>Marca</td>
+			<td><%= c.select :marca , CarsMarca.all.collect{|m| [m.marca, m.id]}%></td>
+		</tr>
+		<tr>
+			<td>Modelo</td>
+			<td><%= c.text_field :model %></td>
+		</tr>	
+		<tr>
+			<td>Version</td>
+			<td><%= c.text_field :version %></td>
+		</tr>
+		<!-- GENERAL -->
+		<tr>
+			<th>Atributos Generales</th>
+			<td> </td>
+		</tr>
+		<tr>
+			<td>Precio</td>
+			<td><%= c.text_field :precio %></td>
+		</tr>
+		<tr>
+			<td>Garantia</td>
+			<td><%= c.text_field :garantia %></td>
+		</tr>
+		<tr>
+			<td>Body Style</td>
+			<td><%= c.select :body_style, CarsBodyStyle.all.collect{|b| [b.body_style, b.id]}%></td>
+		</tr>
+		<tr>
+			<td>Capacidad Pasajero</td>
+			<td><%= c.text_field :cap_pasajeros %></td>
+		</tr>
+		<tr>
+			<td>Motor</td>
+			<td><%= c.text_field :motor %></td>
+		</tr>
+		<tr>
+			<td>Traccion</td>
+			<td><%= c.select :traccion, CarsTraccion.all.collect{|trac| [trac.traccion, trac.id]} %></td>
+		</tr>
+		<tr>
+			<td>Transmision</td>
+			<td><%= c.select :transmision , CarsTransmision.all.collect{|trans| [trans.transmision, trans.id]}%></td>
+		</tr>
+		<tr>
+			<td>Combustible</td>
+			<td><%= c.select :combustible , CarsCombustible.all.collect{|c| [c.combustible, c.id]}%></td>
+		</tr>
+		
+		<!-- PERFORMANCE -->
+		<tr>
+			<th>Atributos Performance</th>
+			<td> </td>
+		</tr>
+		<tr>
+			<td>Consumo Ciudad</td>
+			<td><%= c.text_field :consumo_ciudad %></td>
+		</tr>
+		<tr>
+			<td>Consumo Carretera</td>
+			<td><%= c.text_field :consumo_carretera %></td>
+		</tr>
+		<tr>
+			<td>Distancia Estanque Ciudad</td>
+			<td><%= c.text_field :dist_estanque_ciudad%></td>
+		</tr>
+		<tr>
+			<td>Distancia Estanque Carretea</td>
+			<td><%= c.text_field :dist_estanque_carretera %></td>
+		</tr>
+		<tr>
+			<td>Potencia</td>
+			<td><%= c.text_field :potencia %></td>
+		</tr>
+		<tr>
+			<td>Torque</td>
+			<td><%= c.text_field :torque %></td>
+		</tr>
+		<tr>
+			<td>Capacidad Remolque</td>
+			<td><%= c.text_field :cap_remolque %></td>
+		</tr>
+		<tr>
+			<td>Velocidad Maxima</td>
+			<td><%= c.text_field :velocidad_max %></td>
+		</tr>
+		<tr>
+			<td>Capacidad Carga [Kg]</td>
+			<td><%= c.text_field :cap_carga_kg %></td>
+		</tr>
+		<tr>
+			<td>Capacidad Carga [m3]</td>
+			<td><%= c.text_field :cap_carga_m3 %></td>
+		</tr>
+		<tr>
+			<td>De 0 a 100</td>
+			<td><%= c.text_field :de_0_a_100 %></td>
+		</tr>
+		
+		<!-- AUDIO -->
+		<tr>
+			<th>Atributos Audio</th>
+			<td> </td>
+		</tr>
+		<tr>
+			<td>Cantidad Parlantes</td>
+			<td><%= c.text_field :cant_parlantes %></td>
+		</tr>
+		<tr>
+			<td>Conexion Bluetooth</td>
+			<td><%= c.select :bluetooth , options_for_select(@boolean_opt, @car.bluetooth) %></td>
+		</tr>
+		<tr>
+			<td>Conexion Auxiliar</td>
+			<td><%= c.select :aux, options_for_select(@boolean_opt, @car.aux)%></td>
+		</tr>
+		<tr>
+			<td>Conexion USB/iPod</td>
+			<td><%= c.select :usb , options_for_select(@boolean_opt, @car.usb)%></td>
+		</tr>
+		
+		<!-- EXTERIOR -->
+		<tr>
+			<th>Atributos Exterior</th>
+			<td> </td>
+		</tr>
+		<tr>
+			<td>Llantas de Aleacion</td>
+			<td><%= c.select :llantas_aleacion, options_for_select(@boolean_opt, @car.llantas_aleacion)%></td>
+		</tr>
+		<tr>
+			<td>Llantas de Aluminio</td>
+			<td><%= c.select :llantas_aluminio, options_for_select(@boolean_opt, @car.llantas_aluminio)%></td>
+		</tr>
+		<tr>
+			<td>Sunroof</td>
+			<td><%= c.select :sunroof, options_for_select(@boolean_opt, @car.sunroof)%></td>
+		</tr>	
+		<tr>
+			<td>Neblineros Delanteros</td>
+			<td><%= c.select :neblineros_front, options_for_select(@boolean_opt, @car.neblineros_front)%></td>
+		</tr>	
+		<tr>
+			<td>Neblineros Traseros</td>
+			<td><%= c.select :neblineros_back, options_for_select(@boolean_opt, @car.neblineros_back)%></td>
+		</tr>
+		
+		<!-- INTERIOR -->
+		<tr>
+			<th>Atributos Interior</th>
+			<td> </td>
+		</tr>
+		<tr>
+			<td>Alzavidrios Electricos</td>
+			<td><%= c.select :alzavidrios_electricos, options_for_select(@boolean_opt, @car.alzavidrios_electricos)%></td>
+		</tr>	
+		<tr>
+			<td>Aire Acondicionado</td>
+			<td><%= c.select :ac, options_for_select(@boolean_opt, @car.ac)%></td>
+		</tr>	
+		<tr>
+			<td>Climatizador</td>
+			<td><%= c.select :climatizador, options_for_select(@boolean_opt, @car.climatizador)%></td>
+		</tr>	
+		<tr>
+			<td>Smart Key</td>
+			<td><%= c.select :smart_key, options_for_select(@boolean_opt, @car.smart_key)%></td>
+		</tr>	
+		<tr>
+			<td>Control de Radio al Volante</td>
+			<td><%= c.select :ctrl_radio_volante, options_for_select(@boolean_opt, @car.ctrl_radio_volante)%></td>
+		</tr>	
+		<tr>
+			<td>Asientos Calefaccionados</td>
+			<td><%= c.select :asientos_calefaccion, options_for_select(@boolean_opt, @car.asientos_calefaccion)%></td>
+		</tr>	
+		<tr>
+			<td>Asientos de Cuero</td>
+			<td><%= c.select :asientos_cuero, options_for_select(@boolean_opt, @car.asientos_cuero)%></td>
+		</tr>	
+		<tr>
+			<td>Asientos Electricos</td>
+			<td><%= c.select :asientos_electricos , options_for_select(@boolean_opt, @car.asientos_electricos)%></td>
+		</tr>	
+		<tr>
+			<td>GPS</td>
+			<td><%= c.select :gps, options_for_select(@boolean_opt, @car.gps)%></td>
+		</tr>	
+		<tr>
+			<td>DVD</td>
+			<td><%= c.select :dvd, options_for_select(@boolean_opt, @car.dvd)%></td>
+		</tr>	
+		<tr>
+			<td>Sensor Retroceso</td>
+			<td><%= c.select :sensor_retroceso, options_for_select(@boolean_opt, @car.sensor_retroceso)%></td>
+		</tr>
+		<tr>
+			<td>Camara de Retroceso</td>
+			<td><%= c.select :camara_retroceso, options_for_select(@boolean_opt, @car.camara_retroceso)%></td>
+		</tr>	
+		<tr>
+			<td>Velocidad Crucero</td>
+			<td><%= c.select :velocidad_crucero, options_for_select(@boolean_opt, @car.velocidad_crucero)%></td>
+		</tr>	
+		<tr>
+			<td>Espejos Electricos</td>
+			<td><%= c.select :espejos_electricos, options_for_select(@boolean_opt, @car.espejos_electricos)%></td>
+		</tr>	
+
+		<!-- SEGURIDAD -->
+		<tr>
+			<th>Atributos Seguridad</th>
+			<td> </td>
+		</tr>
+		<tr>
+			<td>Frenos ABS</td>
+			<td><%= c.select :abs, options_for_select(@boolean_opt, @car.abs)%></td>
+		</tr>	
+		<tr>
+			<td>Anclaje Para Asiento Infantil</td>
+			<td><%= c.select :anclaje_infantil, options_for_select(@boolean_opt, @car.anclaje_infantil)%></td>
+		</tr>	
+		<tr>
+			<td>Encendido Automatico de Luces</td>
+			<td><%= c.select :encendido_auto_luz, options_for_select(@boolean_opt, @car.encendido_auto_luz)%></td>
+		</tr>	
+		<tr>
+			<td>Airbags</td>
+			<td><%= c.text_field :airbags %></td>
+		</tr>	
+		<tr>
+			<td>Sensor de LLuvia</td>
+			<td><%= c.select :sensor_lluvia, options_for_select(@boolean_opt, @car.sensor_lluvia)%></td>
+		</tr>	
+		<tr>
+			<td>Seguro Infantil en Puertas Traseras</td>
+			<td><%= c.select :seguro_infantil, options_for_select(@boolean_opt, @car.seguro_infantil)%></td>
+		</tr>	
+		<tr>
+			<td>Control de Estabilidad</td>
+			<td><%= c.select :control_estabilidad, options_for_select(@boolean_opt, @car.control_estabilidad)%></td>
+		</tr>	
+		<tr>
+			<td>Monitor de Presion de Neumaticos</td>
+			<td><%= c.select :monitor_presion, options_for_select(@boolean_opt, @car.monitor_presion)%></td>
+		</tr>	
+		<tr>
+			<td>Control de Tracción</td>
+			<td><%= c.select :control_traccion, options_for_select(@boolean_opt, @car.control_traccion)%></td>
+		</tr>	
+		
+		<!-- ESPECIFICACIONES -->
+		<tr>
+			<th>Atributos Especificaciones</th>
+			<td> </td>
+		</tr>
+		<tr>
+			<td>Largo</td>
+			<td><%= c.text_field :largo %></td>
+		</tr>	
+		<tr>
+			<td>Ancho</td>
+			<td><%= c.text_field :ancho %></td>
+		</tr>
+		<tr>
+			<td>Alto</td>
+			<td><%= c.text_field :alto %></td>
+		</tr>	
+		<tr>
+			<td>Peso</td>
+			<td><%= c.text_field :peso %></td>
+		</tr>	
+		<tr>
+			<td>Volumen Interior</td>
+			<td><%= c.text_field :volumen_interior %></td>
+		</tr>	
+		<tr>
+			<td>Volumen Maleta</td>
+			<td><%= c.text_field :cap_maleta %></td>
+		</tr>	
+		<tr>
+			<td>Capacidad de Estanque</td>
+			<td><%= c.text_field :cap_estanque %></td>
+		</tr>	
+		<tr>
+			<td>Largo Pickup</td>
+			<td><%= c.text_field :largo_pickup %></td>
+		</tr>	
+		<tr>
+			<td>Ancho Pickup</td>
+			<td><%= c.text_field :ancho_pickup %></td>
+		</tr>
+		<tr>
+			<td>Alto Pickup</td>
+			<td><%= c.text_field :alto_pickup %></td>
+		</tr>
+		
+		<tr>
+			<td>Editar</td>
+			<td><%= submit_tag "Editar", :class => "btn"%></td>
+		</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>

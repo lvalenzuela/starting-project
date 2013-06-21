@@ -1,0 +1,30 @@
+<div id="cars_table">
+	<table class="table product-table table-striped">
+		<thead>
+			<th>Imagen</th>
+			<th>Marca</th>
+			<th>Modelo</th>
+			<th>Categoría</th>
+			<th>Versión</th>
+			<th>Precio</th>
+		</thead>
+		<tbody>
+			<% if !@cars.empty?%>
+				<% @cars.each do |c| %>
+				<tr>
+					<td><%= image_tag c.image_reference, :size => "120x120"%></td>
+					<td><%= CarsMarca.find(c.marca).marca.upcase %></td>
+					<td><%= c.model.upcase %></td>
+					<td><%= CarsBodyStyle.find(c.body_style).body_style.capitalize%></td>
+					<td><%= c.version %></td>
+					<td><%= c.precio%></td>
+				</tr>
+				<% end %>
+			<% else %>
+				<tr>
+					<td colspan="6">No se ha podido encontrar productos con las caracteristicas requeridas<td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</td>

@@ -1,0 +1,32 @@
+// Place all the styles related to the cars controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.input-table td{
+  text-align: center;
+  vertical-align: middle;
+}
+
+.input-table th{
+  text-align: center;
+}
+
+.product-table td{
+  text-align: center;
+  vertical-align: middle;
+}
+
+.product-table th{
+  text-align: center;
+}
+
+.product-table{
+  border: solid 1px #ccc
+}
+.nav-table th{
+  border-bottom: solid 1px #ccc;
+}
+
+.nav-table td{
+  border-top: none;
+}
