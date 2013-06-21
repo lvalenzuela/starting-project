@@ -14,7 +14,7 @@ development:
   reconnect: false
   database: app_db
   pool: 5
-  username: dirtydeeds
+  username: bonususer
   password: uncorderito
   host: ec2-54-232-224-161.sa-east-1.compute.amazonaws.com
 
