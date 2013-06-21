@@ -108,6 +108,7 @@
 						<td><%= computer.largo%></td>
 						<td><%= computer.ancho%></td>
 						<td><%= computer.profundidad%></td>
+						<td> </td>
 					</tr>
 				<% end %>
 			<% else %>
@@ -131,7 +132,7 @@
 					<td><%= c.text_field :proce_version, :value => ' '%></td>
 					<td><%= c.text_field :proce_velocidad, :value => ' '%></td>
 					<td><%= c.select :proce_nucleos, options_for_select(@numbers_opt, 2)%></td>
-					<td><%= c.text_field :memoria, :value => ' '%></td>
+					<td><%= c.select :memoria, options_for_select(@numbers_opt, 4)%></td>
 					<td><%= c.select :memoria_tipo, ComputersMemoria.all.collect{|m| [m.tipo, m.id]}, {:selected => 3}%></td>
 					<td><%= c.text_field :memoria_velocidad, :value => ' '%></td>
 					<td><%= c.text_field :memoria_max, :value => ' '%></td>

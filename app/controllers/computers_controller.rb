@@ -73,7 +73,7 @@ class ComputersController < ApplicationController
   
   def update
     @updated_comp = Computer.find(params[:id])
-    if @updated_comp.update_attibutes(params[:computer])
+    if @updated_comp.update_attributes(params[:computer])
       redirect_to :action => 'new'
     else
       redirect_to :action => 'error'
@@ -83,6 +83,7 @@ class ComputersController < ApplicationController
   def edit
     @computer = Computer.find(params[:id])
     @boolean_opt = [["Si",1], ["No",0]]
+    @numbers_opt = [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8]]
   end
   
   def delete

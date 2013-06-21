@@ -14,9 +14,9 @@
 			<% if !@computers.empty? %>
 				<% @computers.each do |c|%>
 					<tr>
-						<td><%= c.img_ref %></td>
-						<td><%= ComputersMarca.find(c.marca).nombre.upcase %></td>
-						<td><%= ComputersCategory.find(c.category).category%></td>
+						<td><%= image_tag c.img_ref, :size => '120x120' %></td>
+						<td><%= ComputersMarca.find(c.marca).marca.upcase %></td>
+						<td><%= ComputersCategory.find(c.categoria).category%></td>
 						<td><%= c.modelo.upcase %></td>
 						<td><%= ComputersProce.find(c.proce_marca).marca.upcase%></td>
 						<td><%= c.proce_version.upcase%></td>
