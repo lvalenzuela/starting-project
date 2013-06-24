@@ -5,6 +5,13 @@ class ComputersController < ApplicationController
     render :search
   end
   
+  def select_for_compare
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   def new
     if params[:marca]
       @computers = Computer.find(:all, :conditions => {:marca => params[:marca][:value]})

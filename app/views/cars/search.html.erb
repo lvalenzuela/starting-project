@@ -10,7 +10,7 @@
 							<th colspan="2">Categoría</th>
 						</tr>
 							<tr>
-								<td><%= s.check_box :body_all, :checked => true, :onclick => "$('#search_form').submit()"%></td>
+								<td><%= s.check_box :body_all, {:checked => true, :onclick => "$('#search_form').submit()"}, 'body_all', ''%></td>
 								<td>Todas</td>
 							</tr>
 							<tr>

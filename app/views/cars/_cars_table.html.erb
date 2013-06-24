@@ -1,6 +1,7 @@
 <div id="cars_table">
 	<table class="table product-table table-striped">
 		<thead>
+			<th></th>
 			<th>Imagen</th>
 			<th>Marca</th>
 			<th>Modelo</th>
@@ -12,6 +13,7 @@
 			<% if !@cars.empty?%>
 				<% @cars.each do |c| %>
 				<tr>
+					<td></td>
 					<td><%= image_tag c.image_reference, :size => "120x120"%></td>
 					<td><%= CarsMarca.find(c.marca).marca.upcase %></td>
 					<td><%= c.model.upcase %></td>

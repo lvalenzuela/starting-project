@@ -17,7 +17,7 @@ class CarsController < ApplicationController
   
   def search
     #FILTRO POR BODY STYLE
-    if params[:search][:body_all] == '1'
+    if params[:search][:body_all] == 'body_all'
       @cars = Car.find(:all)
     else
       @cars = []

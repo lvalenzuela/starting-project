@@ -9,6 +9,7 @@ Cotizar::Application.routes.draw do
   match 'computers/update' => 'computers#update'
   match 'computers/edit' => 'computers#edit'
   match 'computers/search' => 'computers#search'
+  match 'computers/select_for_compare' => 'computers#select_for_compare'
   get "cars/index"
   match 'cars/save' => 'cars#save'
   match 'cars/delete' => 'cars#delete'
