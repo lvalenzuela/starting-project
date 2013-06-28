@@ -1,9 +1,30 @@
 class CarsController < ApplicationController
-  layout 'cars_layout'
+  layout 'products_layout'
   
   def index
     @cars = Car.find(:all)
+    session[:compare_category] = 'cars'
     render :search
+  end
+  
+  def select_for_compare
+    action, id = params[:compare][:id].split('-')
+    
+    if session[:compare_category] != 'cars'
+      session[:compare_category] = 'cars'
+      session.delete(:selected_items)
+    end
+    
+    case action
+      when 'a'
+        (session[:selected_items] ||= []) << id
+      when 'd'
+        session[:selected_items].delete(id)
+    end
+    
+    respond_to do |format|
+      format.js
+    end
   end
   
   def new

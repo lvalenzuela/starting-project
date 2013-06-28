@@ -1,0 +1,31 @@
+<div class="container">
+	<h1>Ficha de Producto</h1>
+	<div class="row">
+		<div class="span5">
+			<%= image_tag @computer.img_ref, :size => '300x300'%>
+		</div>
+		<div class="span7">
+			<table class="show-product-table-main">
+				<tr>
+					<th colspan="2"><%= ComputersMarca.find(@computer.marca).marca.capitalize + ' '+ @computer.modelo.upcase%></th>
+					<th></th>
+				</tr>
+				<tr>
+					<th>Tamaño</th>
+					<td><%= ComputersScreenSize.find(@computer.screen_size).size %></td>
+				</tr>
+				<tr>
+					<th>Procesador</th>
+					<td><%= ComputersProce.find(@computer.proce_marca).marca + ' '+ @computer.proce_version.upcase%></td>
+				</tr>
+				<tr>
+					<th>Precio de Referencia</th>
+					<td><%= number_to_currency(@computer.precio, :unit => '$', :precision => 0)%></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+

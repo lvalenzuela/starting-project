@@ -12,3 +12,15 @@
  *= require_tree .
  */
 
+#bottom_toolbar{
+  height: 26px;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  overflow: visible;
+  background-color: #ccc;
+  left: 0px;
+  float: left;
+}
+
+

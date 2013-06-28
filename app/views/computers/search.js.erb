@@ -1,1 +1,2 @@
-$("#computers_table").html("<%= escape_javascript(render("computers_table"))%>");
+$("#computers_table").replaceWith("<%= escape_javascript(render(:partial => "computers_table"))%>");
+

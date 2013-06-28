@@ -1,0 +1,16 @@
+<div id="container">
+	<h1>Comparación de Computadores</h1>
+	<div class="row">
+		<div class="span12">
+			<table class="table">
+				<thead>
+					<tr>
+					<% @computers.each do |c| %>
+						<th><%= c.marca + ' ' + c.modelo%></th>
+					<% end %>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>	
+</div>

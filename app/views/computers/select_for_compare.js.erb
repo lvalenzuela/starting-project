@@ -1,1 +1,1 @@
-$("#selected_items").html("<%= escape_javascript(render("selected_items"))%>");
+$("#bottom_toolbar").replaceWith("<%= escape_javascript(render(:partial => "selected_items_toolbar"))%>");

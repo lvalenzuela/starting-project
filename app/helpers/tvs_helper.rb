@@ -1,4 +1,4 @@
-module CarsHelper
+module TvsHelper
   
   def check_if_selected(id)
     if !session[:selected_items].nil?

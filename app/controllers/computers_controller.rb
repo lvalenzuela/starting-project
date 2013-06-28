@@ -1,14 +1,41 @@
 class ComputersController < ApplicationController
+  layout 'products_layout'
   
   def index
     @computers = Computer.find(:all)
+    session[:compare_category] = 'computers'
     render :search
   end
   
+  def show
+    @computer = Computer.find(params[:product_id])
+  end
+  
   def select_for_compare
+    action, id = params[:compare][:product_id].split('-')
+    
+    if session[:compare_category] != 'computers'
+      session[:compare_category] = 'computers'
+      session.delete(:selected_items)
+    end
+        
+    case action
+      when 'a'
+        (session[:selected_items] ||= []) << id
+      when 'd'
+        session[:selected_items].delete(id)
+    end
     
     respond_to do |format|
       format.js
+    end
+  end
+  
+  def compare
+    @selected_items = []
+    
+    session[:selected_items].each do |item|
+      @selected_items = (@selected_items + Computer.find(item))
     end
   end
   

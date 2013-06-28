@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AndoViendo.cl AUTOS - Tu Compra Inteligente!</title>
+  <title>AndoViendo.cl - Tu Compra Inteligente!</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -10,5 +10,7 @@
 
 <%= yield %>
 
+
+	<%= render :partial => controller.controller_name+'/selected_items_toolbar'%>
 </body>
 </html>
