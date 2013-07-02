@@ -1,15 +1,188 @@
-<div id="container">
+<div class="container">
 	<h1>Comparación de Computadores</h1>
 	<div class="row">
-		<div class="span12">
+		<div class="span2">
+			
+			<h3>Procesador</h3>
 			<table class="table">
-				<thead>
-					<tr>
-					<% @computers.each do |c| %>
-						<th><%= c.marca + ' ' + c.modelo%></th>
+				<tr>
+					<th>Marca</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= ComputersProce.find(i.proce_marca).marca%></td>
 					<% end %>
-					</tr>
-				</thead>
+				</tr>
+				<tr>
+					<th>Modelo</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= i.proce_version.upcase%></td>
+					<% end %>
+				</tr>
+				<tr>
+					<th>Velocidad</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= i.proce_velocidad %> GHz</td>
+					<% end %>
+				</tr>
+				<tr>
+					<th>Nucleos</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= i.proce_nucleos%></td>
+					<% end %>
+				</tr>
+			</table>
+			
+			<h3>Batería</h3>
+			<table class="table">
+				<tr>
+					<th>Tipo</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= i.bateria%></td>
+					<% end %>
+				</tr>
+				<tr>
+					<th>Celdas</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= i.bateria_celdas%></td>
+					<% end %>
+				</tr>
+				<tr>
+					<th>Duración</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= i.bateria_duracion%> Horas</td>
+					<% end %>
+				</tr>
+			</table>
+
+			<h3>Memoria</h3>
+			<table class="table">
+				<tr>
+					<th>Memoria Incluida</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= i.memoria%></td>
+					<% end %>
+				</tr>
+				<tr>
+					<th>Tipo Memoria</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= ComputersMemoria.find(i.memoria_tipo).tipo%></td>
+					<% end %>
+				</tr>
+				<tr>
+					<th>Velocidad</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= i.memoria_velocidad%></td>
+					<% end %>
+				</tr>
+				<tr>
+					<th>Memoria Máxima</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= i.memoria_max%> GB</td>
+					<% end %>
+				</tr>
+				<tr>
+					<th>Ranuras de Memoria</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= i.memoria_ranuras%></td>
+					<% end %>
+				</tr>
+			</table>
+
+			<h3>Disco</h3>
+			<table class="table">
+				<tr>
+					<th>Capacidad</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= i.disco_capacidad%> GB</td>
+					<% end %>
+				</tr>
+				<tr>
+					<th>Velocidad</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= i.disco_velocidad%> RPM</td>
+					<% end %>
+				</tr>
+				<tr>
+					<th>Disco SSD</th>
+					<% @selected_items.each do |i| %>
+						<td> <%= i.disco_ssd%> GB</td>
+					<% end %>
+				</tr>
+			</table>
+			
+			<h3>Pantalla</h3>
+			<table class="table">
+				<tr>
+					<th>Tamaño</th>
+				</tr>
+				<tr>
+					<th>Resolución</th>
+				</tr>
+				<tr>
+					<th>Tipo</th>
+				</tr>
+				<tr>
+					<th>Pantalla Touch</th>
+				</tr>
+			</table>
+			
+			<h3>Video</h3>
+			<table class="table">
+				<tr>
+					<th>Tipo T. Video</th>
+				</tr>
+				<tr>
+					<th>Memoria de Video</th>
+				</tr>
+				<tr>
+					<th>Tipo de Memoria</th>
+				</tr>
+			</table>
+			
+			<h3>Características Adicionales</h3>
+			<table class="table">
+				<tr>
+					<th>Webcam</th>
+				</tr>
+				<tr>
+					<th>Conexión Ethernet</th>
+				</tr>
+				<tr>
+					<th>Lector de Tarjetas de Memoria</th>
+				</tr>
+				<tr>
+					<th>Puerto HDMI</th>
+				</tr>
+				<tr>
+					<th>Puerto VGA</th>
+				</tr>
+				<tr>
+					<th>Conexión Wi-Fi</th>
+				</tr>
+				<tr>
+					<th>Bluetooth</th>
+				</tr>
+				<tr>
+					<th>Puertos USB 2.0</th>
+				</tr>
+				<tr>
+					<th>Puertos USB 3.0</th>
+				</tr>
+			</table>
+			
+			<h3>Dimensiones</h3>
+			<table class="table">
+				<tr>
+					<th>Largo</th>
+				</tr>
+				<tr>
+					<th>Ancho</th>
+				</tr>
+				<tr>
+					<th>Profundidad</th>
+				</tr>
+				<tr>
+					<th>Peso</th>
+				</tr>
 			</table>
 		</div>
 	</div>	

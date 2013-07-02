@@ -63,8 +63,9 @@
 			</div>
 		</div>
 		<div class="span9">
-			<%= render :partial => 'computers_table'%>
+			<%= form_tag computers_select_for_compare_path, :remote => true, :id => 'select_products_form' do %>
+				<%= render :partial => 'computers_table'%>
+			<% end %>
 		</div>
 	</div>
-	
 </div>

@@ -2,32 +2,28 @@
 	<table class="table product-table">
 		<thead>
 			<th></th>
+			<th></th>
 			<th>Imagen</th>
 			<th>Marca</th>
 			<th>Categoria</th>
 			<th>Modelo</th>
-			<th>Marca Procesador</th>
-			<th>Modelo Procesador</th>
 			<th>Tamaño</th>
 			<th>Precio de Referencia</th>
 		</thead>
 		<tbody>
 			<% if !@computers.empty? %>
-				<% @computers.each do |c|%>
-					<% form_id = generate_unique_form_id %>
-					<%= form_for :compare, :remote => true, :url => {:action => "select_for_compare"}, :html => {:id => form_id, :class=> 'table_form'} do |compare| %>
-						<tr>
-							<td><%= compare.check_box :product_id, {:checked => check_if_selected(c.id), :onclick => "$('#"+ form_id +"').submit();"}, 'a-'+c.id.to_s , 'd-'+c.id.to_s %></td>
-							<td><%= link_to (image_tag c.img_ref, :size => '120x120'), computers_show_path(:product_id => c.id) %></td>
-							<td><%= link_to ComputersMarca.find(c.marca).marca.upcase, computers_show_path(:product_id => c.id) %></td>
-							<td><%= ComputersCategory.find(c.categoria).category%></td>
-							<td><%= c.modelo.upcase %></td>
-							<td><%= ComputersProce.find(c.proce_marca).marca.upcase%></td>
-							<td><%= c.proce_version.upcase%></td>
-							<td><%= ComputersScreenSize.find(c.screen_size).size%></td>
-							<td><%= number_to_currency(c.precio, :unit => '$', :precision => 0) %></td>
-						</tr>
-					<% end %>
+				<% @computers.each do |computer|%>
+				<% session[:selected_items] ||= [] %>
+					<tr>
+						<td><%= hidden_field_tag 'product[]', 'd-'+computer.id.to_s%></td>
+						<td><%= check_box_tag 'product[]', 'a-'+computer.id.to_s, session[:selected_items].include?(computer.id) , :onclick => "$('#select_products_form').submit();" %></td>
+						<td><%= link_to (image_tag computer.img_ref, :size => '120x120'), computer %></td>
+						<td><%= link_to ComputersMarca.find(computer.marca).marca.upcase, computer %></td>
+						<td><%= ComputersCategory.find(computer.categoria).category%></td>
+						<td><%= computer.modelo.upcase %></td>
+						<td><%= ComputersScreenSize.find(computer.screen_size).size%></td>
+						<td><%= number_to_currency(computer.precio, :unit => '$', :precision => 0) %></td>
+					</tr>
 				<% end %>
 			<% else %>
 				<td colspan="8">No se ha podido encontrar productos con las caracteristicas requeridas</td>

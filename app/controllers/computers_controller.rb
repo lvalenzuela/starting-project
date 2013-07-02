@@ -8,22 +8,29 @@ class ComputersController < ApplicationController
   end
   
   def show
-    @computer = Computer.find(params[:product_id])
+    @computer = Computer.find(params[:id])
   end
   
   def select_for_compare
-    action, id = params[:compare][:product_id].split('-')
     
-    if session[:compare_category] != 'computers'
-      session[:compare_category] = 'computers'
-      session.delete(:selected_items)
-    end
-        
-    case action
-      when 'a'
-        (session[:selected_items] ||= []) << id
-      when 'd'
-        session[:selected_items].delete(id)
+    params[:product].each do |product|
+      action, id = product.split('-')
+      
+      if session[:compare_category] != 'computers'
+        session[:compare_category] = 'computers'
+        session.delete(:selected_items)
+      end
+          
+      case action
+        when 'a'
+          (session[:selected_items] ||= []) << id.to_i
+        when 'd'
+          if session[:selected_items].nil?
+            session[:selected_items] = []
+          else
+            session[:selected_items].delete(id.to_i)
+          end
+      end
     end
     
     respond_to do |format|
@@ -45,8 +52,9 @@ class ComputersController < ApplicationController
     else
       @computers = Computer.find(:all)
     end
+    @computer = Computer.new # Nuevo registro a ingresar    
     @boolean_opt = [["Si",1], ["No",0]]
-    @numbers_opt = [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8],["9",9],["10",10],
+    @numbers_opt = [["0",0],["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8],["9",9],["10",10],
     ["11",11],["12",12],["13",13],["14",14],["15",15],["16",16]]
   end
   
@@ -99,32 +107,32 @@ class ComputersController < ApplicationController
     end
   end
   
-  def save
-    c = Computer.new(params[:computer])
+  def create
+    @computer = Computer.new(params[:computer])
     
-    if c.save
+    if @computer.save
       redirect_to :action => 'new'
     else
       redirect_to :action => 'error'
     end
   end
-  
-  def update
-    @updated_comp = Computer.find(params[:id])
-    if @updated_comp.update_attributes(params[:computer])
-      redirect_to :action => 'new'
-    else
-      redirect_to :action => 'error'
-    end
-  end
-  
+
   def edit
     @computer = Computer.find(params[:id])
     @boolean_opt = [["Si",1], ["No",0]]
     @numbers_opt = [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8]]
   end
   
-  def delete
+  def update
+    @computer = Computer.find(params[:id])
+    if @computer.update_attributes(params[:computer])
+      redirect_to :action => 'new'
+    else
+      redirect_to :action => 'error'
+    end
+  end
+  
+  def destroy
     if Computer.destroy(params[:id])
       redirect_to :action => 'new'
     else

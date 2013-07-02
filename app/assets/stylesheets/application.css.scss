@@ -13,7 +13,7 @@
  */
 
 #bottom_toolbar{
-  height: 26px;
+  height: 40px;
   width: 100%;
   position: fixed;
   bottom: 0px;
@@ -23,4 +23,42 @@
   float: left;
 }
 
+.toolbar{
+  margin-top: 5px;
+}
 
+.selected_items{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/*DISPLAY DE PRODUCTOS*/
+
+.under-product-box
+{
+  margin-top: 20px;
+}
+
+.thumbnail{
+  text-align: center;
+  display: block;
+  line-height: 20px;
+  border: 1px solid #ddd;
+}
+
+.thumbnail > img{
+  display: block;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/*TABLAS DE PRODUCTOS*/
+
+.product-features{
+  
+}
+
+.product-features th{
+  width: 300px;
+}

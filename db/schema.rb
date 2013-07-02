@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130621221154) do
+ActiveRecord::Schema.define(:version => 20130628193103) do
 
   create_table "cars", :force => true do |t|
     t.string   "image_reference",                      :default => "car_images/not_found.png"
@@ -145,19 +145,28 @@ ActiveRecord::Schema.define(:version => 20130621221154) do
     t.integer  "video_memoria"
     t.integer  "video_tipo_memoria",     :limit => 1
     t.integer  "webcam",                 :limit => 1
-    t.integer  "lector_tarjeta_memoria", :limit => 1
+    t.string   "lector_tarjeta_memoria"
     t.integer  "ethernet",               :limit => 1
     t.integer  "hdmi",                   :limit => 1
     t.integer  "vga",                    :limit => 1
     t.integer  "wifi",                   :limit => 1
     t.integer  "bluetooth",              :limit => 1
-    t.integer  "usb",                    :limit => 1
+    t.integer  "usb_2",                  :limit => 1
     t.integer  "largo"
     t.integer  "ancho"
     t.integer  "profundidad"
     t.datetime "created_at",                                                                                                     :null => false
     t.datetime "updated_at",                                                                                                     :null => false
     t.string   "peso"
+    t.integer  "usb_3"
+    t.integer  "screen_touch",           :limit => 1
+    t.integer  "bateria_celdas"
+  end
+
+  create_table "computers_bluetooths", :force => true do |t|
+    t.string   "bluetooth"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "computers_categories", :force => true do |t|
@@ -210,6 +219,11 @@ ActiveRecord::Schema.define(:version => 20130621221154) do
 
   create_table "computers_wifis", :force => true do |t|
     t.string "wifi"
+  end
+
+  create_table "televisions", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

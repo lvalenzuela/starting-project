@@ -1,7 +1,16 @@
 <div id="bottom_toolbar">
 	<div class="container">
-		<div id="selected_items">
-			<p>Lista de comparación(<%= compare_list_count.to_s %>) </p>
+		<div class="toolbar">
+			<div class="row">
+				<div class="span2 offset3">
+					<div id="selected_items">
+						<p>Lista de comparación(<%= compare_list_count.to_s %>) </p>
+					</div>
+				</div>
+				<div class="span1">
+					<%= link_to 'Comparar', computers_compare_path , :class => 'btn'%>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
