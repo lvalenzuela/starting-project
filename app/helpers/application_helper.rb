@@ -6,17 +6,6 @@ module ApplicationHelper
       return session[:selected_items].length
     end
   end
-
-  def compare_view_divisions
-    case session[:selected_items].length
-    when 2
-      return 'span4'
-    when 3
-      return 'span2'
-    when 4
-      return 'span2'
-    end
-  end
   
   def compare_path
     return session[:compare_category]

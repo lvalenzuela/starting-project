@@ -4,11 +4,23 @@
 			<div class="row">
 				<div class="span2 offset3">
 					<div id="selected_items">
-						<p>Lista de comparación(<%= compare_list_count.to_s %>) </p>
+						<p>Lista de comparación</p>
 					</div>
 				</div>
 				<div class="span1">
-					<%= link_to 'Comparar', computers_compare_path , :class => 'btn'%>
+					<table>
+						<tr>
+							<% session[:selected_items].each do |item|%>
+								<td class="compare_list_item">
+									<%= hidden_field_tag 'compare_items[]', item %>
+									<span>&loz;</span>
+								</td>			
+							<% end %>
+						</tr>
+					</table>
+				</div>
+				<div class="span1">
+					<%= submit_tag 'Comparar', :class => 'btn'%>
 				</div>
 			</div>
 		</div>

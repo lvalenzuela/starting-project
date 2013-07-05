@@ -1,5 +1,5 @@
 class ComputersController < ApplicationController
-  layout 'products_layout'
+  #layout 'products_layout'
   
   def index
     @computers = Computer.find(:all)
@@ -9,6 +9,18 @@ class ComputersController < ApplicationController
   
   def show
     @computer = Computer.find(params[:id])
+
+    #Lista de imagenes correspondientes a un producto
+    #se considera un default de 4 imagenes por producto
+    @image_paths = []
+    marca = ComputersMarca.find(@computer.marca).marca
+    modelo = @computer.modelo.upcase
+    (1..4).each do |image|
+      img_path = 'computer_images/'+marca+'/'+modelo+'/'+image.to_s+'.jpg'
+      if File.exist?(Rails.root.join('app','assets','images', img_path))
+        @image_paths << img_path
+      end
+    end
   end
   
   def select_for_compare
@@ -41,8 +53,10 @@ class ComputersController < ApplicationController
   def compare
     @selected_items = []
     
-    session[:selected_items].each do |item|
-      @selected_items = (@selected_items + Computer.find(item))
+    @items_to_compare = params[:compare_items].length
+    
+    params[:compare_items].each do |item|
+      @selected_items = (@selected_items + Computer.find(:all, :conditions => {:id => item}))
     end
   end
   

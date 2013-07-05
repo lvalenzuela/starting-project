@@ -1,3 +1,37 @@
 @import "bootstrap";
 body { padding-top: 0px; }
 @import "bootstrap-responsive";
+
+/*COMPARE TABLE*/
+
+.compare-table th{
+  width: 20%;
+}
+
+.compare-table td{
+  text-align: center;
+}
+
+.compare-1 td{
+  width: 80%;
+}
+
+.compare-2 td{
+  width: 40%;
+}
+
+.compare-3 td{
+  width: 26%;
+}
+
+.compare-4 td{
+  width: 20%;
+}
+
+.compare-5 td{
+  width: 16%;
+}
+
+.compare-6 td{
+  width: 13%;
+}
