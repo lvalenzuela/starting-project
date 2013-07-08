@@ -41,11 +41,11 @@
 				<td><%= c.text_field :precio %></td>
 			</tr>
 			<tr>
-				<td>Batería</td>
+				<td>Material Batería</td>
 				<td><%= c.text_field :bateria %></td>
 			</tr>
 			<tr>
-				<td>Bateria</td>
+				<td>Celdas Bateria</td>
 				<td><%= c.select :bateria_celdas ,options_for_select(select_options('numbers'), @computer.bateria_celdas) %></td>
 			</tr>
 			<tr>
@@ -189,7 +189,7 @@
 				<td><%= c.text_field :ancho%></td>
 			</tr>
 			<tr>
-				<td>Profundidad[mm]</td>
+				<td>Alto[mm]</td>
 				<td><%= c.text_field :profundidad%></td>
 			</tr>
 			<tr>

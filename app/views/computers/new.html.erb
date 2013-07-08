@@ -16,13 +16,14 @@
 			<tr>
 				<th>Delete</th>
 				<th>Edit</th>
+				<th>Preview Image</th>
 				<th>Imagen</th>
 				<th>Marca</th>
 				<th>Categoría</th>
 				<th>Modelo</th>
 				<th>Sistema Operativo</th>
 				<th>Precio</th>
-				<th>Batería</th>
+				<th>Material Batería</th>
 				<th>N° Celdas Batería</th>
 				<th>Duración Bateria</th>
 				<th>Marca Procesador</th>
@@ -59,7 +60,7 @@
 				<th>USB 3.0</th>
 				<th>Largo [mm]</th>
 				<th>Ancho [mm]</th>
-				<th>Profundidad [mm]</th>
+				<th>Altp[mm]</th>
 				<th>Peso [kg]</th>
 				<th>Guardar</th>
 			</tr>
@@ -71,6 +72,7 @@
 					<tr>
 						<td><%= button_to 'Delete', computer, :confirm => 'Segurito?', :method => 'delete', :class => 'btn'%></td>
 						<td><%= button_to 'Edit', edit_computer_path(computer), :class => 'btn'%></td>
+						<td><%= image_tag computer.img_ref, :size => '120x120'%></td>
 						<td><%= image_tag computer.img_ref, :size => '120x120'%></td>
 						<td><%= ComputersMarca.find(computer.marca).marca%></td>
 						<td><%= ComputersCategory.find(computer.categoria).category%></td>
@@ -129,7 +131,8 @@
 				<tr>
 					<td><%= link_to "Delete", cars_new_path, :class => "btn", :disabled => "disabled" %></td>
 					<td><%= link_to "Edit", cars_new_path, :class => "btn", :disabled => "disabled" %></td>
-					<td><%= c.text_field :img_ref, :value => 'computer_images/not_found.png'%></td>
+					<td><div id="new-product-img-preview"><%= image_tag 'computer_images/not_found.png', :size => '100x100'%></div></td>
+					<td><%= c.text_field :img_ref, :value => 'computer_images/not_found.png', :id => 'new_product_img'%></td>
 					<td><%= c.select :marca, ComputersMarca.all.collect{|m| [m.marca, m.id]}, {:selected => 1}%></td>
 					<td><%= c.select :categoria, ComputersCategory.all.collect{|c| [c.category, c.id]}, {:selected => 2}%></td>
 					<td><%= c.text_field :modelo, :value => ' '%></td>

@@ -26,3 +26,11 @@ $(function(){
 		$("#item-list-toolbox").slideToggle("slow");
 	});
 });
+
+$(function(){
+	$("#new_product_img").change(function(){
+		var c = $("#new_product_img").val();
+		$("#new-product-img-preview").html('<img src="/assets/'+c+'" width="100" height="100"/>');
+		$("#new-product-img-preview").fadeIn(2000);
+	});
+});
