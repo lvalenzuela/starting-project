@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130628193103) do
+ActiveRecord::Schema.define(:version => 20130708201837) do
+
+  create_table "cam_flashs", :force => true do |t|
+    t.string   "tipo"
+    t.text     "descripcion"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "cars", :force => true do |t|
     t.string   "image_reference",                      :default => "car_images/not_found.png"
@@ -111,6 +118,12 @@ ActiveRecord::Schema.define(:version => 20130628193103) do
     t.string   "transmision"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "categorias", :force => true do |t|
+    t.string   "nombre"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "computers", :force => true do |t|
@@ -219,6 +232,151 @@ ActiveRecord::Schema.define(:version => 20130628193103) do
 
   create_table "computers_wifis", :force => true do |t|
     t.string "wifi"
+  end
+
+  create_table "display_depths", :force => true do |t|
+    t.string   "profundidad"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "display_resolutions", :force => true do |t|
+    t.string   "resolution"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "display_sizes", :force => true do |t|
+    t.string   "size"
+    t.string   "aspect_ratio"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "display_techs", :force => true do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "map_marca_categorias", :id => false, :force => true do |t|
+    t.integer  "marca_id"
+    t.integer  "categoria_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "map_smartphone_connectors", :id => false, :force => true do |t|
+    t.integer  "smartphone_id"
+    t.integer  "smartphone_connector_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  create_table "map_smartphone_red_protocol_supporteds", :id => false, :force => true do |t|
+    t.integer  "smartphone_red_protocol_id"
+    t.integer  "smartphone_red_protocol_supported_id"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+  end
+
+  create_table "map_smartphone_red_protocols", :id => false, :force => true do |t|
+    t.integer  "smartphone_red_id"
+    t.integer  "smartphone_red_protocol_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "map_smartphone_reds", :id => false, :force => true do |t|
+    t.integer  "smartphone_id"
+    t.integer  "smartphone_red_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "map_smartphone_sensors", :id => false, :force => true do |t|
+    t.integer  "smartphone_id"
+    t.integer  "smartphone_sensor_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+  end
+
+  create_table "marca_procesadors", :force => true do |t|
+    t.string   "nombre_marca"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "marcas", :force => true do |t|
+    t.string   "nombre_marca"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "sistema_operativos", :force => true do |t|
+    t.string   "nombre"
+    t.string   "version"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "smarphone_red_protocols", :force => true do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "smartphone_connectors", :force => true do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "smartphone_red_protocol_supporteds", :force => true do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "smartphone_sensors", :force => true do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "smartphones", :force => true do |t|
+    t.string   "img_ref",                       :default => "smartphone_images/not_found.png"
+    t.string   "modelo"
+    t.integer  "precio"
+    t.integer  "proce_num_cores"
+    t.integer  "proce_speed"
+    t.string   "proce_modelo"
+    t.integer  "almacenamiento"
+    t.float    "cam_resolution"
+    t.float    "cam_front_resolution"
+    t.boolean  "cam_autofoco"
+    t.integer  "dim_alto"
+    t.integer  "dim_ancho"
+    t.integer  "dim_profundidad"
+    t.integer  "dim_peso"
+    t.integer  "battery_capacity"
+    t.boolean  "battery_usb_rechargeable"
+    t.boolean  "battery_wireless_rechargeable"
+    t.integer  "marca_id"
+    t.integer  "sistema_operativo_id"
+    t.integer  "display_tech_id"
+    t.integer  "display_depth_id"
+    t.integer  "display_size_id"
+    t.integer  "display_resolution_id"
+    t.integer  "marca_procesador_id"
+    t.integer  "cam_flash_id"
+    t.datetime "created_at",                                                                   :null => false
+    t.datetime "updated_at",                                                                   :null => false
   end
 
   create_table "televisions", :force => true do |t|
