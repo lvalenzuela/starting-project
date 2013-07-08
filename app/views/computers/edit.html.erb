@@ -1,6 +1,6 @@
 <div class="container">
 	<h1>Edit Form</h1>
-	<%= form_for @computer, :url => {:action => "update" , :id => @computer.id} do |c|%>	
+	<%= form_for(@computer) do |c|%>	
 	<table class="table table-bordered table-stripped">
 		<thead>
 			<tr>
@@ -45,6 +45,10 @@
 				<td><%= c.text_field :bateria %></td>
 			</tr>
 			<tr>
+				<td>Bateria</td>
+				<td><%= c.select :bateria_celdas ,options_for_select(select_options('numbers'), @computer.bateria_celdas) %></td>
+			</tr>
+			<tr>
 				<td>Duración Batería</td>
 				<td><%= c.text_field :bateria_duracion %></td>
 			</tr>
@@ -62,11 +66,11 @@
 			</tr>
 			<tr>
 				<td>Núcleos Procesador</td>
-				<td><%= c.select :proce_nucleos, options_for_select(@numbers_opt, @computer.proce_nucleos) %></td>
+				<td><%= c.select :proce_nucleos, options_for_select(select_options('numbers'), @computer.proce_nucleos) %></td>
 			</tr>
 			<tr>
 				<td>Cantidad Memoria</td>
-				<td><%= c.select :memoria, options_for_select(@numbers_opt, @computer.memoria) %></td>
+				<td><%= c.select :memoria, options_for_select(select_options('numbers'), @computer.memoria) %></td>
 			</tr>
 			<tr>
 				<td>Tipo Memoria</td>
@@ -78,11 +82,11 @@
 			</tr>
 			<tr>
 				<td>Memoria Máxima</td>
-				<td><%= c.select :memoria_max, options_for_select(@numbers_opt, @computer.memoria_max) %></td>
+				<td><%= c.select :memoria_max, options_for_select(select_options('numbers'), @computer.memoria_max) %></td>
 			</tr>
 			<tr>
 				<td>Ranuras de Memoria</td>
-				<td><%= c.select :memoria_ranuras, options_for_select(@numbers_opt, @computer.memoria_ranuras) %></td>
+				<td><%= c.select :memoria_ranuras, options_for_select(select_options('numbers'), @computer.memoria_ranuras) %></td>
 			</tr>
 			<tr>
 				<td>Capacidad de Disco</td>
@@ -109,20 +113,24 @@
 				<td><%= c.select :screen_type, ComputersScreenType.all.collect{|t| [t.tipo, t.id]} %></td>
 			</tr>
 			<tr>
+				<td>Pantalla Touch</td>
+				<td><%= c.select :screen_touch, options_for_select(select_options('boolean'), @computer.screen_touch) %></td>
+			</tr>
+			<tr>
 				<td>Lector Blue-Ray</td>
-				<td><%= c.select :lector_blue_ray, options_for_select(@boolean_opt, @computer.lector_blue_ray) %></td>
+				<td><%= c.select :lector_blue_ray, options_for_select(select_options('boolean'), @computer.lector_blue_ray) %></td>
 			</tr>
 			<tr>
 				<td>Grabador Blue-Ray</td>
-				<td><%= c.select :grabador_blue_ray, options_for_select(@boolean_opt, @computer.grabador_blue_ray) %></td>
+				<td><%= c.select :grabador_blue_ray, options_for_select(select_options('boolean'), @computer.grabador_blue_ray) %></td>
 			</tr>
 			<tr>
 				<td>Lector DVD</td>
-				<td><%= c.select :lector_dvd, options_for_select(@boolean_opt, @computer.lector_dvd) %></td>
+				<td><%= c.select :lector_dvd, options_for_select(select_options('boolean'), @computer.lector_dvd) %></td>
 			</tr>
 			<tr>
 				<td>Grabador DVD</td>
-				<td><%= c.select :grabador_dvd, options_for_select(@boolean_opt, @computer.grabador_dvd) %></td>
+				<td><%= c.select :grabador_dvd, options_for_select(select_options('boolean'), @computer.grabador_dvd) %></td>
 			</tr>
 			<tr>
 				<td>Modelo Tarjeta de Video</td>
@@ -138,23 +146,23 @@
 			</tr>
 			<tr>
 				<td>Webcam</td>
-				<td><%= c.select :webcam, options_for_select(@boolean_opt, @computer.webcam) %></td>
+				<td><%= c.select :webcam, options_for_select(select_options('boolean'), @computer.webcam) %></td>
 			</tr>
 			<tr>
 				<td>Lector de Tarjetas de Memoria</td>
-				<td><%= c.select :lector_tarjeta_memoria, options_for_select(@boolean_opt, @computer.lector_tarjeta_memoria) %></td>
+				<td><%= c.text_field :lector_tarjeta_memoria %></td>
 			</tr>
 			<tr>
 				<td>Ethernet</td>
-				<td><%= c.select :ethernet, options_for_select(@boolean_opt, @computer.ethernet) %></td>
+				<td><%= c.select :ethernet, options_for_select(select_options('boolean'), @computer.ethernet) %></td>
 			</tr>
 			<tr>
 				<td>HDMI</td>
-				<td><%= c.select :hdmi, options_for_select(@boolean_opt, @computer.hdmi) %></td>
+				<td><%= c.select :hdmi, options_for_select(select_options('boolean'), @computer.hdmi) %></td>
 			</tr>
 			<tr>
 				<td>VGA</td>
-				<td><%= c.select :vga, options_for_select(@boolean_opt, @computer.vga) %></td>
+				<td><%= c.select :vga, options_for_select(select_options('boolean'), @computer.vga) %></td>
 			</tr>
 			<tr>
 				<td>Wi-Fi</td>
@@ -162,11 +170,15 @@
 			</tr>
 			<tr>
 				<td>Bluetooth</td>
-				<td><%= c.select :bluetooth, options_for_select(@boolean_opt, @computer.bluetooth) %></td>
+				<td><%= c.select :bluetooth, ComputersBluetooth.all.collect{|b| [b.bluetooth, b.id]} %></td>
 			</tr>
 			<tr>
-				<td>USB</td>
-				<td><%= c.select :usb, options_for_select(@numbers_opt, @computer.usb) %></td>
+				<td>USB 2.0</td>
+				<td><%= c.select :usb_2, options_for_select(select_options('numbers'), @computer.usb_2) %></td>
+			</tr>
+			<tr>
+				<td>USB 3.0</td>
+				<td><%= c.select :usb_3, options_for_select(select_options('numbers'), @computer.usb_3) %></td>
 			</tr>
 			<tr>
 				<td>Largo[mm]</td>
@@ -186,7 +198,7 @@
 			</tr>
 			<tr>
 				<td>Editar</td>
-				<td><%= submit_tag "Editar", :class => "btn"%></td>
+				<td><%= c.submit :class =>'btn'%></td>
 			</tr>
 		</tbody>
 	</table>

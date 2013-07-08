@@ -4,14 +4,11 @@ Cotizar::Application.routes.draw do
   resources :main
   
   get "computers/index"
-  match 'computers/save' => 'computers#save'
-  match 'computers/delete' => 'computers#delete'
-  match 'computers/update' => 'computers#update'
-  match 'computers/edit' => 'computers#edit'
+  match 'computers/:id/edit' => 'computers#edit'
   match 'computers/search' => 'computers#search'
   match 'computers/select_for_compare' => 'computers#select_for_compare'
   match 'computers/compare' => 'computers#compare'
-  match 'computers/show' => 'computers#show'
+
   get "cars/index"
   match 'cars/save' => 'cars#save'
   match 'cars/delete' => 'cars#delete'

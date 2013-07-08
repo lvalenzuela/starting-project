@@ -1,28 +1,232 @@
 <div class="container">
 	<h1>Ficha de Producto</h1>
 	<div class="row">
-		<div class="span5">
-			<%= image_tag @computer.img_ref, :size => '300x300'%>
+		<div class="span4">
+			<div class="thumbnail">
+				<%= image_tag @computer.img_ref%>
+			</div>
 		</div>
-		<div class="span7">
-			<table class="show-product-table-main">
-				<tr>
-					<th colspan="2"><%= ComputersMarca.find(@computer.marca).marca.capitalize + ' '+ @computer.modelo.upcase%></th>
-					<th></th>
-				</tr>
-				<tr>
-					<th>Tamaño</th>
-					<td><%= ComputersScreenSize.find(@computer.screen_size).size %></td>
-				</tr>
-				<tr>
-					<th>Procesador</th>
-					<td><%= ComputersProce.find(@computer.proce_marca).marca + ' '+ @computer.proce_version.upcase%></td>
-				</tr>
-				<tr>
-					<th>Precio de Referencia</th>
-					<td><%= number_to_currency(@computer.precio, :unit => '$', :precision => 0)%></td>
-				</tr>
-			</table>
+		<div class="span8">
+			<div class="product-title">
+				<h2><%= ComputersMarca.find(@computer.marca).marca+' '+ @computer.modelo %></h2>
+				<h3><%= number_to_currency(@computer.precio, :unit => '$', :precision => 0, :delimiter => '.')%></h3>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span4">
+			<div class="row">
+				<div class="under-product-box">
+					<% @image_paths.each do |img| %>
+						<div class="span1">
+							<div class="thumbnail">
+								<%= image_tag img%>
+							</div>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="under-product-box">
+					<%= image_tag'app_images/RatingBarStars.PNG' %>
+			</div>
+		</div>
+		<div class="span4">
+
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<div class="product-features">
+				<h3>Procesador</h3>
+				<table class="table table-striped product-features">
+					<tbody>
+						<tr>
+							<th>Marca</th>
+							<td><%= ComputersProce.find(@computer.proce_marca).marca%></td>
+						</tr>
+						<tr>
+							<th>Modelo</th>
+							<td><%= @computer.proce_version.upcase %>
+						</tr>
+						<tr>
+							<th>Velocidad</th>
+							<td><%= @computer.proce_velocidad%> GHz</td>
+						</tr>
+						<tr>
+							<th>Nucleos</th>
+							<td><%= @computer.proce_nucleos%></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h3>Batería</h3>
+				<table class="table table-striped product-features">
+					<tbody>
+						<tr>
+							<th>Tipo</th>
+							<td><%= @computer.bateria%></td>
+						</tr>
+						<tr>
+							<th>Celdas</th>
+							<td><%= @computer.bateria_celdas%></td>
+						</tr>
+						<tr>
+							<th>Duración</th>
+							<td><%= @computer.bateria_duracion%> Horas</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				<h3>Memoria</h3>
+				<table class="table table-striped product-features">
+					<tbody>
+						<tr>
+							<th>Memoria Incluida</th>
+							<td><%= @computer.memoria%> GB</td>
+						</tr>
+						<tr>
+							<th>Tipo Memoria</th>
+							<td><%= ComputersMemoria.find(@computer.memoria_tipo).tipo%></td>
+						</tr>
+						<tr>
+							<th>Velocidad Memoria</th>
+							<td><%= @computer.memoria_velocidad %> MHz</td>
+						</tr>
+						<tr>
+							<th>Memoria Máxima</th>
+							<td><%= @computer.memoria_max %> GB</td>
+						</tr>
+						<tr>
+							<th>Ranuras de Memoria</th>
+							<td><%= @computer.memoria_ranuras%></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h3>Disco</h3>
+				<table class="table table-striped product-features">
+					<tbody>
+						<tr>
+							<th>Capacidad</th>
+							<td><%= @computer.disco_capacidad%> GB</td>
+						</tr>
+						<tr>
+							<th>Velocidad</th>
+							<td><%= @computer.disco_velocidad %> RPM</td>
+						</tr>
+						<tr>
+							<th>Disco SSD</th>
+							<td><%= @computer.disco_ssd%> GB</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h3>Pantalla</h3>
+				<table class="table table-striped product-features">
+					<tbody>
+						<tr>
+							<th>Tamaño</th>
+							<td><%= ComputersScreenSize.find(@computer.screen_size).size%></td>
+						</tr>
+						<tr>
+							<th>Resolución</th>
+							<td><%= ComputersScreenResol.find(@computer.screen_resol).resolucion%></td>
+						</tr>
+						<tr>
+							<th>Tipo</th>
+							<td><%= ComputersScreenType.find(@computer.screen_type).tipo%></td>
+						</tr>
+						<tr>
+							<th>Pantalla Touch</th>
+							<td><%= boolean_product_feature(@computer.screen_touch)%></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h3>Video</h3>
+				<table class="table table-striped product-features">
+					<tbody>
+						<tr>
+							<th>Modelo T. Video</th>
+							<td><%= @computer.video_modelo%></td>
+						</tr>
+						<tr>
+							<th>Memoria de Video</th>
+							<td><%= @computer.video_memoria%> GB</td>
+						</tr>
+						<tr>
+							<th>Tipo de Memoria</th>
+							<td><%= ComputersMemoria.find(@computer.video_tipo_memoria).tipo %></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h3>Características Adicionales</h3>
+				<table class="table table-striped product-features">
+					<tbody>
+						<tr>
+							<th>Webcam</th>
+							<td><%= boolean_product_feature(@computer.webcam)%></td>
+						</tr>
+						<tr>
+							<th>Conexión Ethernet</th>
+							<td><%= boolean_product_feature(@computer.ethernet)%></td>
+						</tr>
+						<tr>
+							<th>Lector Tarjetas de Memoria</th>
+							<td><%= @computer.lector_tarjeta_memoria%></td>
+						</tr>
+						<tr>
+							<th>Puerto HDMI</th>
+							<td><%= boolean_product_feature(@computer.hdmi)%></td>
+						</tr>
+						<tr>
+							<th>Puerto VGA</th>
+							<td><%=boolean_product_feature(@computer.vga)%></td>
+						</tr>
+						<tr>
+							<th>Conexión Wi-Fi</th>
+							<td><%= ComputersWifi.find(@computer.wifi).wifi%></td>
+						</tr>
+						<tr>
+							<th>Bluetooth</th>
+							<td><%= ComputersBluetooth.find(@computer.bluetooth).bluetooth%></td>
+						</tr>
+						<tr>
+							<th>Puertos USB 2.0</th>
+							<td><%= @computer.usb_2%></td>
+						</tr>
+						<tr>
+							<th>Puertos USB 3.0</th>
+							<td><%= @computer.usb_3%></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h3>Dimensiones</h3>
+				<table class="table table-striped product-features">
+					<tbody>
+						<tr>
+							<th>Largo</th>
+							<td><%= @computer.largo%> mm</td>
+						</tr>
+						<tr>
+							<th>Ancho</th>
+							<td><%= @computer.ancho%> mm</td>
+						</tr>
+						<tr>
+							<th>Profundidad</th>
+							<td><%= @computer.profundidad%> mm</td>
+						</tr>
+						<tr>
+							<th>Peso</th>
+							<td><%= @computer.peso%> KG</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

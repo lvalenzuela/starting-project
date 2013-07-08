@@ -1,16 +1,16 @@
 <div class="container">
 	<h1>Edit Form</h1>
-
+	
 	<%= form_for @car, :url => {:action => "update" , :id => @car.id} do |c|%>
 	<table class="table table-bordered table-stripped">
 		
-        <thead>
+	    <thead>
 		<tr>
 			<th class="span1">Atributo</th>
 			<th class="span7">Dato</th>
 		</tr>
-        </thead>
-        <tbody>
+	    </thead>
+	    <tbody>
 		<%= c.hidden_field :id , :value => @car.id %>
 		<!-- CAR -->
 		<tr>
@@ -230,7 +230,7 @@
 			<td>Espejos Electricos</td>
 			<td><%= c.select :espejos_electricos, options_for_select(@boolean_opt, @car.espejos_electricos)%></td>
 		</tr>	
-
+	
 		<!-- SEGURIDAD -->
 		<tr>
 			<th>Atributos Seguridad</th>
@@ -326,4 +326,6 @@
 		<% end %>
 		</tbody>
 	</table>
+
 </div>
+

@@ -12,6 +12,7 @@
 		<tbody>
 			<% if !@cars.empty?%>
 				<% @cars.each do |c| %>
+				<% session[:selected_items] ||= [] %>
 				<tr>
 					<td></td>
 					<td><%= image_tag c.image_reference, :size => "120x120"%></td>
