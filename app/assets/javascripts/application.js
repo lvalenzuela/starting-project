@@ -11,3 +11,18 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require_tree .
+
+//Cambiar imagenes de productos
+$(function(){
+	$("#small-product-img img").click(function(){
+		var c = $(this).attr("src");
+		$("#product-img").html('<img src="'+c+'"/>');
+		$("#product-img").fadeIn(2000);
+	});
+});
+
+$(function(){
+	$("#selected_items p").click(function(){
+		$("#item-list-toolbox").slideToggle("slow");
+	});
+});
