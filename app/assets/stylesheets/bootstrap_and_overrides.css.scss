@@ -2,6 +2,99 @@
 body { padding-top: 0px; }
 @import "bootstrap-responsive";
 
+
+#bottom_toolbar{
+  height: 35px;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  overflow: visible;
+  background-color: #ccc;
+  left: 0px;
+  float: left;
+}
+
+#item-list-toolbox{
+  position: fixed;
+  bottom: 35px;
+  background-color: #fff;
+  border: solid 1px #ddd;
+  padding: 10px;
+  display:none;
+}
+
+#item-list-toolbox .toolbox-item .thumbnail{
+  height: 150px;
+  margin-bottom: 5px;
+}
+
+#item-list-toolbox .toolbox-item .thumbnail :hover{
+	cursor: pointer;
+}
+
+#item-list-toolbox .toolbox-item .thumbnail table{
+	width: 100%;
+}
+
+#item-list-toolbox .toolbox-item .thumbnail td{
+	text-align: center;
+}
+
+#item-list-toolbox .toolbox-item .thumbnail img{
+  width: 80px;
+  height: 80px;
+}
+
+#toolbar{
+  margin-top: 5px;
+}
+
+#compare-list{
+
+}
+
+.selected_items{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+
+/*DISPLAY DE PRODUCTOS*/
+
+.under-product-box
+{
+  margin-top: 20px;
+}
+
+.thumbnail{
+  text-align: center;
+  display: block;
+  line-height: 20px;
+  border: 1px solid #ddd;
+}
+
+.thumbnail > img{
+  display: block;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#small-product-img :hover{
+  cursor: pointer;
+}
+
+
+/*TABLAS DE PRODUCTOS*/
+
+.product-features table{
+  border: solid 1px #ddd;  
+}
+
+.product-features table th{
+  width: 200px;
+}
+
 /*COMPARE TABLE*/
 
 .compare-table th{

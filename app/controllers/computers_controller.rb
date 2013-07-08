@@ -4,6 +4,7 @@ class ComputersController < ApplicationController
   def index
     @computers = Computer.find(:all)
     session[:compare_category] = 'computers'
+    session[:selected_items] ||= []
     render :search
   end
   
@@ -35,12 +36,12 @@ class ComputersController < ApplicationController
           
       case action
         when 'a'
-          (session[:selected_items] ||= []) << id.to_i
+          (session[:selected_items] ||= []) << Computer.find(:first, :select => 'id, img_ref, marca, modelo, precio', :conditions => {:id => id})#id.to_i
         when 'd'
           if session[:selected_items].nil?
             session[:selected_items] = []
           else
-            session[:selected_items].delete(id.to_i)
+            session[:selected_items].delete_if{|x| x.id == id.to_i}
           end
       end
     end
@@ -56,10 +57,23 @@ class ComputersController < ApplicationController
     @items_to_compare = params[:compare_items].length
     
     params[:compare_items].each do |item|
-      @selected_items = (@selected_items + Computer.find(:all, :conditions => {:id => item}))
+      @selected_items << Computer.find(:first, :conditions => {:id => item})
     end
   end
   
+  #Llena los thumbnails de la toolbox
+  def compare_toolbox
+    @toolbox_items = []
+
+    session[:selected_items].each do |item|
+      @toolbox_items = (@toolbox_items + Computers.find(:first, :conditions => {:id => item}))
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def new
     if params[:marca]
       @computers = Computer.find(:all, :conditions => {:marca => params[:marca][:value]})
@@ -67,13 +81,9 @@ class ComputersController < ApplicationController
       @computers = Computer.find(:all)
     end
     @computer = Computer.new # Nuevo registro a ingresar    
-    @boolean_opt = [["Si",1], ["No",0]]
-    @numbers_opt = [["0",0],["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8],["9",9],["10",10],
-    ["11",11],["12",12],["13",13],["14",14],["15",15],["16",16]]
   end
   
   def search
-    
     #FILTRO POR CATEGORIA
     if params[:search][:category] == "any"
       @computers = Computer.find(:all)

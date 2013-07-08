@@ -2,7 +2,7 @@
 	<h1>Ficha de Producto</h1>
 	<div class="row">
 		<div class="span4">
-			<div class="thumbnail">
+			<div class="thumbnail" id="product-img">
 				<%= image_tag @computer.img_ref%>
 			</div>
 		</div>
@@ -19,7 +19,7 @@
 				<div class="under-product-box">
 					<% @image_paths.each do |img| %>
 						<div class="span1">
-							<div class="thumbnail">
+							<div class="thumbnail" id="small-product-img">
 								<%= image_tag img%>
 							</div>
 						</div>
@@ -37,10 +37,10 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="span12">
+		<div class="span6">
 			<div class="product-features">
 				<h3>Procesador</h3>
-				<table class="table table-striped product-features">
+				<table class="table table-striped">
 					<tbody>
 						<tr>
 							<th>Marca</th>
@@ -52,7 +52,7 @@
 						</tr>
 						<tr>
 							<th>Velocidad</th>
-							<td><%= @computer.proce_velocidad%> GHz</td>
+							<td><%= display_data_type(@computer.proce_velocidad,'speed_proce')%></td>
 						</tr>
 						<tr>
 							<th>Nucleos</th>
@@ -60,9 +60,12 @@
 						</tr>
 					</tbody>
 				</table>
-
+			</div>
+		</div>
+		<div class="span6">
+			<div class="product-features">
 				<h3>Batería</h3>
-				<table class="table table-striped product-features">
+				<table class="table table-striped">
 					<tbody>
 						<tr>
 							<th>Tipo</th>
@@ -74,17 +77,22 @@
 						</tr>
 						<tr>
 							<th>Duración</th>
-							<td><%= @computer.bateria_duracion%> Horas</td>
+							<td><%= display_data_type(@computer.bateria_duracion,'batery_life')%></td>
 						</tr>
 					</tbody>
 				</table>
-				
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span6">
+			<div class="product-features">
 				<h3>Memoria</h3>
-				<table class="table table-striped product-features">
+				<table class="table table-striped">
 					<tbody>
 						<tr>
 							<th>Memoria Incluida</th>
-							<td><%= @computer.memoria%> GB</td>
+							<td><%= display_data_type(@computer.memoria,'memory_cap')%></td>
 						</tr>
 						<tr>
 							<th>Tipo Memoria</th>
@@ -92,11 +100,11 @@
 						</tr>
 						<tr>
 							<th>Velocidad Memoria</th>
-							<td><%= @computer.memoria_velocidad %> MHz</td>
+							<td><%= display_data_type(@computer.memoria_velocidad,'memory_speed') %></td>
 						</tr>
 						<tr>
 							<th>Memoria Máxima</th>
-							<td><%= @computer.memoria_max %> GB</td>
+							<td><%= display_data_type(@computer.memoria_max,'memory_cap') %></td>
 						</tr>
 						<tr>
 							<th>Ranuras de Memoria</th>
@@ -104,27 +112,35 @@
 						</tr>
 					</tbody>
 				</table>
-
+			</div>
+		</div>
+		<div class="span6">
+			<div class="product-features">
 				<h3>Disco</h3>
-				<table class="table table-striped product-features">
+				<table class="table table-striped">
 					<tbody>
 						<tr>
 							<th>Capacidad</th>
-							<td><%= @computer.disco_capacidad%> GB</td>
+							<td><%= display_data_type(@computer.disco_capacidad,'disc_small')%></td>
 						</tr>
 						<tr>
 							<th>Velocidad</th>
-							<td><%= @computer.disco_velocidad %> RPM</td>
+							<td><%= display_data_type(@computer.disco_velocidad, 'disc_speed') %></td>
 						</tr>
 						<tr>
 							<th>Disco SSD</th>
-							<td><%= @computer.disco_ssd%> GB</td>
+							<td><%= display_data_type(@computer.disco_ssd, 'disc_small')%></td>
 						</tr>
 					</tbody>
 				</table>
-
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span6">
+			<div class="product-features">
 				<h3>Pantalla</h3>
-				<table class="table table-striped product-features">
+				<table class="table table-striped">
 					<tbody>
 						<tr>
 							<th>Tamaño</th>
@@ -144,9 +160,12 @@
 						</tr>
 					</tbody>
 				</table>
-
+			</div>
+		</div>
+		<div class="span6">
+			<div class="product-features">
 				<h3>Video</h3>
-				<table class="table table-striped product-features">
+				<table class="table table-striped">
 					<tbody>
 						<tr>
 							<th>Modelo T. Video</th>
@@ -154,7 +173,7 @@
 						</tr>
 						<tr>
 							<th>Memoria de Video</th>
-							<td><%= @computer.video_memoria%> GB</td>
+							<td><%= display_data_type(@computer.video_memoria, 'memory_cap')%></td>
 						</tr>
 						<tr>
 							<th>Tipo de Memoria</th>
@@ -162,9 +181,14 @@
 						</tr>
 					</tbody>
 				</table>
-
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span6">
+			<div class="product-features">
 				<h3>Características Adicionales</h3>
-				<table class="table table-striped product-features">
+				<table class="table table-striped">
 					<tbody>
 						<tr>
 							<th>Webcam</th>
@@ -204,25 +228,28 @@
 						</tr>
 					</tbody>
 				</table>
-
+			</div>
+		</div>
+		<div class="span6">
+			<div class="product-features">
 				<h3>Dimensiones</h3>
-				<table class="table table-striped product-features">
+				<table class="table table-striped">
 					<tbody>
 						<tr>
 							<th>Largo</th>
-							<td><%= @computer.largo%> mm</td>
+							<td><%= display_data_type(@computer.largo,'dimensions')%></td>
 						</tr>
 						<tr>
 							<th>Ancho</th>
-							<td><%= @computer.ancho%> mm</td>
+							<td><%= display_data_type(@computer.ancho, 'dimensions')%></td>
 						</tr>
 						<tr>
 							<th>Profundidad</th>
-							<td><%= @computer.profundidad%> mm</td>
+							<td><%= display_data_type(@computer.profundidad,'dimensions')%></td>
 						</tr>
 						<tr>
 							<th>Peso</th>
-							<td><%= @computer.peso%> KG</td>
+							<td><%= display_data_type(@computer.peso,'weight')%></td>
 						</tr>
 					</tbody>
 				</table>
@@ -230,6 +257,3 @@
 		</div>
 	</div>
 </div>
-
-
-

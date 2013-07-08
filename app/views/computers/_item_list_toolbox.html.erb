@@ -1,0 +1,28 @@
+<div id="item-list-toolbox">
+	<div class="row">
+		<div class="span12">
+			<h4>Listado de elementos seleccionados para comparación</h4>
+			<div class="row">
+				<% session[:selected_items].each do |item|%>
+					<div class="span2">
+						<div class="toolbox-item">
+							<div class="thumbnail">
+								<table>
+									<tr>
+										<td><%= image_tag item.img_ref %></td>
+									</tr>
+									<tr>
+										<td><%= ComputersMarca.find(item.marca).marca + ' ' + item.modelo%></td>
+									</tr>
+									<tr>
+										<td><%= number_to_currency(item.precio, :unit => '$', :precision => 0)%></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</div>
