@@ -13,10 +13,9 @@
 		<tbody>
 			<% if !@computers.empty? %>
 				<% @computers.each do |computer|%>
-				<% session[:selected_items] ||= [] %>
 					<tr>
 						<td><%= hidden_field_tag 'product[]', 'd-'+computer.id.to_s%></td>
-						<td><%= check_box_tag 'product[]', 'a-'+computer.id.to_s, session[:selected_items].include?(computer.id) , :onclick => "$('#select_products_form').submit();" %></td>
+						<td><%= check_box_tag 'product[]', 'a-'+computer.id.to_s, session[:selected_items].detect{|item| item.id == computer.id} , :onclick => "$('#select_products_form').submit();" %></td>
 						<td><%= link_to (image_tag computer.img_ref, :size => '120x120'), computer %></td>
 						<td><%= link_to ComputersMarca.find(computer.marca).marca.upcase, computer %></td>
 						<td><%= ComputersCategory.find(computer.categoria).category%></td>

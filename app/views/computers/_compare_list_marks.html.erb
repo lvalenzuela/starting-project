@@ -1,0 +1,10 @@
+<div id="compare-list-marks">
+	<p>(<%= session[:selected_items].length %>) Productos</p>
+	<table>
+		<tr>
+			<% session[:selected_items].each do |item|%>
+					<%= hidden_field_tag 'compare_items[]', item.id %>
+			<% end %>
+		</tr>
+	</table>
+</div>
