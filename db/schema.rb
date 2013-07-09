@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130708201837) do
+ActiveRecord::Schema.define(:version => 20130709175426) do
 
   create_table "cam_flashs", :force => true do |t|
     t.string   "tipo"
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(:version => 20130708201837) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "categorias", :force => true do |t|
+  create_table "categoria", :force => true do |t|
     t.string   "nombre"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
