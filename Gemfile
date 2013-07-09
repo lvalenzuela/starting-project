@@ -11,6 +11,8 @@ gem 'bootstrap-sass'
 
 gem 'nilify_blanks'
 
+gem 'rake', '10.0.4'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
