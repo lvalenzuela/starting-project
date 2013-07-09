@@ -1,6 +1,6 @@
 class CreateSmartphoneTables < ActiveRecord::Migration #migración que genera todas las tablas de Smartphone
   def up
-    create_table :smartphones do |t|
+    create_table :smartphones do |t| #probando cambio
       t.string  :img_ref, :default => 'smartphone_images/not_found.png'
       t.string  :modelo
       t.integer :precio
