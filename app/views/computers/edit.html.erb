@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td>Marca</td>
-				<td><%= c.select :marca, ComputersMarca.all.collect{|m| [m.marca, m.id]} %></td>
+				<td><%= c.select :marca_id, ComputersMarca.all.collect{|m| [m.marca, m.id]} %></td>
 			</tr>
 			<tr>
 				<td>Categoria</td>
@@ -54,7 +54,7 @@
 			</tr>
 			<tr>
 				<td>Marca Procesador</td>
-				<td><%= c.select :proce_marca, ComputersProce.all.collect{|p| [p.marca, p.id]}%></td>
+				<td><%= c.select :proce_marca_id, ComputersProce.all.collect{|p| [p.marca, p.id]}%></td>
 			</tr>
 			<tr>
 				<td>Versión Procesador</td>

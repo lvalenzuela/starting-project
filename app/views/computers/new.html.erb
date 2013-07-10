@@ -74,7 +74,7 @@
 						<td><%= button_to 'Edit', edit_computer_path(computer), :class => 'btn'%></td>
 						<td><%= image_tag computer.img_ref, :size => '120x120'%></td>
 						<td><%= image_tag computer.img_ref, :size => '120x120'%></td>
-						<td><%= ComputersMarca.find(computer.marca).marca%></td>
+						<td><%= ComputersMarca.find(computer.marca_id).marca%></td>
 						<td><%= ComputersCategory.find(computer.categoria).category%></td>
 						<td><%= computer.modelo.upcase %></td>
 						<td><%= ComputersSo.find(computer.sist_operativo).sist_operativo%></td>
@@ -82,7 +82,7 @@
 						<td><%= computer.bateria%></td>
 						<td><%= computer.bateria_celdas%></td>
 						<td><%= computer.bateria_duracion%></td>
-						<td><%= ComputersProce.find(computer.proce_marca).marca%></td>
+						<td><%= ComputersProce.find(computer.proce_marca_id).marca%></td>
 						<td><%= computer.proce_version%></td>
 						<td><%= computer.proce_velocidad%></td>
 						<td><%= computer.proce_nucleos%></td>
@@ -133,7 +133,7 @@
 					<td><%= link_to "Edit", cars_new_path, :class => "btn", :disabled => "disabled" %></td>
 					<td><div id="new-product-img-preview"><%= image_tag 'computer_images/not_found.png', :size => '100x100'%></div></td>
 					<td><%= c.text_field :img_ref, :value => 'computer_images/not_found.png', :id => 'new_product_img'%></td>
-					<td><%= c.select :marca, ComputersMarca.all.collect{|m| [m.marca, m.id]}, {:selected => 1}%></td>
+					<td><%= c.select :marca_id, ComputersMarca.all.collect{|m| [m.marca, m.id]}, {:selected => 1}%></td>
 					<td><%= c.select :categoria, ComputersCategory.all.collect{|c| [c.category, c.id]}, {:selected => 2}%></td>
 					<td><%= c.text_field :modelo, :value => ' '%></td>
 					<td><%= c.select :sist_operativo, ComputersSo.all.collect{|s| [s.sist_operativo, s.id]}, {:selected => 1}%></td>
@@ -141,7 +141,7 @@
 					<td><%= c.text_field :bateria, :valie => ' '%></td>
 					<td><%= c.select :bateria_celdas, options_for_select(select_options('numbers'),4)%></td>
 					<td><%= c.text_field :bateria_duracion, :value => ' '%></td>
-					<td><%= c.select :proce_marca, ComputersProce.all.collect{|p| [p.marca, p.id]}, {:selected => 2}%></td>
+					<td><%= c.select :proce_marca_id, ComputersProce.all.collect{|p| [p.marca, p.id]}, {:selected => 2}%></td>
 					<td><%= c.text_field :proce_version, :value => ' '%></td>
 					<td><%= c.text_field :proce_velocidad, :value => ' '%></td>
 					<td><%= c.select :proce_nucleos, options_for_select(select_options('numbers'), 2)%></td>

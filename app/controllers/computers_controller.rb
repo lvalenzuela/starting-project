@@ -14,7 +14,7 @@ class ComputersController < ApplicationController
     #Lista de imagenes correspondientes a un producto
     #se considera un default de 4 imagenes por producto
     @image_paths = []
-    marca = ComputersMarca.find(@computer.marca).marca
+    marca = ComputersMarca.find(@computer.marca_id).marca
     modelo = @computer.modelo.upcase
     (1..4).each do |image|
       img_path = 'computer_images/'+marca+'/'+modelo+'/'+image.to_s+'.jpg'
