@@ -77,7 +77,7 @@
 						<td><%= ComputersMarca.find(computer.marca_id).marca%></td>
 						<td><%= ComputersCategory.find(computer.categoria).category%></td>
 						<td><%= computer.modelo.upcase %></td>
-						<td><%= ComputersSo.find(computer.sist_operativo).sist_operativo%></td>
+						<td><%= ComputersSo.find(computer.sist_operativo_id).sist_operativo%></td>
 						<td><%= computer.precio%></td>
 						<td><%= computer.bateria%></td>
 						<td><%= computer.bateria_celdas%></td>
@@ -136,7 +136,7 @@
 					<td><%= c.select :marca_id, ComputersMarca.all.collect{|m| [m.marca, m.id]}, {:selected => 1}%></td>
 					<td><%= c.select :categoria, ComputersCategory.all.collect{|c| [c.category, c.id]}, {:selected => 2}%></td>
 					<td><%= c.text_field :modelo, :value => ' '%></td>
-					<td><%= c.select :sist_operativo, ComputersSo.all.collect{|s| [s.sist_operativo, s.id]}, {:selected => 1}%></td>
+					<td><%= c.select :sist_operativo_id, ComputersSo.all.collect{|s| [s.sist_operativo, s.id]}, {:selected => 1}%></td>
 					<td><%= c.text_field :precio, :value => ' '%></td>
 					<td><%= c.text_field :bateria, :valie => ' '%></td>
 					<td><%= c.select :bateria_celdas, options_for_select(select_options('numbers'),4)%></td>

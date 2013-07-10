@@ -100,20 +100,20 @@ class ComputersController < ApplicationController
     end
     
     #FILTRO POR MARCA DE PROCESADOR
-    if params[:search][:proce] == "any"
+    if params[:search][:proce_id] == "any"
       #no se hace nada
     else
-      if params[:search][:proce] == "amd"
-        @computers = @computers.select{|s| s.proce_marca == 1}
+      if params[:search][:proce_id] == "amd"
+        @computers = @computers.select{|s| s.proce_marca_id == 1}
       end
-      if params[:search][:proce] == 'intel'
-        @computers = @computers.select{|s| s.proce_marca == 2}
+      if params[:search][:proce_id] == 'intel'
+        @computers = @computers.select{|s| s.proce_marca_id == 2}
       end
     end
   
     #FILTRO POR MARCA
-    if params[:search][:marca] != ""
-      @computers = @computers.select{|s| s.marca.to_s == params[:search][:marca]}
+    if params[:search][:marca_id] != ""
+      @computers = @computers.select{|s| s.marca_id.to_s == params[:search][:marca_id]}
     end
     
     #FILTRO POR TAMAÑO DE PANTALLA
@@ -122,8 +122,8 @@ class ComputersController < ApplicationController
     end
     
     #FILTRO POR SISTEMA OPERATIVO
-    if params[:search][:sist_operativo] != ""
-      @computers = @computers.select{|s| s.sist_operativo.to_s == params[:search][:sist_operativo]}
+    if params[:search][:sist_operativo_id] != ""
+      @computers = @computers.select{|s| s.sist_operativo_id.to_s == params[:search][:sist_operativo_id]}
     end
     
     respond_to do |format|

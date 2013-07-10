@@ -1,5 +1,5 @@
 class Computer < ActiveRecord::Base
-  attr_accessible :img_ref, :marca_id, :modelo, :categoria, :sist_operativo, :precio, :bateria, :bateria_celdas, :bateria_duracion
+  attr_accessible :img_ref, :marca_id, :modelo, :categoria, :sist_operativo_id, :precio, :bateria, :bateria_celdas, :bateria_duracion
   attr_accessible :proce_marca_id, :proce_version, :proce_velocidad, :proce_nucleos
   attr_accessible :memoria, :memoria_tipo, :memoria_velocidad, :memoria_max, :memoria_ranuras
   attr_accessible :disco_capacidad, :disco_velocidad, :disco_ssd, :screen_size, :screen_resol, :screen_type

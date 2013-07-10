@@ -29,22 +29,22 @@
 							<th colspan="2">Procesador</th>
 						</tr>
 						<tr>
-							<td><%= s.radio_button :proce, :any, :checked => true, :onclick => "$('#search_form').submit()"%></td>
+							<td><%= s.radio_button :proce_id, :any, :checked => true, :onclick => "$('#search_form').submit()"%></td>
 							<td>Todas</td>
 						</tr>
 						<tr>
-							<td><%= s.radio_button :proce, :amd, :onclick => "$('#search_form').submit()"%></td>
+							<td><%= s.radio_button :proce_id, :amd, :onclick => "$('#search_form').submit()"%></td>
 							<td>AMD</td>
 						</tr>
 						<tr>
-							<td><%= s.radio_button :proce, :intel, :onclick => "$('#search_form').submit()"%></td>
+							<td><%= s.radio_button :proce_id, :intel, :onclick => "$('#search_form').submit()"%></td>
 							<td>Intel</td>
 						</tr>
 						<tr>
 							<th colspan="2">Marca</th>
 						</tr>
 						<tr>
-							<td colspan="2"><%= s.select :marca, ComputersMarca.all.collect{|m| [m.marca, m.id]},{:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
+							<td colspan="2"><%= s.select :marca_id, ComputersMarca.all.collect{|m| [m.marca, m.id]},{:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
 						</tr>
 						<tr>
 							<th colspan="2">Tamaño de Pantalla</th>
@@ -56,7 +56,7 @@
 							<th colspan="2">Sistema Operativo</th>
 						</tr>
 						<tr>
-							<td colspan="2"><%= s.select :sist_operativo, ComputersSo.all.collect{|m| [m.sist_operativo, m.id]},{:prompt => 'Todos'}, {:onchange => "$('#search_form').submit()"}%></td>
+							<td colspan="2"><%= s.select :sist_operativo_id, ComputersSo.all.collect{|m| [m.sist_operativo, m.id]},{:prompt => 'Todos'}, {:onchange => "$('#search_form').submit()"}%></td>
 						</tr>
 					</table>
 				<% end %>

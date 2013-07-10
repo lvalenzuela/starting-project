@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<td>Sistema Operativo</td>
-				<td><%= c.select :sist_operativo, ComputersSo.all.collect{|s| [s.sist_operativo, s.id]} %></td>
+				<td><%= c.select :sist_operativo_id, ComputersSo.all.collect{|s| [s.sist_operativo, s.id]} %></td>
 			</tr>
 			<tr>
 				<td>Precio</td>
