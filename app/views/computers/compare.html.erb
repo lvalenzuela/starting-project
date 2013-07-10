@@ -21,7 +21,7 @@
 						<tr>
 							<th>Sistema Operativo</th>
 							<% @selected_items.each do |i| %>
-							<td> <%= ComputersSo.find(i.sist_operativo).sist_operativo%></td>
+							<td> <%= ComputersSo.find(i.sist_operativo_id).sist_operativo%></td>
 								<% end %>
 						</tr>
 						<tr>
@@ -40,7 +40,7 @@
 						<tr>
 							<th>Marca</th>
 							<% @selected_items.each do |i| %>
-							<td> <%= ComputersProce.find(i.proce_marca).marca%></td>
+							<td> <%= ComputersProce.find(i.proce_marca_id).marca%></td>
 						<% end %>
 						</tr>
 						<tr>

@@ -62,11 +62,6 @@ class ComputersController < ApplicationController
   end
 
   def new
-    if params[:marca_id]
-      @computers = Computer.find(:all, :conditions => {:marca_id => params[:marca_id][:value]})
-    else
-      @computers = Computer.find(:all)
-    end
     @computer = Computer.new # Nuevo registro a ingresar    
   end
   
