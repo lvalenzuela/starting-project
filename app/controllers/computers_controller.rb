@@ -3,7 +3,7 @@ class ComputersController < ApplicationController
   
   def index
     @computers = Computer.find(:all)
-    session[:compare_category] = 'computers'
+    session[:compare_category] = 'computadores'
     session[:selected_items] ||= []
     render :search
   end
@@ -14,7 +14,7 @@ class ComputersController < ApplicationController
     #Lista de imagenes correspondientes a un producto
     #se considera un default de 4 imagenes por producto
     @image_paths = []
-    marca = ComputersMarca.find(@computer.marca_id).marca
+    marca = Marca.find(@computer.marca_id).nombre_marca
     modelo = @computer.modelo.upcase
     (1..4).each do |image|
       img_path = 'computer_images/'+marca+'/'+modelo+'/'+image.to_s+'.jpg'
@@ -29,14 +29,14 @@ class ComputersController < ApplicationController
     params[:product].each do |product|
       action, id = product.split('-')
       
-      if session[:compare_category] != 'computers'
-        session[:compare_category] = 'computers'
+      if session[:compare_category] != 'computadores'
+        session[:compare_category] = 'computadores'
         session.delete(:selected_items)
       end
           
       case action
         when 'a'
-          (session[:selected_items] ||= []) << Computer.find(:first, :select => 'id, img_ref, marca, modelo, precio', :conditions => {:id => id})#id.to_i
+          (session[:selected_items] ||= []) << Computer.find(:first, :select => 'id, img_ref, marca_id, modelo, precio', :conditions => {:id => id})#id.to_i
         when 'd'
           if session[:selected_items].nil?
             session[:selected_items] = []
@@ -60,23 +60,10 @@ class ComputersController < ApplicationController
       @selected_items << Computer.find(:first, :conditions => {:id => item})
     end
   end
-  
-  #Llena los thumbnails de la toolbox
-  def compare_toolbox
-    @toolbox_items = []
-
-    session[:selected_items].each do |item|
-      @toolbox_items = (@toolbox_items + Computers.find(:first, :conditions => {:id => item}))
-    end
-
-    respond_to do |format|
-      format.js
-    end
-  end
 
   def new
-    if params[:marca]
-      @computers = Computer.find(:all, :conditions => {:marca => params[:marca][:value]})
+    if params[:marca_id]
+      @computers = Computer.find(:all, :conditions => {:marca_id => params[:marca_id][:value]})
     else
       @computers = Computer.find(:all)
     end
@@ -143,8 +130,6 @@ class ComputersController < ApplicationController
 
   def edit
     @computer = Computer.find(params[:id])
-    @boolean_opt = [["Si",1], ["No",0]]
-    @numbers_opt = [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8]]
   end
   
   def update

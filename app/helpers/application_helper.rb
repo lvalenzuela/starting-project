@@ -1,4 +1,11 @@
 module ApplicationHelper
+
+  def marcas_select(category)
+    categoria = Categoria.find(:first, :conditions => {:nombre => category})
+
+    return categoria.marcas.all.collect{|m| [m.nombre_marca, m.id]}
+  end
+
   def compare_list_count
     if session[:selected_items].nil?
       return 0

@@ -5,7 +5,7 @@
 		<table class="table">
 			<tr>
 				<th>Buscar por Marca</th>
-				<td><%= select 'marca', 'value', ComputersMarca.all.collect{|m| [m.marca, m.id]}, {:selected => 1}%></td>
+				<td><%= select 'marca_id', 'value', marcas_select('computadores')%></td>
 				<td><%= submit_tag 'Buscar', :class => 'btn'%></td>
 			</tr>
 		</table>
@@ -74,7 +74,7 @@
 						<td><%= button_to 'Edit', edit_computer_path(computer), :class => 'btn'%></td>
 						<td><%= image_tag computer.img_ref, :size => '120x120'%></td>
 						<td><%= image_tag computer.img_ref, :size => '120x120'%></td>
-						<td><%= ComputersMarca.find(computer.marca_id).marca%></td>
+						<td><%= Marca.find(computer.marca_id).nombre_marca%></td>
 						<td><%= ComputersCategory.find(computer.categoria).category%></td>
 						<td><%= computer.modelo.upcase %></td>
 						<td><%= ComputersSo.find(computer.sist_operativo_id).sist_operativo%></td>
@@ -133,7 +133,7 @@
 					<td><%= link_to "Edit", cars_new_path, :class => "btn", :disabled => "disabled" %></td>
 					<td><div id="new-product-img-preview"><%= image_tag 'computer_images/not_found.png', :size => '100x100'%></div></td>
 					<td><%= c.text_field :img_ref, :value => 'computer_images/not_found.png', :id => 'new_product_img'%></td>
-					<td><%= c.select :marca_id, ComputersMarca.all.collect{|m| [m.marca, m.id]}, {:selected => 1}%></td>
+					<td><%= c.select :marca_id, marcas_select('computadores')%></td>
 					<td><%= c.select :categoria, ComputersCategory.all.collect{|c| [c.category, c.id]}, {:selected => 2}%></td>
 					<td><%= c.text_field :modelo, :value => ' '%></td>
 					<td><%= c.select :sist_operativo_id, ComputersSo.all.collect{|s| [s.sist_operativo, s.id]}, {:selected => 1}%></td>

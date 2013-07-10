@@ -44,7 +44,7 @@
 							<th colspan="2">Marca</th>
 						</tr>
 						<tr>
-							<td colspan="2"><%= s.select :marca_id, ComputersMarca.all.collect{|m| [m.marca, m.id]},{:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
+							<td colspan="2"><%= s.select :marca_id, marcas_select('computadores'),{:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
 						</tr>
 						<tr>
 							<th colspan="2">Tamaño de Pantalla</th>

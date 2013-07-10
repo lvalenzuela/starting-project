@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130709175426) do
+ActiveRecord::Schema.define(:version => 20130710204832) do
 
   create_table "cam_flashs", :force => true do |t|
     t.string   "tipo"
@@ -128,14 +128,14 @@ ActiveRecord::Schema.define(:version => 20130709175426) do
 
   create_table "computers", :force => true do |t|
     t.string   "img_ref",                                                           :default => "computer_images/not_found.png"
-    t.integer  "marca",                  :limit => 1
+    t.integer  "marca_id",               :limit => 1
     t.integer  "categoria",              :limit => 1
     t.string   "modelo"
-    t.integer  "sist_operativo",         :limit => 1
+    t.integer  "sist_operativo_id",      :limit => 1
     t.integer  "precio"
     t.string   "bateria"
-    t.integer  "bateria_duracion"
-    t.integer  "proce_marca"
+    t.decimal  "bateria_duracion",                    :precision => 5, :scale => 2
+    t.integer  "proce_marca_id"
     t.string   "proce_version"
     t.decimal  "proce_velocidad",                     :precision => 5, :scale => 2
     t.integer  "proce_nucleos",          :limit => 1
@@ -165,9 +165,9 @@ ActiveRecord::Schema.define(:version => 20130709175426) do
     t.integer  "wifi",                   :limit => 1
     t.integer  "bluetooth",              :limit => 1
     t.integer  "usb_2",                  :limit => 1
-    t.integer  "largo"
-    t.integer  "ancho"
-    t.integer  "profundidad"
+    t.decimal  "largo",                               :precision => 5, :scale => 2
+    t.decimal  "ancho",                               :precision => 5, :scale => 2
+    t.decimal  "profundidad",                         :precision => 5, :scale => 2
     t.datetime "created_at",                                                                                                     :null => false
     t.datetime "updated_at",                                                                                                     :null => false
     t.string   "peso"
@@ -260,7 +260,7 @@ ActiveRecord::Schema.define(:version => 20130709175426) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "map_marca_categorias", :id => false, :force => true do |t|
+  create_table "map_marca_categoria", :id => false, :force => true do |t|
     t.integer  "marca_id"
     t.integer  "categoria_id"
     t.datetime "created_at",   :null => false
@@ -313,6 +313,16 @@ ActiveRecord::Schema.define(:version => 20130709175426) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "sistema_operativos", :force => true do |t|
     t.string   "nombre"
@@ -377,11 +387,6 @@ ActiveRecord::Schema.define(:version => 20130709175426) do
     t.integer  "cam_flash_id"
     t.datetime "created_at",                                                                   :null => false
     t.datetime "updated_at",                                                                   :null => false
-  end
-
-  create_table "televisions", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
 end
