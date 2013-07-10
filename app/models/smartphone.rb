@@ -19,7 +19,7 @@ class Smartphone < ActiveRecord::Base
   belongs_to :cam_flash
   
   has_many :map_smartphone_reds  
-  has_many :smartphone_reds, through: :map_smartphone_reds
+  has_many :reds, through: :map_smartphone_reds
   
   has_many :map_smartphone_sensors
   has_many :smartphone_sensors, through: :map_smartphone_sensors
