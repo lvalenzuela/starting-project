@@ -110,8 +110,8 @@
 						<td><%= computer.ethernet%></td>
 						<td><%= computer.hdmi%></td>
 						<td><%= computer.vga%></td>
-						<td><%= ComputersWifi.find(computer.wifi).wifi%></td>
-						<td><%= ComputersBluetooth.find(computer.bluetooth).bluetooth%></td>
+						<td><%= RedProtocol.find(computer.wifi).nombre%></td>
+						<td><%= RedProtocol.find(computer.bluetooth).nombre%></td>
 						<td><%= computer.usb_2%></td>
 						<td><%= computer.usb_3%></td>
 						<td><%= computer.largo%></td>
@@ -169,8 +169,8 @@
 					<td><%= c.select :ethernet, options_for_select(select_options('boolean'),0)%></td>
 					<td><%= c.select :hdmi, options_for_select(select_options('boolean'),0)%></td>
 					<td><%= c.select :vga, options_for_select(select_options('boolean'),0)%></td>
-					<td><%= c.select :wifi, ComputersWifi.all.collect{|w| [w.wifi, w.id]}%></td>
-					<td><%= c.select :bluetooth, ComputersBluetooth.all.collect{|b| [b.bluetooth, b.id]}%></td>
+					<td><%= c.select :wifi, red_select('wifi')%></td>
+					<td><%= c.select :bluetooth, red_select('bluetooth')%></td>
 					<td><%= c.select :usb_2, options_for_select(select_options('numbers'),1)%></td>
 					<td><%= c.select :usb_3, options_for_select(select_options('numbers'),1)%></td>
 					<td><%= c.text_field :largo, :value => ''%></td>

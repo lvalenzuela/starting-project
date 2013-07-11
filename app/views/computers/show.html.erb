@@ -212,11 +212,11 @@
 						</tr>
 						<tr>
 							<th>Conexión Wi-Fi</th>
-							<td><%= ComputersWifi.find(@computer.wifi).wifi%></td>
+							<td><%= RedProtocol.find(@computer.wifi).nombre%></td>
 						</tr>
 						<tr>
 							<th>Bluetooth</th>
-							<td><%= ComputersBluetooth.find(@computer.bluetooth).bluetooth%></td>
+							<td><%= RedProtocol.find(@computer.bluetooth).nombre%></td>
 						</tr>
 						<tr>
 							<th>Puertos USB 2.0</th>

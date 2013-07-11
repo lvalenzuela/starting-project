@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130710204832) do
+ActiveRecord::Schema.define(:version => 20130711165723) do
 
   create_table "cam_flashs", :force => true do |t|
     t.string   "tipo"
@@ -267,25 +267,25 @@ ActiveRecord::Schema.define(:version => 20130710204832) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "map_red_protocol_supporteds", :id => false, :force => true do |t|
+    t.integer  "red_protocol_id"
+    t.integer  "red_protocol_supported_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "map_red_protocols", :id => false, :force => true do |t|
+    t.integer  "red_id"
+    t.integer  "red_protocol_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
   create_table "map_smartphone_connectors", :id => false, :force => true do |t|
     t.integer  "smartphone_id"
     t.integer  "smartphone_connector_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
-  end
-
-  create_table "map_smartphone_red_protocol_supporteds", :id => false, :force => true do |t|
-    t.integer  "smartphone_red_protocol_id"
-    t.integer  "smartphone_red_protocol_supported_id"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-  end
-
-  create_table "map_smartphone_red_protocols", :id => false, :force => true do |t|
-    t.integer  "smartphone_red_id"
-    t.integer  "smartphone_red_protocol_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
   end
 
   create_table "map_smartphone_reds", :id => false, :force => true do |t|
@@ -314,6 +314,27 @@ ActiveRecord::Schema.define(:version => 20130710204832) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "red_protocol_supporteds", :force => true do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "red_protocols", :force => true do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "reds", :force => true do |t|
+    t.string   "nombre"
+    t.text     "descripcion"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
     t.text     "data"
@@ -331,21 +352,7 @@ ActiveRecord::Schema.define(:version => 20130710204832) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "smarphone_red_protocols", :force => true do |t|
-    t.string   "nombre"
-    t.text     "descripcion"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "smartphone_connectors", :force => true do |t|
-    t.string   "nombre"
-    t.text     "descripcion"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "smartphone_red_protocol_supporteds", :force => true do |t|
     t.string   "nombre"
     t.text     "descripcion"
     t.datetime "created_at",  :null => false

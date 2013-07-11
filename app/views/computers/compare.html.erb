@@ -250,13 +250,13 @@
 						<tr>
 							<th>Conexión Wi-Fi</th>
 							<% @selected_items.each do |i| %>
-							<td><%= ComputersWifi.find(i.wifi).wifi%></td>
+							<td><%= RedProtocol.find(i.wifi).nombre%></td>
 							<% end %>
 						</tr>
 						<tr>
 							<th>Bluetooth</th>
 							<% @selected_items.each do |i| %>
-							<td><%= ComputersBluetooth.find(i.bluetooth).bluetooth%></td>
+							<td><%= RedProtocol.find(i.bluetooth).nombre%></td>
 							<% end %>
 						</tr>
 						<tr>

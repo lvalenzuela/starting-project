@@ -6,6 +6,17 @@ module ApplicationHelper
     return categoria.marcas.all.collect{|m| [m.nombre_marca, m.id]}
   end
 
+  def red_select(tipo_red)
+    case tipo_red
+    when 'wifi'
+      red = Red.find(:first, :conditions => {:nombre => 'Wi-Fi'})
+      return red.red_protocols.all.collect{|r| [r.nombre,r.id]}
+    when 'bluetooth'
+      red = Red.find(:first, :conditions => {:nombre => 'Bluetooth'})
+      return red.red_protocols.all.collect{|r| [r.nombre, r.id]}
+    end
+  end
+
   def compare_list_count
     if session[:selected_items].nil?
       return 0
