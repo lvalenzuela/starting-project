@@ -3,7 +3,7 @@ class Marca < ActiveRecord::Base
   #   id
   #   nombre
   #   categoria
-
+  attr_accessible :nombre_marca
   has_many :smartphones
   has_many :computers
   
