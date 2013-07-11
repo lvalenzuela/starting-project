@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td>Marca</td>
-				<td><%= c.select :marca_id, ComputersMarca.all.collect{|m| [m.marca, m.id]} %></td>
+				<td><%= c.select :marca_id, marcas_select('computadores') %></td>
 			</tr>
 			<tr>
 				<td>Categoria</td>
@@ -166,11 +166,11 @@
 			</tr>
 			<tr>
 				<td>Wi-Fi</td>
-				<td><%= c.select :wifi, ComputersWifi.all.collect{|w| [w.wifi, w.id]} %></td>
+				<td><%= c.select :wifi, red_select('wifi') %></td>
 			</tr>
 			<tr>
 				<td>Bluetooth</td>
-				<td><%= c.select :bluetooth, ComputersBluetooth.all.collect{|b| [b.bluetooth, b.id]} %></td>
+				<td><%= c.select :bluetooth, red_select('bluetooth') %></td>
 			</tr>
 			<tr>
 				<td>USB 2.0</td>

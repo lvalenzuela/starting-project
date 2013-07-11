@@ -398,7 +398,7 @@ ActiveRecord::Schema.define(:version => 20130711203840) do
     t.string   "smart_tv_features"
     t.integer  "sintonizador_digital",     :limit => 1
     t.integer  "reproductor_dvd",          :limit => 1
-    t.integer  "ethernet_id"
+    t.integer  "ethernet_puerto",          :limit => 1
     t.integer  "wifi_id"
     t.integer  "vga_puerto",               :limit => 1
     t.integer  "usb_puertos"
