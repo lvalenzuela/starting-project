@@ -1,6 +1,10 @@
 Cotizar::Application.routes.draw do
   resources :cars
-  resources :computers
+  resources :computers do
+    collection do
+      get 'alternative_new'
+    end
+  end
   resources :main
   
   get "computers/index"
@@ -10,6 +14,8 @@ Cotizar::Application.routes.draw do
   match 'computers/compare' => 'computers#compare'
   match 'computers/compare_toolbox' => 'computers#compare_toolbox'
   match 'computers/new' => 'computers#new'
+  
+  
   get "cars/index"
   match 'cars/save' => 'cars#save'
   match 'cars/delete' => 'cars#delete'

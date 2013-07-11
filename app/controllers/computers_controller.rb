@@ -62,7 +62,17 @@ class ComputersController < ApplicationController
   end
 
   def new
+    if params[:marca_id]
+      @computers = Computer.find(:all, :conditions => {:marca_id => params[:marca_id][:value]})
+    else
+      @computers = Computer.find(:all)
+    end
     @computer = Computer.new # Nuevo registro a ingresar    
+  end
+
+  def alternative_new
+    #Metodo de inserción de usuarios alternativo
+    @computer = Computer.new # Nuevo registro a ingresar
   end
   
   def search

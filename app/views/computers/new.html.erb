@@ -1,208 +1,185 @@
-<div class="container">
-	<h1>Ingresar Nuevo Computador</h1>
-	<%= form_for(@computer) do |c|%>	
-	<table class="table table-bordered table-stripped">
+<div class="container">	
+	<h1>Ingresar Nuevos Computadores</h1>
+	<p>Igual que en autos, esta pagina es solo para ingresar computadores ... no es para que la vea nadie mas que nosotros</p>
+	<%= form_tag :controller => 'computers', :action => 'new', :method => 'post' do %>
+		<table class="table">
+			<tr>
+				<th>Buscar por Marca</th>
+				<td><%= select 'marca_id', 'value', marcas_select('computadores')%></td>
+				<td><%= submit_tag 'Buscar', :class => 'btn'%></td>
+			</tr>
+		</table>
+	<% end %>
+	
+	<table class="table table-bordered table-striped input-table">
 		<thead>
 			<tr>
-				<th>Atributo</th>
-				<th>Dato</th>
+				<th>Delete</th>
+				<th>Edit</th>
+				<th>Preview Image</th>
+				<th>Imagen</th>
+				<th>Marca</th>
+				<th>Categoría</th>
+				<th>Modelo</th>
+				<th>Sistema Operativo</th>
+				<th>Precio</th>
+				<th>Material Batería</th>
+				<th>N° Celdas Batería</th>
+				<th>Duración Bateria</th>
+				<th>Marca Procesador</th>
+				<th>Versión Procesador</th>
+				<th>Velocidad Procesador [GHz]</th>
+				<th>N° Núcleos</th>
+				<th>Cantidad Memoria [GB]</th>
+				<th>Tipo Memoria</th>
+				<th>Velocidad Memoria [MHz]</th>
+				<th>Máximo Memoria [GB]</th>
+				<th>N° Ranuras Memoria</th>
+				<th>Capacidad Disco Duro [GB]</th>
+				<th>Velocidad Disco Duro [RPM]</th>
+				<th>Disco Duro SSD [GB]</th>
+				<th>Tamaño Pantalla [in]</th>
+				<th>Resolución</th>
+				<th>Tipo Pantalla</th>
+				<th>Pantalla Touch</th>
+				<th>Lector Blue-Ray</th>
+				<th>Grabador Blue-Ray</th>
+				<th>Lector DVD</th>
+				<th>Grabador DVD</th>
+				<th>Tarjeta de Video</th>
+				<th>Cantidad Memoria T. Video [GB]</th>
+				<th>Tipo de Memoria T.Video</th>
+				<th>Webcam</th>
+				<th>Lector Tarjetas de Memoria</th>
+				<th>Ethernet</th>
+				<th>HDMI</th>
+				<th>VGA</th>
+				<th>Wi-Fi</th>
+				<th>Bluetooth</th>
+				<th>USB 2.0</th>
+				<th>USB 3.0</th>
+				<th>Largo [mm]</th>
+				<th>Ancho [mm]</th>
+				<th>Alto [mm]</th>
+				<th>Peso [kg]</th>
+				<th>Guardar</th>
 			</tr>
 		</thead>
-		<tbody>			
-			<!-- GENERALES-->
+		<tbody>
+			<% if !@computers.empty? %>
+				<% @computers.each do |computer|%>
+			
+					<tr>
+						<td><%= button_to 'Delete', computer, :confirm => 'Segurito?', :method => 'delete', :class => 'btn'%></td>
+						<td><%= button_to 'Edit', edit_computer_path(computer), :class => 'btn'%></td>
+						<td><%= image_tag computer.img_ref, :size => '120x120'%></td>
+						<td><%= image_tag computer.img_ref, :size => '120x120'%></td>
+						<td><%= Marca.find(computer.marca_id).nombre_marca%></td>
+						<td><%= ComputersCategory.find(computer.categoria).category%></td>
+						<td><%= computer.modelo.upcase %></td>
+						<td><%= ComputersSo.find(computer.sist_operativo_id).sist_operativo%></td>
+						<td><%= computer.precio%></td>
+						<td><%= computer.bateria%></td>
+						<td><%= computer.bateria_celdas%></td>
+						<td><%= computer.bateria_duracion%></td>
+						<td><%= ComputersProce.find(computer.proce_marca_id).marca%></td>
+						<td><%= computer.proce_version%></td>
+						<td><%= computer.proce_velocidad%></td>
+						<td><%= computer.proce_nucleos%></td>
+						<td><%= computer.memoria%></td>
+						<td><%= ComputersMemoria.find(computer.memoria_tipo).tipo%></td>
+						<td><%= computer.memoria_velocidad%></td>
+						<td><%= computer.memoria_max%></td>
+						<td><%= computer.memoria_ranuras%></td>
+						<td><%= computer.disco_capacidad%></td>
+						<td><%= computer.disco_velocidad%></td>
+						<td><%= computer.disco_ssd%></td>
+						<td><%= ComputersScreenSize.find(computer.screen_size).size%></td>
+						<td><%= ComputersScreenResol.find(computer.screen_resol).resolucion%></td>
+						<td><%= ComputersScreenType.find(computer.screen_type).tipo%></td>
+						<td><%= computer.screen_touch%></td>
+						<td><%= computer.lector_blue_ray%></td>
+						<td><%= computer.grabador_blue_ray%></td>
+						<td><%= computer.lector_dvd%></td>
+						<td><%= computer.grabador_dvd%></td>
+						<td><%= computer.video_modelo%></td>
+						<td><%= computer.video_memoria%></td>
+						<td><%= ComputersMemoria.find(computer.video_tipo_memoria).tipo%></td>
+						<td><%= computer.webcam%></td>
+						<td><%= computer.lector_tarjeta_memoria%></td>
+						<td><%= computer.ethernet%></td>
+						<td><%= computer.hdmi%></td>
+						<td><%= computer.vga%></td>
+						<td><%= ComputersWifi.find(computer.wifi).wifi%></td>
+						<td><%= ComputersBluetooth.find(computer.bluetooth).bluetooth%></td>
+						<td><%= computer.usb_2%></td>
+						<td><%= computer.usb_3%></td>
+						<td><%= computer.largo%></td>
+						<td><%= computer.ancho%></td>
+						<td><%= computer.profundidad%></td>
+						<td><%= computer.peso%></td>
+						<td> </td>
+					</tr>
+				<% end %>
+			<% else %>
 			<tr>
-				<th>Características Generales</th>
-				<td> </td>
+				<td colspan="44">No se encontró información relacionada con los parametros seleccionados</td>
 			</tr>
-			<tr>
-				<td>Preview Imagen</td>
-				<td><div id="new-product-img-preview"><%= image_tag 'computer_images/not_found.png', :size => '100x100'%></div></td>
-			</tr>
-			<tr>
-				<td>Imagen</td>
-				<td><%= c.text_field :img_ref, :id => 'new_product_img' %></td>
-			</tr>
-			<tr>
-				<td>Marca</td>
-				<td><%= c.select :marca_id, ComputersMarca.all.collect{|m| [m.marca, m.id]} %></td>
-			</tr>
-			<tr>
-				<td>Categoria</td>
-				<td><%= c.select :categoria, ComputersCategory.all.collect{|c| [c.category, c.id]} %></td>
-			</tr>
-			<tr>
-				<td>Modelo</td>
-				<td><%= c.text_field :modelo %></td>
-			</tr>
-			<tr>
-				<td>Sistema Operativo</td>
-				<td><%= c.select :sist_operativo_id, ComputersSo.all.collect{|s| [s.sist_operativo, s.id]} %></td>
-			</tr>
-			<tr>
-				<td>Precio</td>
-				<td><%= c.text_field :precio %></td>
-			</tr>
-			<tr>
-				<td>Material Batería</td>
-				<td><%= c.text_field :bateria %></td>
-			</tr>
-			<tr>
-				<td>Celdas Bateria</td>
-				<td><%= c.select :bateria_celdas ,options_for_select(select_options('numbers')) %></td>
-			</tr>
-			<tr>
-				<td>Duración Batería</td>
-				<td><%= c.text_field :bateria_duracion %></td>
-			</tr>
-			<tr>
-				<td>Marca Procesador</td>
-				<td><%= c.select :proce_marca_id, ComputersProce.all.collect{|p| [p.marca, p.id]}%></td>
-			</tr>
-			<tr>
-				<td>Versión Procesador</td>
-				<td><%= c.text_field :proce_version %></td>
-			</tr>
-			<tr>
-				<td>Velocidad Procesador</td>
-				<td><%= c.text_field :proce_velocidad %></td>
-			</tr>
-			<tr>
-				<td>Núcleos Procesador</td>
-				<td><%= c.select :proce_nucleos, options_for_select(select_options('numbers')) %></td>
-			</tr>
-			<tr>
-				<td>Cantidad Memoria</td>
-				<td><%= c.select :memoria, options_for_select(select_options('numbers')) %></td>
-			</tr>
-			<tr>
-				<td>Tipo Memoria</td>
-				<td><%= c.select :memoria_tipo, ComputersMemoria.all.collect{|m| [m.tipo, m.id]} %></td>
-			</tr>
-			<tr>
-				<td>Velocidad Memoria</td>
-				<td><%= c.text_field :memoria_velocidad %></td>
-			</tr>
-			<tr>
-				<td>Memoria Máxima</td>
-				<td><%= c.select :memoria_max, options_for_select(select_options('numbers')) %></td>
-			</tr>
-			<tr>
-				<td>Ranuras de Memoria</td>
-				<td><%= c.select :memoria_ranuras, options_for_select(select_options('numbers')) %></td>
-			</tr>
-			<tr>
-				<td>Capacidad de Disco</td>
-				<td><%= c.text_field :disco_capacidad %></td>
-			</tr>
-			<tr>
-				<td>Velocidad de Disco</td>
-				<td><%= c.text_field :disco_velocidad %></td>
-			</tr>
-			<tr>
-				<td>Disco SSD (Capacidad)</td>
-				<td><%= c.text_field :disco_ssd %></td>
-			</tr>
-			<tr>
-				<td>Tamaño de Pantalla</td>
-				<td><%= c.select :screen_size, ComputersScreenSize.all.collect{|s| [s.size, s.id]} %></td>
-			</tr>
-			<tr>
-				<td>Resolución Pantalla</td>
-				<td><%= c.select :screen_resol, ComputersScreenResol.all.collect{|r| [r.resolucion, r.id]} %></td>
-			</tr>
-			<tr>
-				<td>Tipo de Pantalla</td>
-				<td><%= c.select :screen_type, ComputersScreenType.all.collect{|t| [t.tipo, t.id]} %></td>
-			</tr>
-			<tr>
-				<td>Pantalla Touch</td>
-				<td><%= c.select :screen_touch, options_for_select(select_options('boolean')) %></td>
-			</tr>
-			<tr>
-				<td>Lector Blue-Ray</td>
-				<td><%= c.select :lector_blue_ray, options_for_select(select_options('boolean')) %></td>
-			</tr>
-			<tr>
-				<td>Grabador Blue-Ray</td>
-				<td><%= c.select :grabador_blue_ray, options_for_select(select_options('boolean')) %></td>
-			</tr>
-			<tr>
-				<td>Lector DVD</td>
-				<td><%= c.select :lector_dvd, options_for_select(select_options('boolean')) %></td>
-			</tr>
-			<tr>
-				<td>Grabador DVD</td>
-				<td><%= c.select :grabador_dvd, options_for_select(select_options('boolean')) %></td>
-			</tr>
-			<tr>
-				<td>Modelo Tarjeta de Video</td>
-				<td><%= c.text_field :video_modelo %></td>
-			</tr>
-			<tr>
-				<td>Cantidad de Memoria de Video</td>
-				<td><%= c.text_field :video_memoria%></td>
-			</tr>
-			<tr>
-				<td>Tipo de Memoria de Video</td>
-				<td><%= c.select :video_tipo_memoria, ComputersMemoria.all.collect{|m| [m.tipo, m.id]} %></td>
-			</tr>
-			<tr>
-				<td>Webcam</td>
-				<td><%= c.select :webcam, options_for_select(select_options('boolean')) %></td>
-			</tr>
-			<tr>
-				<td>Lector de Tarjetas de Memoria</td>
-				<td><%= c.text_field :lector_tarjeta_memoria %></td>
-			</tr>
-			<tr>
-				<td>Ethernet</td>
-				<td><%= c.select :ethernet, options_for_select(select_options('boolean')) %></td>
-			</tr>
-			<tr>
-				<td>HDMI</td>
-				<td><%= c.select :hdmi, options_for_select(select_options('boolean')) %></td>
-			</tr>
-			<tr>
-				<td>VGA</td>
-				<td><%= c.select :vga, options_for_select(select_options('boolean')) %></td>
-			</tr>
-			<tr>
-				<td>Wi-Fi</td>
-				<td><%= c.select :wifi, ComputersWifi.all.collect{|w| [w.wifi, w.id]} %></td>
-			</tr>
-			<tr>
-				<td>Bluetooth</td>
-				<td><%= c.select :bluetooth, ComputersBluetooth.all.collect{|b| [b.bluetooth, b.id]} %></td>
-			</tr>
-			<tr>
-				<td>USB 2.0</td>
-				<td><%= c.select :usb_2, options_for_select(select_options('numbers')) %></td>
-			</tr>
-			<tr>
-				<td>USB 3.0</td>
-				<td><%= c.select :usb_3, options_for_select(select_options('numbers')) %></td>
-			</tr>
-			<tr>
-				<td>Largo[mm]</td>
-				<td><%= c.text_field :largo%></td>
-			</tr>
-			<tr>
-				<td>Ancho[mm]</td>
-				<td><%= c.text_field :ancho%></td>
-			</tr>
-			<tr>
-				<td>Alto[mm]</td>
-				<td><%= c.text_field :profundidad%></td>
-			</tr>
-			<tr>
-				<td>Peso</td>
-				<td><%= c.text_field :peso%></td>
-			</tr>
-			<tr>
-				<td>Editar</td>
-				<td><%= c.submit :class =>'btn'%></td>
-			</tr>
+			<% end %>
+			
+			<%= form_for(@computer) do |c|%>
+				<tr>
+					<td><%= link_to "Alternativa", alternative_new_computers_path %></td>
+					<td><%= link_to "Edit", cars_new_path, :class => "btn", :disabled => "disabled" %></td>
+					<td><div id="new-product-img-preview"><%= image_tag 'computer_images/not_found.png', :size => '100x100'%></div></td>
+					<td><%= c.text_field :img_ref, :value => 'computer_images/not_found.png', :id => 'new_product_img'%></td>
+					<td><%= c.select :marca_id, marcas_select('computadores')%></td>
+					<td><%= c.select :categoria, ComputersCategory.all.collect{|c| [c.category, c.id]}, {:selected => 2}%></td>
+					<td><%= c.text_field :modelo, :value => ''%></td>
+					<td><%= c.select :sist_operativo_id, ComputersSo.all.collect{|s| [s.sist_operativo, s.id]}, {:selected => 1}%></td>
+					<td><%= c.text_field :precio, :value => ''%></td>
+					<td><%= c.text_field :bateria, :valie => ' '%></td>
+					<td><%= c.select :bateria_celdas, options_for_select(select_options('numbers'),4)%></td>
+					<td><%= c.text_field :bateria_duracion, :value => ''%></td>
+					<td><%= c.select :proce_marca_id, ComputersProce.all.collect{|p| [p.marca, p.id]}, {:selected => 2}%></td>
+					<td><%= c.text_field :proce_version, :value => ''%></td>
+					<td><%= c.text_field :proce_velocidad, :value => ''%></td>
+					<td><%= c.select :proce_nucleos, options_for_select(select_options('numbers'), 2)%></td>
+					<td><%= c.select :memoria, options_for_select(select_options('numbers'), 4)%></td>
+					<td><%= c.select :memoria_tipo, ComputersMemoria.all.collect{|m| [m.tipo, m.id]}, {:selected => 3}%></td>
+					<td><%= c.text_field :memoria_velocidad, :value => ''%></td>
+					<td><%= c.select :memoria_max, options_for_select(select_options('numbers'), 4)%></td>
+					<td><%= c.select :memoria_ranuras, options_for_select(select_options('numbers'), 2)%></td>
+					<td><%= c.text_field :disco_capacidad, :value => ''%></td>
+					<td><%= c.text_field :disco_velocidad, :value => ''%></td>
+					<td><%= c.text_field :disco_ssd, :value => ''%></td>
+					<td><%= c.select :screen_size, ComputersScreenSize.all.collect{|s| [s.size, s.id]}, {:selected => 3}%></td>
+					<td><%= c.select :screen_resol, ComputersScreenResol.all.collect{|r| [r.resolucion, r.id]}, {:selected => 3}%></td>
+					<td><%= c.select :screen_type, ComputersScreenType.all.collect{|t| [t.tipo, t.id]}, {:selected => 1}%></td>
+					<td><%= c.select :screen_touch, options_for_select(select_options('boolean'),0)%></td>
+					<td><%= c.select :lector_blue_ray, options_for_select(select_options('boolean'),0)%></td>
+					<td><%= c.select :grabador_blue_ray, options_for_select(select_options('boolean'),0)%></td>
+					<td><%= c.select :lector_dvd, options_for_select(select_options('boolean'),0)%></td>
+					<td><%= c.select :lector_dvd, options_for_select(select_options('boolean'),0)%></td>
+					<td><%= c.text_field :video_modelo, :value => ''%></td>
+					<td><%= c.text_field :video_memoria, :value => ''%></td>
+					<td><%= c.select :video_tipo_memoria, ComputersMemoria.all.collect{|m| [m.tipo,m.id]}, {:selected => 5}%></td>
+					<td><%= c.select :webcam, options_for_select(select_options('boolean'),0)%></td>
+					<td><%= c.text_field :lector_tarjeta_memoria %></td>
+					<td><%= c.select :ethernet, options_for_select(select_options('boolean'),0)%></td>
+					<td><%= c.select :hdmi, options_for_select(select_options('boolean'),0)%></td>
+					<td><%= c.select :vga, options_for_select(select_options('boolean'),0)%></td>
+					<td><%= c.select :wifi, ComputersWifi.all.collect{|w| [w.wifi, w.id]}%></td>
+					<td><%= c.select :bluetooth, ComputersBluetooth.all.collect{|b| [b.bluetooth, b.id]}%></td>
+					<td><%= c.select :usb_2, options_for_select(select_options('numbers'),1)%></td>
+					<td><%= c.select :usb_3, options_for_select(select_options('numbers'),1)%></td>
+					<td><%= c.text_field :largo, :value => ''%></td>
+					<td><%= c.text_field :ancho, :value => ''%></td>
+					<td><%= c.text_field :profundidad, :value => ''%></td>
+					<td><%= c.text_field :peso, :value => ''%></td>
+					<td><%= c.submit :class => 'btn'%></td>
+				</tr>
+			<% end %>
 		</tbody>
 	</table>
-	<% end %>
 </div>
