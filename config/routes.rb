@@ -3,17 +3,18 @@ Cotizar::Application.routes.draw do
   resources :computers do
     collection do
       get 'index'
-      get 'alternative_new'
-      get ':id/edit'
+      get 'alternative_new' #metodo alternativo de ingreso de computadores
       post 'search'
       post 'select_for_compare'
       post 'compare'
       post 'compare_toolbox'
     end
   end
+  match 'computers/:id/edit' => 'computers#edit'
+
   resources :main
   
-  match 'computers/:id/edit' => 'computers#edit'
+
 
   
   
