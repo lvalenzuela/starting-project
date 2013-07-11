@@ -15,7 +15,7 @@
 						<tr>
 							<th>Equipo</th>
 							<% @selected_items.each do |i| %>
-							<td><%= ComputersMarca.find(i.marca).marca+' '+i.modelo%></td>
+							<td><%= Marca.find(i.marca_id).nombre_marca+' '+i.modelo%></td>
 							<% end %>
 						</tr>
 						<tr>

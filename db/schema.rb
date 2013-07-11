@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711165723) do
+ActiveRecord::Schema.define(:version => 20130711173457) do
 
   create_table "cam_flashs", :force => true do |t|
     t.string   "tipo"
@@ -176,20 +176,8 @@ ActiveRecord::Schema.define(:version => 20130711165723) do
     t.integer  "bateria_celdas"
   end
 
-  create_table "computers_bluetooths", :force => true do |t|
-    t.string   "bluetooth"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "computers_categories", :force => true do |t|
     t.string   "category"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "computers_marcas", :force => true do |t|
-    t.string   "marca"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -228,10 +216,6 @@ ActiveRecord::Schema.define(:version => 20130711165723) do
     t.string   "sist_operativo"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-  end
-
-  create_table "computers_wifis", :force => true do |t|
-    t.string "wifi"
   end
 
   create_table "display_depths", :force => true do |t|

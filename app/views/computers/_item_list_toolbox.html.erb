@@ -12,7 +12,7 @@
 										<td><%= image_tag item.img_ref %></td>
 									</tr>
 									<tr>
-										<td><%= ComputersMarca.find(item.marca).marca + ' ' + item.modelo%></td>
+										<td><%= Marca.find(item.marca_id).nombre_marca + ' ' + item.modelo%></td>
 									</tr>
 									<tr>
 										<td><%= number_to_currency(item.precio, :unit => '$', :precision => 0)%></td>
