@@ -7,6 +7,9 @@ class TelevisionTables < ActiveRecord::Migration
   			Marca.create(:nombre_marca => m)
   			last_id = Marca.find(:last).id
   			MapMarcaCategoria.create(:marca_id => last_id, :categoria_id => 2)
+  		else
+  			id = Marca.find(:first, :conditions => {:nombre_marca => m}).id
+  			MapMarcaCategoria.create(:marca_id => id, :categoria_id => 2)
   		end
   	end
   end
