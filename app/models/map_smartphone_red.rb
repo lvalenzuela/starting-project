@@ -1,4 +1,4 @@
-class MapSmartphoneRed < ActiveRecord::Base
+class MapSmartphoneRed < ActiveRecord::Base #no borrar
   belongs_to :smartphone
-  belongs_to :smartphone_red
+  belongs_to :red
 end

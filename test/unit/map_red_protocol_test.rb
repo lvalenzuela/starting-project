@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SmartphoneRedProtocolSupportedTest < ActiveSupport::TestCase
+class MapRedProtocolTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
