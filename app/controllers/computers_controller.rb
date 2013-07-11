@@ -92,6 +92,9 @@ class ComputersController < ApplicationController
       if params[:search][:category] == 'netbook'
         @computers = Computer.find(:all, :conditions => {:categoria => 4})
       end
+      if params[:search][:category] == 'desktop'
+        @computers = Computer.find(:all, :conditions => {:categoria => 5})
+      end
     end
     
     #FILTRO POR MARCA DE PROCESADOR
