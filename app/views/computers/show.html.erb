@@ -144,15 +144,15 @@
 					<tbody>
 						<tr>
 							<th>Tamaño</th>
-							<td><%= ComputersScreenSize.find(@computer.screen_size).size%></td>
+							<td><%= DisplaySize.find(@computer.screen_size).size%></td>
 						</tr>
 						<tr>
 							<th>Resolución</th>
-							<td><%= ComputersScreenResol.find(@computer.screen_resol).resolucion%></td>
+							<td><%= DisplayResolution.find(@computer.screen_resol).resolution%></td>
 						</tr>
 						<tr>
 							<th>Tipo</th>
-							<td><%= ComputersScreenType.find(@computer.screen_type).tipo%></td>
+							<td><%= DisplayTech.find(@computer.screen_type).nombre%></td>
 						</tr>
 						<tr>
 							<th>Pantalla Touch</th>

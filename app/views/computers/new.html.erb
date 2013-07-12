@@ -95,9 +95,9 @@
 						<td><%= computer.disco_capacidad%></td>
 						<td><%= computer.disco_velocidad%></td>
 						<td><%= computer.disco_ssd%></td>
-						<td><%= ComputersScreenSize.find(computer.screen_size).size%></td>
-						<td><%= ComputersScreenResol.find(computer.screen_resol).resolucion%></td>
-						<td><%= ComputersScreenType.find(computer.screen_type).tipo%></td>
+						<td><%= DisplaySize.find(computer.screen_size).size%></td>
+						<td><%= DisplayResolution.find(computer.screen_resol).resolution%></td>
+						<td><%= DisplayTech.find(computer.screen_type).nombre%></td>
 						<td><%= computer.screen_touch%></td>
 						<td><%= computer.lector_blue_ray%></td>
 						<td><%= computer.grabador_blue_ray%></td>

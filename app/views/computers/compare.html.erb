@@ -162,19 +162,19 @@
 						<tr>
 							<th>Tamaño</th>
 							<% @selected_items.each do |i| %>
-							<td><%= ComputersScreenSize.find(i.screen_size).size%></td>
+							<td><%= DisplaySize.find(i.screen_size).size%></td>
 							<% end %>
 						</tr>
 						<tr>
 							<th>Resolución</th>
 							<% @selected_items.each do |i| %>
-							<td><%= ComputersScreenResol.find(i.screen_resol).resolucion%></td>
+							<td><%= DisplayResolution.find(i.screen_resol).resolution%></td>
 							<% end %>
 						</tr>
 						<tr>
 							<th>Tipo</th>
 							<% @selected_items.each do |i| %>
-							<td><%= ComputersScreenType.find(i.screen_type).tipo%></td>
+							<td><%= DisplayTech.find(i.screen_type).nombre%></td>
 							<% end %>
 						</tr>
 						<tr>

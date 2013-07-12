@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711203840) do
+ActiveRecord::Schema.define(:version => 20130712180823) do
 
   create_table "cam_flashs", :force => true do |t|
     t.string   "tipo"
@@ -237,11 +237,25 @@ ActiveRecord::Schema.define(:version => 20130711203840) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "display_techs", :force => true do |t|
+  create_table "display_teches", :force => true do |t|
     t.string   "nombre"
     t.text     "descripcion"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "map_display_size_categoria", :force => true do |t|
+    t.integer  "display_size_id"
+    t.integer  "categoria_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "map_display_techs_categoria", :force => true do |t|
+    t.integer  "categoria_id"
+    t.integer  "display_tech_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "map_marca_categoria", :id => false, :force => true do |t|

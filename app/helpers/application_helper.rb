@@ -1,5 +1,17 @@
 module ApplicationHelper
 
+  def display_size_select(category)
+    categoria = Categoria.find(:first, :conditions => {:nombre  => category })
+    
+    return categoria.display_sizes.all.collect{|s| [s.size, s.id]}
+  end
+
+  def display_tech_select(category)
+    categoria = DisplayTech.find(:first, :conditions => {:nombre => category})
+
+    return categoria.display_teches.all.collect{|d| [d.nombre, d.id]}
+  end
+
   def marcas_select(category)
     categoria = Categoria.find(:first, :conditions => {:nombre => category})
 

@@ -105,15 +105,15 @@
 			</tr>
 			<tr>
 				<td>Tamaño de Pantalla</td>
-				<td><%= c.select :screen_size, ComputersScreenSize.all.collect{|s| [s.size, s.id]} %></td>
+				<td><%= c.select :screen_size, display_size_select('computadores')</td>
 			</tr>
 			<tr>
 				<td>Resolución Pantalla</td>
-				<td><%= c.select :screen_resol, ComputersScreenResol.all.collect{|r| [r.resolucion, r.id]} %></td>
+				<td><%= c.select :screen_resol, DisplayResolitons.all.collect{|r| [r.resolution, r.id]} %></td>
 			</tr>
 			<tr>
 				<td>Tipo de Pantalla</td>
-				<td><%= c.select :screen_type, ComputersScreenType.all.collect{|t| [t.tipo, t.id]} %></td>
+				<td><%= c.select :screen_type, display_tech_select('computadores')</td>
 			</tr>
 			<tr>
 				<td>Pantalla Touch</td>

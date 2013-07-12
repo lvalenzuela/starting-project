@@ -58,7 +58,7 @@
 							<th colspan="2">Tamaño de Pantalla</th>
 						</tr>
 						<tr>
-								<td colspan="2"><%= s.select :screen_size , ComputersScreenSize.all.collect{|m| [m.size, m.id]},{:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
+								<td colspan="2"><%= s.select :screen_size , display_size_select('computadores'),{:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
 						</tr>
 						<tr>
 							<th colspan="2">Sistema Operativo</th>
