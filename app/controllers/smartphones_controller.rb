@@ -1,8 +1,10 @@
-class SmartphonesControllerController < ApplicationController
+class SmartphonesController < ApplicationController
   
   def index
     @smartphones = Smartphone.find(:all)
-    
+    session[:compare_category] = 'smartphones'
+    session[:selected_items] ||= []
+    render :search
   end
   
   def show
@@ -66,48 +68,71 @@ class SmartphonesControllerController < ApplicationController
     @smartphones = Smartphone.new # Nuevo registro a ingresar    
   end
   
-   def search
-    #FILTRO POR CATEGORIA
-    if params[:search][:category] == "any"
-      @smartphones = Smartphone.find(:all)
+  def search # esta funcion rq hay que cambiarla entera, para adecuarla a la especificidad de smartphones
+    #FILTRO POR SISTEMA OPERATIVO (Check box, change)
+    if params[:search][:os_all] == '1'
+      @smartphones = Smartphone.find(:all) 
+      #@smartphones.select{|s| s.sistema_operativo_id.to_s == params[:search][:sistema_operativo_id]}
     else
-      if params[:search][:category] == "all_in_one"
-        @smartphones = Smartphone.find(:all, :conditions => {:categoria => 1})
+      @smartphones = []
+      if [:params][:os_android] == '1'
+        @smartphones = (@smartphones + Smartphone.find(:all, :conditions => {:sistema_operativo_id => 'TO BE'}))
       end
-      if params[:search][:category] == "notebook"
-        @smartphones = Smartphone.find(:all, :conditions => {:categoria => 2})
+      if [:params][:os_blackberry] == '1'
+        @smartphones = (@smartphones + Smartphone.find(:all, :conditions => {:sistema_operativo_id => 'TO BE'}))
       end
-      if params[:search][:category] == 'ultrabook'
-        @smartphones = Smartphone.find(:all, :conditions => {:categoria => 3})
+      if [:params][:os_ios] == '1'
+        @smartphones = (@smartphones + Smartphone.find(:all, :conditions => {:sistema_operativo_id => 'TO BE'}))
       end
-    end
+      if [:params][:os_symbian] == '1'
+        @smartphones = (@smartphones + Smartphone.find(:all, :conditions => {:sistema_operativo_id => 'TO BE'}))
+      end
+      if [:params][:os_win_mob] == '1'
+        @smartphones = (@smartphones + Smartphone.find(:all, :conditions => {:sistema_operativo_id => 'TO BE'}))
+      end
+      if [:params][:os_win_ph] == '1'
+        @smartphones = (@smartphones + Smartphone.find(:all, :conditions => {:sistema_operativo_id => 'TO BE'}))
+      end
+    end        
     
-    #FILTRO POR MARCA DE PROCESADOR
-    if params[:search][:proce_id] == "any"
-      #no se hace nada
-    else
-      if params[:search][:proce_id] == "amd"
-        @smartphones = @smartphones.select{|s| s.proce_marca_id == 1}
-      end
-      if params[:search][:proce_id] == 'intel'
-        @smartphones = @smartphones.select{|s| s.proce_marca_id == 2}
-      end
-    end
-  
-    #FILTRO POR MARCA
+    #FILTRO POR MARCA (drop down list, ok)
     if params[:search][:marca_id] != ""
       @smartphones = @smartphones.select{|s| s.marca_id.to_s == params[:search][:marca_id]}
     end
     
-    #FILTRO POR TAMAÑO DE PANTALLA
+    #FILTRO POR TAMAÑO DE PANTALLA (esto lo quiero hacer con slider asi que habra que cambiarlo)
     if params[:search][:screen_size] != ""
-      @smartphones = @smartphones.select{|s| s.screen_size.to_s == params[:search][:screen_size]}
+      @smartphones = @smartphones.select{|s| s.display_size_id.to_s == params[:search][:screen_size]}
     end
     
-    #FILTRO POR SISTEMA OPERATIVO
-    if params[:search][:sist_operativo_id] != ""
-      @smartphones = @smartphones.select{|s| s.sist_operativo_id.to_s == params[:search][:sist_operativo_id]}
+    #FILTRO POR CALDAD DE CAMARA (esto lo qiuero hacer con slider asi que habra que cambiarlo)
+    if params[:search][:camara_q] != ""
+      @smartphones = @smartphones.select{|s| s.cam_resolution.to_s == params[:search][:camara_q]}
     end
+    
+    #FILTRO POR REDES
+    @smart_2g = []
+    @smart_3g = []
+    @smart_4g = []
+    #AGREGAR MAS EVENTUALMENTE
+    if params[:search][:net_all] == '1'
+      #aca no se hace nadita
+    else
+      if params[:search][:net_2g] == '1'
+        red_2g = Red.find(:all, :conditions => {:nombre => "3g"})
+        @smart_2g = red_2g.smartphones.all
+      end
+      if params[:search][:net_3g] == '1'
+        red_3g = Red.find(:all, :conditions => {:nombre => "TO BE"})
+        @smart_3g = red_3g.smartphones.all
+      end
+      if params[:search][:net_4g] == '1'
+        red_4g = Red.find(:all, :conditions => {:nombre => "TO BE"})
+        @smart_4g = red_4g.smartphones.all
+      end
+      #ACA HAY QUE PONER EL RESTO DE LAS REDES EVENTUALMENTE
+      @smartphones = @smart_2g + @smart_3g + @smart_4g
+    end    
     
     respond_to do |format|
       format.js #search.js.erb
@@ -144,6 +169,4 @@ class SmartphonesControllerController < ApplicationController
       redirect_to :action => 'error'
     end
   end
-  
 end
-

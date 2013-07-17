@@ -1,4 +1,5 @@
 Cotizar::Application.routes.draw do
+
   resources :cars
   resources :computers do
     collection do
@@ -16,13 +17,26 @@ Cotizar::Application.routes.draw do
   resources :televisions do
     collection do
       get 'index'
-      get 'search'
+      post 'search'
+      post 'select_for_compare'
+      post 'compare'
+      post 'compare_toolbox'
+      post 'new_feature'
     end
   end
-  resources :main
   
+  resources :main
+  resources :smartphones do
+    collection do
+      get 'index'
+      post 'search'
+      post 'select_for_compare'
+      post 'compare'
+      post 'compare_toolbox'
+    end
+  end
 
-
+  
   
   
   get "cars/index"

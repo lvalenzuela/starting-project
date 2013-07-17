@@ -3,9 +3,9 @@
 <head>
   <title>AndoViendo.cl - Tu Compra Inteligente!</title>
   <%= stylesheet_link_tag	"vendor", :media => "all", :debug => false%>
-  <%= stylesheet_link_tag	"application", :media => "all" %>
+  <%= stylesheet_link_tag	"application", controller_name %>
   <%= javascript_include_tag "vendor", :debug => false%>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application", controller_name %>
   <%= csrf_meta_tags %>
 </head>
 <body>
