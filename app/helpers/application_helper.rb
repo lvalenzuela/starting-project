@@ -1,21 +1,26 @@
 module ApplicationHelper
-  
-  def display_size_select(category)
+  def display_standard_select(category, order)
+    categoria = Categoria.find(:first, :conditions => {:nombre => category})
+    
+    return categoria.display_standard.find(:all, :order => 'standard ' + order).collect{|s| [s.standard, s.id]}
+  end
+
+  def display_size_select(category, order)
     categoria = Categoria.find(:first, :conditions => {:nombre  => category })
     
-    return categoria.display_sizes.all.collect{|s| [s.size, s.id]}
+    return categoria.display_sizes.find(:all, :order => 'size ' + order).collect{|s| [s.size, s.id]}
   end
 
-  def display_tech_select(category)
+  def display_tech_select(category, order)
     categoria = Categoria.find(:first, :conditions => {:nombre => category})
 
-    return categoria.display_teches.all.collect{|d| [d.nombre, d.id]}
+    return categoria.display_teches.find(:all, :order => 'nombre ' + order).collect{|d| [d.nombre, d.id]}
   end
 
-  def marcas_select(category)
+  def marcas_select(category, order)
     categoria = Categoria.find(:first, :conditions => {:nombre => category})
 
-    return categoria.marcas.all.collect{|m| [m.nombre_marca, m.id]}
+    return categoria.marcas.find(:all, :order => 'nombre_marca ' + order).collect{|m| [m.nombre_marca, m.id]}
   end
 
   def red_select(tipo_red)

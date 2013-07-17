@@ -5,7 +5,7 @@
 		<table class="table">
 			<tr>
 				<th>Buscar por Marca</th>
-				<td><%= select 'marca_id', 'value', marcas_select('computadores')%></td>
+				<td><%= select 'marca_id', 'value', marcas_select('computadores', 'ASC')%></td>
 				<td><%= submit_tag 'Buscar', :class => 'btn'%></td>
 			</tr>
 		</table>
@@ -134,7 +134,7 @@
 					<td><%= link_to "Edit", cars_new_path, :class => "btn", :disabled => "disabled" %></td>
 					<td><div id="new-product-img-preview"><%= image_tag 'computer_images/not_found.png', :size => '100x100'%></div></td>
 					<td><%= c.text_field :img_ref, :value => 'computer_images/not_found.png', :id => 'new_product_img'%></td>
-					<td><%= c.select :marca_id, marcas_select('computadores')%></td>
+					<td><%= c.select :marca_id, marcas_select('computadores', 'ASC')%></td>
 					<td><%= c.select :categoria, ComputersCategory.all.collect{|c| [c.category, c.id]}, {:selected => 2}%></td>
 					<td><%= c.text_field :modelo, :value => ''%></td>
 					<td><%= c.select :sist_operativo_id, ComputersSo.all.collect{|s| [s.sist_operativo, s.id]}, {:selected => 1}%></td>
@@ -154,9 +154,9 @@
 					<td><%= c.text_field :disco_capacidad, :value => ''%></td>
 					<td><%= c.text_field :disco_velocidad, :value => ''%></td>
 					<td><%= c.text_field :disco_ssd, :value => ''%></td>
-					<td><%= c.select :screen_size, display_size_select('computadores')%></td>
-					<td><%= c.select :screen_resol, DisplayResolution.all.collect{|r| [r.resolution, r.id]}%></td>
-					<td><%= c.select :screen_type, display_tech_select('computadores')%></td>
+					<td><%= c.select :screen_size, display_size_select('computadores', 'ASC')%></td>
+					<td><%= c.select :screen_resol, DisplayResolution.find(:all, :order => 'resolution ASC').collect{|r| [r.resolution, r.id]}%></td>
+					<td><%= c.select :screen_type, display_tech_select('computadores', 'ASC')%></td>
 					<td><%= c.select :screen_touch, options_for_select(select_options('boolean'),0)%></td>
 					<td><%= c.select :lector_blue_ray, options_for_select(select_options('boolean'),0)%></td>
 					<td><%= c.select :grabador_blue_ray, options_for_select(select_options('boolean'),0)%></td>

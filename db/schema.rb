@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130712180823) do
+ActiveRecord::Schema.define(:version => 20130717165423) do
 
   create_table "cam_flashs", :force => true do |t|
     t.string   "tipo"
@@ -127,17 +127,17 @@ ActiveRecord::Schema.define(:version => 20130712180823) do
   end
 
   create_table "computers", :force => true do |t|
-    t.string   "img_ref",                                                           :default => "computer_images/not_found.png"
+    t.string   "img_ref",                                                            :default => "computer_images/not_found.png"
     t.integer  "marca_id",               :limit => 1
     t.integer  "categoria",              :limit => 1
     t.string   "modelo"
     t.integer  "sist_operativo_id",      :limit => 1
     t.integer  "precio"
     t.string   "bateria"
-    t.decimal  "bateria_duracion",                    :precision => 5, :scale => 2
+    t.decimal  "bateria_duracion",                     :precision => 5, :scale => 2
     t.integer  "proce_marca_id"
     t.string   "proce_version"
-    t.decimal  "proce_velocidad",                     :precision => 5, :scale => 2
+    t.decimal  "proce_velocidad",                      :precision => 5, :scale => 2
     t.integer  "proce_nucleos",          :limit => 1
     t.integer  "memoria"
     t.integer  "memoria_tipo",           :limit => 1
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(:version => 20130712180823) do
     t.integer  "lector_dvd",             :limit => 1
     t.integer  "grabador_dvd",           :limit => 1
     t.string   "video_modelo"
-    t.integer  "video_memoria"
+    t.string   "video_memoria",          :limit => 45
     t.integer  "video_tipo_memoria",     :limit => 1
     t.integer  "webcam",                 :limit => 1
     t.string   "lector_tarjeta_memoria"
@@ -165,11 +165,11 @@ ActiveRecord::Schema.define(:version => 20130712180823) do
     t.integer  "wifi",                   :limit => 1
     t.integer  "bluetooth",              :limit => 1
     t.integer  "usb_2",                  :limit => 1
-    t.decimal  "largo",                               :precision => 5, :scale => 2
-    t.decimal  "ancho",                               :precision => 5, :scale => 2
-    t.decimal  "profundidad",                         :precision => 5, :scale => 2
-    t.datetime "created_at",                                                                                                     :null => false
-    t.datetime "updated_at",                                                                                                     :null => false
+    t.decimal  "largo",                                :precision => 5, :scale => 2
+    t.decimal  "ancho",                                :precision => 5, :scale => 2
+    t.decimal  "profundidad",                          :precision => 5, :scale => 2
+    t.datetime "created_at",                                                                                                      :null => false
+    t.datetime "updated_at",                                                                                                      :null => false
     t.string   "peso"
     t.integer  "usb_3"
     t.integer  "screen_touch",           :limit => 1
@@ -190,24 +190,6 @@ ActiveRecord::Schema.define(:version => 20130712180823) do
 
   create_table "computers_proces", :force => true do |t|
     t.string   "marca"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "computers_screen_resols", :force => true do |t|
-    t.string   "resolucion"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "computers_screen_sizes", :force => true do |t|
-    t.string   "size"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "computers_screen_types", :force => true do |t|
-    t.string   "tipo"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -237,11 +219,24 @@ ActiveRecord::Schema.define(:version => 20130712180823) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "display_standards", :force => true do |t|
+    t.string   "standard"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "display_teches", :force => true do |t|
     t.string   "nombre"
     t.text     "descripcion"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "map_display_resolution_display_standards", :force => true do |t|
+    t.integer  "display_resolution_id"
+    t.integer  "display_display_standard_id"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "map_display_size_categoria", :force => true do |t|
