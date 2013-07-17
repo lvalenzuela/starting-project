@@ -163,7 +163,7 @@
 					<td><%= c.select :lector_dvd, options_for_select(select_options('boolean'),0)%></td>
 					<td><%= c.select :lector_dvd, options_for_select(select_options('boolean'),0)%></td>
 					<td><%= c.text_field :video_modelo, :value => ''%></td>
-					<td><%= c.text_field :video_memoria, :value => ''%></td>
+					<td><%= c.text_field :video_memoria, :placeholder => '[MB/GB]'%></td>
 					<td><%= c.select :video_tipo_memoria, ComputersMemoria.all.collect{|m| [m.tipo,m.id]}, {:selected => 5}%></td>
 					<td><%= c.select :webcam, options_for_select(select_options('boolean'),0)%></td>
 					<td><%= c.text_field :lector_tarjeta_memoria %></td>
