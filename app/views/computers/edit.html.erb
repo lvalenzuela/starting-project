@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td>Marca</td>
-				<td><%= c.select :marca_id, marcas_select('computadores') %></td>
+				<td><%= c.select :marca_id, marcas_select('computadores','ASC') %></td>
 			</tr>
 			<tr>
 				<td>Categoria</td>
@@ -102,7 +102,7 @@
 			</tr>
 			<tr>
 				<td>Tamaño de Pantalla</td>
-				<td><%= c.select :screen_size, display_size_select('computadores') %></td>
+				<td><%= c.select :screen_size, display_size_select('computadores', 'ASC') %></td>
 			</tr>
 			<tr>
 				<td>Resolución Pantalla</td>
@@ -110,7 +110,7 @@
 			</tr>
 			<tr>
 				<td>Tipo de Pantalla</td>
-				<td><%= c.select :screen_type, display_tech_select('computadores') %></td>
+				<td><%= c.select :screen_type, display_tech_select('computadores', 'ASC') %></td>
 			</tr>
 			<tr>
 				<td>Pantalla Touch</td>
