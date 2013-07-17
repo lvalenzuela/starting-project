@@ -154,9 +154,9 @@
 					<td><%= c.text_field :disco_capacidad, :value => ''%></td>
 					<td><%= c.text_field :disco_velocidad, :value => ''%></td>
 					<td><%= c.text_field :disco_ssd, :value => ''%></td>
-					<td><%= c.select :screen_size, ComputersScreenSize.all.collect{|s| [s.size, s.id]}, {:selected => 3}%></td>
-					<td><%= c.select :screen_resol, ComputersScreenResol.all.collect{|r| [r.resolucion, r.id]}, {:selected => 3}%></td>
-					<td><%= c.select :screen_type, ComputersScreenType.all.collect{|t| [t.tipo, t.id]}, {:selected => 1}%></td>
+					<td><%= c.select :screen_size, display_size_select('computadores')%></td>
+					<td><%= c.select :screen_resol, DisplayResolution.all.collect{|r| [r.resolution, r.id]}%></td>
+					<td><%= c.select :screen_type, display_tech_select('computadores')%></td>
 					<td><%= c.select :screen_touch, options_for_select(select_options('boolean'),0)%></td>
 					<td><%= c.select :lector_blue_ray, options_for_select(select_options('boolean'),0)%></td>
 					<td><%= c.select :grabador_blue_ray, options_for_select(select_options('boolean'),0)%></td>

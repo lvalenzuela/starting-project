@@ -20,7 +20,7 @@
 						<td><%= link_to Marca.find(computer.marca_id).nombre_marca, computer %></td>
 						<td><%= ComputersCategory.find(computer.categoria).category%></td>
 						<td><%= computer.modelo.upcase %></td>
-						<td><%= ComputersScreenSize.find(computer.screen_size).size%></td>
+						<td><%= DisplaySize.find(computer.screen_size).size%></td>
 						<td><%= number_to_currency(computer.precio, :unit => '$', :precision => 0) %></td>
 					</tr>
 				<% end %>
