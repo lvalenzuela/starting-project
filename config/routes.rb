@@ -1,4 +1,5 @@
 Cotizar::Application.routes.draw do
+
   resources :cars
   resources :computers do
     collection do
@@ -13,9 +14,17 @@ Cotizar::Application.routes.draw do
   match 'computers/:id/edit' => 'computers#edit'
 
   resources :main
+  resources :smartphones do
+    collection do
+      get 'index'
+      post 'search'
+      post 'select_for_compare'
+      post 'compare'
+      post 'compare_toolbox'
+    end
+  end
+
   
-
-
   
   
   get "cars/index"

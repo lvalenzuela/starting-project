@@ -1,0 +1,33 @@
+<div id="smartphones_table">
+	<table class="table product-table">
+		<thead>
+			<th></th>
+			<th></th>
+			<th>Imagen</th>
+			<th>Marca</th>
+			<th>Modelo</th>
+			<th>Duración llamadas</th>
+			<th>Pantalla</th>
+			<th>Calidad Cámara</th>
+			<th>Precio de Referencia</th>
+		</thead>
+		<tbody>
+			<% if !@smartphones.empty? %>
+				<% @smartphones.each do |smartphone|%>
+					<tr>
+						<td><%= hidden_field_tag 'product[]', 'd-'+ smartphone.id.to_s%></td>
+						<td><%= check_box_tag 'product[]', 'a-'+ smartphone.id.to_s, session[:selected_items].detect{|item| item.id == smartphone.id} , :onclick => "$('#select_products_form').submit();" %></td>
+						<td><%= link_to (image_tag smartphone.img_ref, :size => '120x120'), smartphone %></td>
+						<td><%= link_to Marca.find(smartphone.marca_id).nombre_marca, smartphone %></td>
+						<td><%= smartphone.modelo.upcase %></td>
+						<td><%= DisplaySize.find(smartphone.display_size_id).size%></td>
+						<td><%= smartphone.cam_resolution.to_s%></td>
+						<td><%= number_to_currency(smartphone.precio, :unit => '$', :precision => 0) %></td>
+					</tr>
+				<% end %>
+			<% else %>
+				<td colspan="9">No se ha podido encontrar productos con las caracteristicas requeridas</td>
+			<% end %>
+		</tbody>
+	</table>
+</div>

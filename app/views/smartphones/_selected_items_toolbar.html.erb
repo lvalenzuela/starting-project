@@ -1,0 +1,22 @@
+<div id="bottom_toolbar">
+	<div class="container">
+		
+		<%= render :partial => 'item_list_toolbox'%>
+		
+		<div id="toolbar">
+			<div class="row">
+				<div class="span2 offset3">
+					<div id="selected_items">
+							<p>Lista de comparación</p>
+					</div>
+				</div>
+				<div class="span2">
+					<%= render :partial => 'compare_list_marks'%>
+				</div>
+				<div class="span1">
+					<%= submit_tag 'Comparar', :class => 'btn'%>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
