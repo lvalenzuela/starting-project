@@ -67,11 +67,22 @@ class ComputersController < ApplicationController
     else
       @computers = Computer.find(:all)
     end
+    @aditional_features = ComputerAditionalFeature.find(:all)
     @computer = Computer.new # Nuevo registro a ingresar    
+  end
+
+  def new_feature
+    @feature = ComputerAditionalFeature.new(params[:new_feature])
+    if @feature.save
+      redirect_to :action => 'new'
+    else
+      redirect_to :action => 'error'
+    end
   end
 
   def alternative_new
     #Metodo de inserción de usuarios alternativo
+    @aditional_features = ComputerAditionalFeature.find(:all)
     @computer = Computer.new # Nuevo registro a ingresar
   end
   
@@ -133,6 +144,16 @@ class ComputersController < ApplicationController
     @computer = Computer.new(params[:computer])
     
     if @computer.save
+      new_computer = Computer.find(:last)
+      
+      params[:features].each do |feature|
+        action, id = feature.split('-')
+        case action
+        when 'a'
+          MapComputerAditionalFeature.create(:computer_id => new_computer.id, :computer_aditional_feature_id => id)
+        end
+      end
+      
       redirect_to :action => 'new'
     else
       redirect_to :action => 'error'
@@ -140,12 +161,26 @@ class ComputersController < ApplicationController
   end
 
   def edit
+    @aditional_features = ComputerAditionalFeature.find(:all)
+
     @computer = Computer.find(params[:id])
   end
   
   def update
     @computer = Computer.find(params[:id])
     if @computer.update_attributes(params[:computer])
+
+      params[:features].each do |feature|
+        action, id = feature.split('-')
+        case action
+        when 'a'
+          if MapComputerAditionalFeature.where('computer_id = ? AND computer_aditional_feature_id = ?',@computer.id, id).empty?
+            MapComputerAditionalFeature.create(:computer_id => @computer.id, :computer_aditional_feature_id => id)
+          end
+        when 'd'
+          MapComputerAditionalFeature.where('computer_id = ? AND computer_aditional_feature_id = ?',@computer.id, id).destroy_all
+        end
+      end
       redirect_to :action => 'new'
     else
       redirect_to :action => 'error'

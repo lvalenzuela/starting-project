@@ -32,46 +32,33 @@
 							<td>Mínimo</td>
 						</tr>
 						<tr>
-							<td><%= s.select :display_size_min, display_size_select('televisores', 'ASC'), {:onclick => "$('#search_form').submit()"}%></td>
-							<td>Todas</td>
+							<td colspan="2"><%= s.select :display_size_min, display_size_select('televisores', 'ASC'), {:onclick => "$('#search_form').submit()"}%></td>
 						</tr>
 						<tr>
-							<td><%= s.radio_button :proce_id, :amd, :onclick => "$('#search_form').submit()"%></td>
-							<td>AMD</td>
+							<td>Máximo</td>
 						</tr>
 						<tr>
-							<td><%= s.radio_button :proce_id, :intel, :onclick => "$('#search_form').submit()"%></td>
-							<td>Intel</td>
+							<td colspan="2"><%= s.select :display_size_max, display_size_select('televisores', 'DESC'), {:onclick => "$('#search_form').submit()"}%></td>
 						</tr>
 						<tr>
 							<th colspan="2">Marca</th>
 						</tr>
 						<tr>
-							<td colspan="2"><%= s.select :marca_id, marcas_select('computadores'),{:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
+							<td colspan="2"><%= s.select :marca_id, marcas_select('televisores','ASC'),{:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
 						</tr>
 						<tr>
 							<th colspan="2">Tamaño de Pantalla</th>
 						</tr>
 						<tr>
-								<td colspan="2"><%= s.select :screen_size , display_size_select('computadores'),{:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
-						</tr>
-						<tr>
-							<th colspan="2">Sistema Operativo</th>
-						</tr>
-						<tr>
-							<td colspan="2"><%= s.select :sist_operativo_id, ComputersSo.all.collect{|m| [m.sist_operativo, m.id]},{:prompt => 'Todos'}, {:onchange => "$('#search_form').submit()"}%></td>
+							<td colspan="2"><%= s.select :screen_size , display_size_select('televisores','ASC'),{:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
 						</tr>
 					</table>
 				<% end %>
 			</div>
 		</div>
 		<div class="span9">
-			<%= form_tag select_for_compare_computers_path, :remote => true, :id => 'select_products_form' do %>
-				<%= render :partial => 'computers_table'%>
-			<% end %>
+			<!-- Tabla de televisores -->
 		</div>
 	</div>
-	<%= form_tag compare_computers_path do %>
-		<%= render :partial => 'selected_items_toolbar'%>
-	<% end %>
+	<!-- Bottom Toolbar -->
 </div>

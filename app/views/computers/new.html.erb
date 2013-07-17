@@ -13,6 +13,23 @@
 	<%= link_to "Alternativa", alternative_new_computers_path %>
 	
 	<table class="table table-bordered table-striped input-table">
+		<% @aditional_features.each do |ft| %>
+		<tr>
+			<td><%= ft.feature%></td>
+		</tr>
+		<% end %>
+		
+		<%= form_for :new_feature, :url => new_feature_computers_path do |f|%>
+		<tr>
+			<td><%= f.text_field :feature, :placeholder => 'Nueva Caracteristica' %></td>
+		</tr>
+		<tr>
+			<td><%= f.submit 'Agregar Caracteristica', :class => 'btn'%></td>
+		</tr>
+		<% end %>
+	</table>
+	
+	<table class="table table-bordered table-striped input-table">
 		<thead>
 			<tr>
 				<th>Delete</th>

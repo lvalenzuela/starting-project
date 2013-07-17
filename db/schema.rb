@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130717165423) do
+ActiveRecord::Schema.define(:version => 20130717194952) do
 
   create_table "cam_flashs", :force => true do |t|
     t.string   "tipo"
@@ -126,6 +126,12 @@ ActiveRecord::Schema.define(:version => 20130717165423) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "computer_aditional_features", :force => true do |t|
+    t.string   "feature"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "computers", :force => true do |t|
     t.string   "img_ref",                                                            :default => "computer_images/not_found.png"
     t.integer  "marca_id",               :limit => 1
@@ -230,6 +236,13 @@ ActiveRecord::Schema.define(:version => 20130717165423) do
     t.text     "descripcion"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "map_computer_aditional_features", :force => true do |t|
+    t.integer  "computer_id"
+    t.integer  "computer_aditional_feature_id"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "map_display_resolution_display_standards", :force => true do |t|
@@ -396,7 +409,7 @@ ActiveRecord::Schema.define(:version => 20130717165423) do
     t.integer  "precio"
     t.integer  "display_type_id"
     t.integer  "display_size_id"
-    t.string   "image_definition"
+    t.integer  "display_standard_id"
     t.integer  "angulo_vision_horizontal"
     t.integer  "angulo_vision_vertical"
     t.integer  "tiempo_respuesta"

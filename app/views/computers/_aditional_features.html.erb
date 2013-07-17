@@ -1,0 +1,11 @@
+<tr>
+	<th colspan="2">Catacterísticas Adicionales</th>
+</tr>
+<% @aditional_features.each do |a| %>
+<tr>
+	<td><%= a.feature%></td>
+	<%= hidden_field_tag 'features[]', 'd-'+a.id.to_s%>
+
+	<td><%= check_box_tag 'features[]', 'a-'+a.id.to_s, feature_check(@computer,a.id)%></td>
+</tr>
+<%end%>

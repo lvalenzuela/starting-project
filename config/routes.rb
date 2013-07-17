@@ -8,10 +8,17 @@ Cotizar::Application.routes.draw do
       post 'select_for_compare'
       post 'compare'
       post 'compare_toolbox'
+      post 'new_feature'
     end
   end
   match 'computers/:id/edit' => 'computers#edit'
 
+  resources :televisions do
+    collection do
+      get 'index'
+      get 'search'
+    end
+  end
   resources :main
   
 
