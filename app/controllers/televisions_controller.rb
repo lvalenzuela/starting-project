@@ -22,5 +22,7 @@ class TelevisionsController < ApplicationController
 		end
 	end
 
-	
+	def select_for_compare
+
+	end
 end

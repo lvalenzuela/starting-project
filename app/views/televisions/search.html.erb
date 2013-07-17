@@ -58,6 +58,9 @@
 		</div>
 		<div class="span9">
 			<!-- Tabla de televisores -->
+			<%= form_tag select_for_compare_televisions_path, :remote => true, :id => 'select_products_form' do %>
+				<%= render :partial => 'televisions_table'%>
+			<% end %>
 		</div>
 	</div>
 	<!-- Bottom Toolbar -->

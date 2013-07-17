@@ -87,8 +87,37 @@ body { padding-top: 0px; }
   cursor: pointer;
 }
 
+.input-table td{
+  text-align: center;
+  vertical-align: middle;
+}
 
-/*TABLAS DE PRODUCTOS*/
+.input-table th{
+  text-align: center;
+}
+
+/* Tabla Principal de Productos (search)*/
+.product-table td{
+  text-align: center;
+  vertical-align: middle;
+}
+
+.product-table th{
+  text-align: center;
+}
+
+.product-table{
+  border: solid 1px #ccc
+}
+.nav-table th{
+  border-bottom: solid 1px #ccc;
+}
+
+.nav-table td{
+  border-top: none;
+}
+
+/*Tablas de caracteristicas de Productos (show)*/
 
 .product-features table{
   border: solid 1px #ddd;  
