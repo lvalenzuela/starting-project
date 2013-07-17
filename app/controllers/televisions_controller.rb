@@ -21,4 +21,6 @@ class TelevisionsController < ApplicationController
 			end
 		end
 	end
+
+	
 end
