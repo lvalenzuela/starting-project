@@ -1,5 +1,17 @@
 module ComputersHelper
 
+	def feature_check(computer, feature)
+		if computer.id
+			if MapComputerAditionalFeature.where('computer_id = ? and computer_aditional_feature_id = ?', computer.id, feature).empty?
+				return false
+			else
+				return true
+			end
+		else
+			return false
+		end
+	end
+
 	def select_options(type)
 		case type
 		when 'boolean'

@@ -1,16 +1,32 @@
 <div class="container">	
 	<h1>Ingresar Nuevos Computadores</h1>
-	<p>Igual que en autos, esta pagina es solo para ingresar computadores ... no es para que la vea nadie mas que nosotros</p>
-	<%= form_tag :controller => 'computers', :action => 'new', :method => 'post' do %>
+	<%= form_for :marca_id, :url => new_computer_path do |fl| %>
 		<table class="table">
 			<tr>
 				<th>Buscar por Marca</th>
-				<td><%= select 'marca_id', 'value', marcas_select('computadores', 'ASC')%></td>
+				<td><%= fl.select 'value', marcas_select('computadores', 'ASC')%></td>
 				<td><%= submit_tag 'Buscar', :class => 'btn'%></td>
 			</tr>
 		</table>
 	<% end %>
 	<%= link_to "Alternativa", alternative_new_computers_path %>
+	
+	<table class="table table-bordered">
+		<% @aditional_features.each do |ft| %>
+		<tr>
+			<td><%= ft.feature%></td>
+		</tr>
+		<% end %>
+		
+		<%= form_for :new_feature, :url => new_feature_computers_path do |f|%>
+		<tr>
+			<td><%= f.text_field :feature, :placeholder => 'Nueva Caracteristica' %></td>
+		</tr>
+		<tr>
+			<td><%= f.submit 'Agregar Caracteristica', :class => 'btn'%></td>
+		</tr>
+		<% end %>
+	</table>
 	
 	<table class="table table-bordered table-striped input-table">
 		<thead>

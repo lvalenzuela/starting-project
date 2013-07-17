@@ -9,6 +9,9 @@ class Computer < ActiveRecord::Base
   belongs_to :computers_screen_type
 	belongs_to :computers_so
   belongs_to :computers_wifi
+
+  has_many :map_computer_aditional_features
+  has_many :computer_aditional_features, through: :map_computer_aditional_features
 	
   attr_accessible :img_ref, :marca_id, :modelo, :categoria, :sist_operativo_id, :precio, :bateria, :bateria_celdas, :bateria_duracion
   attr_accessible :proce_marca_id, :proce_version, :proce_velocidad, :proce_nucleos
