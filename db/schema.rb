@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130717194952) do
+ActiveRecord::Schema.define(:version => 20130718182448) do
 
   create_table "cam_flashs", :force => true do |t|
     t.string   "tipo"
@@ -140,19 +140,19 @@ ActiveRecord::Schema.define(:version => 20130717194952) do
     t.integer  "sist_operativo_id",      :limit => 1
     t.integer  "precio"
     t.string   "bateria"
-    t.decimal  "bateria_duracion",                     :precision => 5, :scale => 2
+    t.string   "bateria_duracion",       :limit => 10
     t.integer  "proce_marca_id"
     t.string   "proce_version"
-    t.decimal  "proce_velocidad",                      :precision => 5, :scale => 2
+    t.string   "proce_velocidad",        :limit => 10
     t.integer  "proce_nucleos",          :limit => 1
-    t.integer  "memoria"
+    t.string   "memoria",                :limit => 10
     t.integer  "memoria_tipo",           :limit => 1
-    t.integer  "memoria_velocidad"
-    t.integer  "memoria_max"
+    t.string   "memoria_velocidad",      :limit => 10
+    t.string   "memoria_max",            :limit => 10
     t.integer  "memoria_ranuras"
-    t.integer  "disco_capacidad"
-    t.integer  "disco_velocidad"
-    t.integer  "disco_ssd",              :limit => 1
+    t.string   "disco_capacidad",        :limit => 10
+    t.string   "disco_velocidad",        :limit => 10
+    t.string   "disco_ssd",              :limit => 10
     t.integer  "screen_size",            :limit => 1
     t.integer  "screen_resol",           :limit => 1
     t.integer  "screen_type",            :limit => 1
@@ -407,7 +407,7 @@ ActiveRecord::Schema.define(:version => 20130717194952) do
     t.string   "img_ref"
     t.string   "modelo"
     t.integer  "precio"
-    t.integer  "display_type_id"
+    t.integer  "display_tech_id"
     t.integer  "display_size_id"
     t.integer  "display_standard_id"
     t.integer  "angulo_vision_horizontal"

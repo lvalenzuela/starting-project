@@ -142,7 +142,35 @@ class ComputersController < ApplicationController
   
   def create
     @computer = Computer.new(params[:computer])
-    
+    #Incluir los tipos de dato
+    if @computer.bateria_duracion != ''
+      @computer.bateria_duracion = @computer.bateria_duracion + " " + params[:batery_life]
+    end
+    if @computer.proce_velocidad != ''
+      @computer.proce_velocidad = @computer.proce_velocidad + " " + params[:proce_speed]
+    end
+    if @computer.memoria != ''
+      @computer.memoria = @computer.memoria + " " + params[:ram_storage]
+    end
+    if @computer.memoria_velocidad != ''
+      @computer.memoria_velocidad = @computer.memoria_velocidad + " " + params[:ram_speed]
+    end
+    if @computer.memoria_max != ''
+      @computer.memoria_max = @computer.memoria_max + " " + params[:ram_max_storage]
+    end
+    if @computer.disco_capacidad != ''
+      @computer.disco_capacidad = @computer.disco_capacidad + " " + params[:disc_storage]
+    end
+    if @computer.disco_velocidad != ''
+      @computer.disco_velocidad = @computer.disco_velocidad + " " + params[:disc_speed]
+    end
+    if @computer.disco_ssd != ''
+      @computer.disco_ssd = @computer.disco_ssd + " " + params[:disc_ssd_storage]
+    end
+    if @computer.video_memoria.to_s != ''
+      @computer.video_memoria = @computer.video_memoria + " " + params[:video_storage]
+    end
+
     if @computer.save
       new_computer = Computer.find(:last)
       

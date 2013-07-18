@@ -52,7 +52,7 @@
 						</tr>
 						<tr>
 							<th>Velocidad</th>
-							<td><%= display_data_type(@computer.proce_velocidad,'speed_proce')%></td>
+							<td><%=@computer.proce_velocidad%></td>
 						</tr>
 						<tr>
 							<th>Nucleos</th>
@@ -77,7 +77,7 @@
 						</tr>
 						<tr>
 							<th>Duración</th>
-							<td><%= display_data_type(@computer.bateria_duracion,'batery_life')%></td>
+							<td><%= @computer.bateria_duracion%></td>
 						</tr>
 					</tbody>
 				</table>
@@ -92,7 +92,7 @@
 					<tbody>
 						<tr>
 							<th>Memoria Incluida</th>
-							<td><%= display_data_type(@computer.memoria,'memory_cap')%></td>
+							<td><%= @computer.memoria%></td>
 						</tr>
 						<tr>
 							<th>Tipo Memoria</th>
@@ -100,11 +100,11 @@
 						</tr>
 						<tr>
 							<th>Velocidad Memoria</th>
-							<td><%= display_data_type(@computer.memoria_velocidad,'memory_speed') %></td>
+							<td><%= @computer.memoria_velocidad %></td>
 						</tr>
 						<tr>
 							<th>Memoria Máxima</th>
-							<td><%= display_data_type(@computer.memoria_max,'memory_cap') %></td>
+							<td><%= @computer.memoria_max %></td>
 						</tr>
 						<tr>
 							<th>Ranuras de Memoria</th>
@@ -121,15 +121,15 @@
 					<tbody>
 						<tr>
 							<th>Capacidad</th>
-							<td><%= display_data_type(@computer.disco_capacidad,'disc_small')%></td>
+							<td><%= @computer.disco_capacidad%></td>
 						</tr>
 						<tr>
 							<th>Velocidad</th>
-							<td><%= display_data_type(@computer.disco_velocidad, 'disc_speed') %></td>
+							<td><%=@computer.disco_velocidad%></td>
 						</tr>
 						<tr>
 							<th>Disco SSD</th>
-							<td><%= display_data_type(@computer.disco_ssd, 'disc_small')%></td>
+							<td><%= @computer.disco_ssd%></td>
 						</tr>
 					</tbody>
 				</table>
@@ -199,6 +199,22 @@
 							<td><%= boolean_product_feature(@computer.ethernet)%></td>
 						</tr>
 						<tr>
+							<th>Lector Blue Ray</th>
+							<td><%=boolean_product_feature(@computer.lector_blue_ray)%></td>
+						</tr>
+						<tr>
+							<th>Grabador Blue Ray</th>
+							<td><%= boolean_product_feature(@computer.grabador_blue_ray)%></td>
+						</tr>
+						<tr>
+							<th>Lector DVD</th>
+							<td><%=boolean_product_feature(@computer.lector_dvd)%></td>
+						</tr>
+						<tr>
+							<th>Grabador DVD</th>
+							<td><%=boolean_product_feature(@computer.grabador_dvd)%></td>
+						</tr>
+						<tr>
 							<th>Lector Tarjetas de Memoria</th>
 							<td><%= @computer.lector_tarjeta_memoria%></td>
 						</tr>
@@ -237,19 +253,19 @@
 					<tbody>
 						<tr>
 							<th>Largo</th>
-							<td><%= display_data_type(@computer.largo,'dimensions')%></td>
+							<td><%= @computer.largo%> [mm]</td>
 						</tr>
 						<tr>
 							<th>Ancho</th>
-							<td><%= display_data_type(@computer.ancho, 'dimensions')%></td>
+							<td><%=@computer.ancho%> [mm]</td>
 						</tr>
 						<tr>
 							<th>Profundidad</th>
-							<td><%= display_data_type(@computer.profundidad,'dimensions')%></td>
+							<td><%=@computer.profundidad%> [mm]</td>
 						</tr>
 						<tr>
 							<th>Peso</th>
-							<td><%= display_data_type(@computer.peso,'weight')%></td>
+							<td><%= @computer.peso %> [KG]</td>
 						</tr>
 					</tbody>
 				</table>

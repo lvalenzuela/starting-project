@@ -49,11 +49,11 @@
 			</tr>
 			<tr>
 				<td>Celdas Bateria</td>
-				<td><%= c.select :bateria_celdas ,options_for_select(select_options('numbers'), @computer.bateria_celdas) %></td>
+				<td><%= c.text_field :bateria_celdas %></td>
 			</tr>
 			<tr>
 				<td>Duración Batería</td>
-				<td><%= c.text_field :bateria_duracion %></td>
+				<td><%= c.text_field :bateria_duracion %><%= select_tag :batery_life, data_type_select('batery_life') %></td>
 			</tr>
 			<tr>
 				<td>Marca Procesador</td>
@@ -65,15 +65,15 @@
 			</tr>
 			<tr>
 				<td>Velocidad Procesador</td>
-				<td><%= c.text_field :proce_velocidad %></td>
+				<td><%= c.text_field :proce_velocidad %><%= select_tag :proce_speed, data_type_select('proce_speed')%></td>
 			</tr>
 			<tr>
 				<td>Núcleos Procesador</td>
-				<td><%= c.select :proce_nucleos, options_for_select(select_options('numbers'), @computer.proce_nucleos) %></td>
+				<td><%= c.text_field :proce_nucleos %></td>
 			</tr>
 			<tr>
 				<td>Cantidad Memoria</td>
-				<td><%= c.select :memoria, options_for_select(select_options('numbers'), @computer.memoria) %></td>
+				<td><%= c.text_field :memoria %><%= select_tag :ram_storage, data_type_select('ram_storage')%></td>
 			</tr>
 			<tr>
 				<td>Tipo Memoria</td>
@@ -81,27 +81,27 @@
 			</tr>
 			<tr>
 				<td>Velocidad Memoria</td>
-				<td><%= c.text_field :memoria_velocidad %></td>
+				<td><%= c.text_field :memoria_velocidad %><%= select_tag :ram_speed, data_type_select('ram_speed')%></td>
 			</tr>
 			<tr>
 				<td>Memoria Máxima</td>
-				<td><%= c.select :memoria_max, options_for_select(select_options('numbers'), @computer.memoria_max) %></td>
+				<td><%= c.text_field :memoria_max %><%= select_tag :ram_max_storage, data_type_select('ram_storage')%></td>
 			</tr>
 			<tr>
 				<td>Ranuras de Memoria</td>
-				<td><%= c.select :memoria_ranuras, options_for_select(select_options('numbers'), @computer.memoria_ranuras) %></td>
+				<td><%= c.text_field :memoria_ranuras %></td>
 			</tr>
 			<tr>
 				<td>Capacidad de Disco</td>
-				<td><%= c.text_field :disco_capacidad %></td>
+				<td><%= c.text_field :disco_capacidad %><%= select_tag :disc_storage, data_type_select('disc_storage')%></td>
 			</tr>
 			<tr>
 				<td>Velocidad de Disco</td>
-				<td><%= c.text_field :disco_velocidad %></td>
+				<td><%= c.text_field :disco_velocidad %><%= select_tag :disc_speed, data_type_select('disc_speed')%></td>
 			</tr>
 			<tr>
 				<td>Disco SSD (Capacidad)</td>
-				<td><%= c.text_field :disco_ssd %></td>
+				<td><%= c.text_field :disco_ssd %><%= select_tag :disc_ssd_storage, data_type_select('disc_storage')%></td>
 			</tr>
 			<tr>
 				<td>Tamaño de Pantalla</td>
@@ -141,7 +141,7 @@
 			</tr>
 			<tr>
 				<td>Cantidad de Memoria de Video</td>
-				<td><%= c.text_field :video_memoria, :placeholder => '[MB/GB]'%></td>
+				<td><%= c.text_field :video_memoria %> <%= select_tag :video_storage, data_type_select('ram_storage')%></td>
 			</tr>
 			<tr>
 				<td>Tipo de Memoria de Video</td>
@@ -177,11 +177,11 @@
 			</tr>
 			<tr>
 				<td>USB 2.0</td>
-				<td><%= c.select :usb_2, options_for_select(select_options('numbers'), @computer.usb_2) %></td>
+				<td><%= c.text_field :usb_2 %></td>
 			</tr>
 			<tr>
 				<td>USB 3.0</td>
-				<td><%= c.select :usb_3, options_for_select(select_options('numbers'), @computer.usb_3) %></td>
+				<td><%= c.text_field :usb_3 %></td>
 			</tr>
 			<tr>
 				<td>Largo[mm]</td>
