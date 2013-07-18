@@ -1,2 +1,0 @@
-class SmartphoneController < ApplicationController
-end

@@ -1,0 +1,77 @@
+<div class="container">
+	<h1>Ando Viendo - Smartphones</h1>
+	<div class="row">
+		<div class="span3">
+			<div class="well sidebar-nav">
+				<h4>Detalles de Busqueda</h4>
+				<%= form_for :search, :remote => true, :url => {:action => "search"}, :html => {:id => 'search_form'} do |s| %>
+					<table class="table table-condensed nav-table">
+						<tr>
+							<th colspan="2">Marca</th>
+						</tr>
+						<tr>
+							<td colspan="2"><%= s.select :marca_id, marcas_select('smartphones','ASC'),{:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
+						</tr>						
+						<tr>
+							<th colspan="2">Sistema Operativo</th>
+						</tr>
+						<tr>
+							<td><%= s.check_box :os_all, {:checked => true, :onclick => "$('#search_form').submit()"}, 'os_all', ''%></td>
+							<td>Todos</td>
+						</tr>
+						<tr>
+							<td><%= s.check_box :os_android, :onclick => "$('#search_form').submit()", :class => 'featuring_os'%></td>
+							<td>Android</td>
+						</tr>
+						<tr>
+							<td><%= s.check_box :os_blackberry, :onclick => "$('#search_form').submit()", :class => 'featuring_os'%></td>
+							<td>Balckberry</td>
+						</tr>
+						<tr>
+							<td><%= s.check_box :os_ios, :onclick => "$('#search_form').submit()", :class => 'featuring_os'%></td>
+							<td>iOS</td>
+						</tr>
+						<tr>
+							<td><%= s.check_box :os_symbian, :onclick => "$('#search_form').submit()", :class => 'featuring_os'%></td>
+							<td>Symbian</td>
+						</tr>
+						<tr>
+							<td><%= s.check_box :os_win_mob, :onclick => "$('#search_form').submit()", :class => 'featuring_os'%></td>
+							<td>Windows Mobile</td>
+						</tr>
+						<tr>
+							<td><%= s.check_box :os_win_pho, :onclick => "$('#search_form').submit()", :class => 'featuring_os'%></td>
+							<td>Windows Phone</td>
+						</tr>
+						<tr>
+							<th colspan="2">Tamaño de Pantalla</th>
+						</tr>
+						<tr>
+							<td colspan="2"><%= s.select :screen_size , display_size_select('smartphones','ASC'),{:prompt => 'Todas'}, {:onchange => "$('#search_form').submit()"}%></td>
+						</tr>
+						<tr>
+							<th colspan="2">Calidad de la cámara</th>
+						</tr>
+						<tr>
+							<td colspan="2">Aca va a ir lo de la calidad de la camara</td>
+						</tr>
+						<tr>
+							<th>Redes</th>
+						</tr>
+						<tr>
+							<td colspan="2">Aca va a ir lo de las redes del smartphone</td>
+						</tr>
+					</table>
+				<% end %>
+			</div>
+		</div>
+		<div class="span9">
+			<%= form_tag select_for_compare_smartphones_path, :remote => true, :id => 'select_products_form' do %>
+				<%= render :partial => 'smartphones_table'%>
+			<% end %>
+		</div>
+	</div>
+	<%= form_tag compare_smartphones_path do %>
+		<%= render :partial => 'selected_items_toolbar'%>
+	<% end %>
+</div>

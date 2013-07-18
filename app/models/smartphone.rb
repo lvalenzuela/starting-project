@@ -3,7 +3,7 @@ class Smartphone < ActiveRecord::Base
   
   attr_accessible :proce_num_cores, :proce_speed, :almacenamiento
   
-  atrr_accessible :cam_resolution, :cam_front_resolution, :cam_autofoco
+  attr_accessible :cam_resolution, :cam_front_resolution, :cam_autofoco
   
   attr_accessible :dim_alto, :dim_ancho, :dim_prof, :dim_peso
   
