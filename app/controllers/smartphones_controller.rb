@@ -1,4 +1,5 @@
 class SmartphonesController < ApplicationController
+  #layout 'products_layout'
   
   def index
     @smartphones = Smartphone.find(:all)
