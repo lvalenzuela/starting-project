@@ -52,7 +52,7 @@
 						<tr>
 							<th>Velocidad</th>
 							<% @selected_items.each do |i| %>
-							<td> <%= i.proce_velocidad %> GHz</td>
+							<td> <%= i.proce_velocidad %></td>
 						<% end %>
 						</tr>
 						<tr>
@@ -227,6 +227,30 @@
 							<th>Conexión Ethernet</th>
 							<% @selected_items.each do |i| %>
 							<td><%= boolean_product_feature(i.ethernet)%></td>
+							<% end %>
+						</tr>
+						<tr>
+							<th>Lector Blue Ray</th>
+							<% @selected_items.each do |i| %>
+							<td><%= boolean_product_feature(i.lector_blue_ray)%></td>
+							<% end %>
+						</tr>
+						<tr>
+							<th>Grabador Blue Ray</th>
+							<% @selected_items.each do |i| %>
+							<td><%= boolean_product_feature(i.grabador_blue_ray)%></td>
+							<% end %>
+						</tr>
+						<tr>
+							<th>Lector DVD</th>
+							<% @selected_items.each do |i| %>
+							<td><%= boolean_product_feature(i.lector_dvd)%></td>
+							<% end %>
+						</tr>
+						<tr>
+							<th>Grabador DVD</th>
+							<% @selected_items.each do |i| %>
+							<td><%= boolean_product_feature(i.grabador_dvd)%></td>
 							<% end %>
 						</tr>
 						<tr>

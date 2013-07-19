@@ -23,6 +23,38 @@ class TelevisionsController < ApplicationController
 	end
 
 	def select_for_compare
+	    params[:product].each do |product|
+	      action, id = product.split('-')
+	      
+	      if session[:compare_category] != 'televisores'
+	        session[:compare_category] = 'televisores'
+	        session.delete(:selected_items)
+	      end
+	          
+	      case action
+	        when 'a'
+	          (session[:selected_items] ||= []) << Television.find(:first, :select => 'id, img_ref, marca_id, modelo, precio', :conditions => {:id => id})#id.to_i
+	        when 'd'
+	          if session[:selected_items].nil?
+	            session[:selected_items] = []
+	          else
+	            session[:selected_items].delete_if{|x| x.id == id.to_i}
+	          end
+	      end
+	    end
+	    
+	    respond_to do |format|
+	      format.js
+	    end
+	end
 
+	def compare
+	    @selected_items = []
+	    
+	    @items_to_compare = params[:compare_items].length
+	    
+	    params[:compare_items].each do |item|
+	      @selected_items << Television.find(:first, :conditions => {:id => item})
+	    end
 	end
 end
