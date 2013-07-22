@@ -1,5 +1,13 @@
 module ComputersHelper
 
+	def sortable(column, title = nil)
+		title ||= column.titleize
+		css_class = column == sort_column ? "current #{sort_direction}" : nil
+		direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+		#"<span class='product-table-title' sort='"+column+"' drct='"+direction+"'>"+title+"</span>"
+		link_to title, '#' , :onclick => "sort_column('"+column+"','"+direction+"');"
+	end
+
 	def feature_check(computer, feature)
 		if computer.id
 			if MapComputerAditionalFeature.where('computer_id = ? and computer_aditional_feature_id = ?', computer.id, feature).empty?

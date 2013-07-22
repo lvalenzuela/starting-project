@@ -2,8 +2,8 @@
 	<h1>Ficha de Producto</h1>
 	<div class="row">
 		<div class="span4">
-			<div class="thumbnail" id="product-img">
-				<%= image_tag @computer.img_ref%>
+			<div id="product-img">
+				<%= image_tag @computer.img_ref, :class => 'img-polaroid'%>
 			</div>
 		</div>
 		<div class="span8">
@@ -19,8 +19,8 @@
 				<div class="under-product-box">
 					<% @image_paths.each do |img| %>
 						<div class="span1">
-							<div class="thumbnail" id="small-product-img">
-								<%= image_tag img%>
+							<div id="small-product-img">
+								<%= image_tag img, :class=> 'img-polaroid'%>
 							</div>
 						</div>
 					<% end %>

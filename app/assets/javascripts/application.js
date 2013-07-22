@@ -12,11 +12,28 @@
 //
 //
 
+//Ordenar productos por columna
+function sort_column(column, direction){
+	$("#sort_field").val(column);
+	$("#direction_field").val(direction);
+	$("#search_form").submit();
+}
+
+//submit search form
+$(function(){
+	$(".product_ft").click(function(){
+		$("#search_form").submit();
+	});
+	$(".product_ft_select").change(function(){
+		$("#search_form").submit();
+	});
+});
+
 //Cambiar imagenes de productos
 $(function(){
 	$("#small-product-img img").click(function(){
 		var c = $(this).attr("src");
-		$("#product-img").html('<img src="'+c+'"/>');
+		$("#product-img").html('<img src="'+c+'" class="img-polaroid"/>');
 		$("#product-img").fadeIn(2000);
 	});
 });

@@ -1,11 +1,20 @@
 class ComputersController < ApplicationController
   #layout 'products_layout'
-  
+  helper_method :sort_column, :sort_direction
+
   def index
-    @computers = Computer.find(:all)
     session[:compare_category] = 'computadores'
     session[:selected_items] ||= []
-    render :search
+    if params[:search]
+      @computers = search(params)
+    else
+      @computers = Computer.find(:all, :limit => 20)
+    end
+
+    respond_to do |format|
+      format.js #search.js.erb
+      format.html
+    end
   end
   
   def show
@@ -84,60 +93,6 @@ class ComputersController < ApplicationController
     #Metodo de inserción de usuarios alternativo
     @aditional_features = ComputerAditionalFeature.find(:all)
     @computer = Computer.new # Nuevo registro a ingresar
-  end
-  
-  def search
-    #FILTRO POR CATEGORIA
-    if params[:search][:category] == "any"
-      @computers = Computer.find(:all)
-    else
-      if params[:search][:category] == "all_in_one"
-        @computers = Computer.find(:all, :conditions => {:categoria => 1})
-      end
-      if params[:search][:category] == "notebook"
-        @computers = Computer.find(:all, :conditions => {:categoria => 2})
-      end
-      if params[:search][:category] == 'ultrabook'
-        @computers = Computer.find(:all, :conditions => {:categoria => 3})
-      end
-      if params[:search][:category] == 'netbook'
-        @computers = Computer.find(:all, :conditions => {:categoria => 4})
-      end
-      if params[:search][:category] == 'desktop'
-        @computers = Computer.find(:all, :conditions => {:categoria => 5})
-      end
-    end
-    
-    #FILTRO POR MARCA DE PROCESADOR
-    if params[:search][:proce_id] == "any"
-      #no se hace nada
-    else
-      if params[:search][:proce_id] == "amd"
-        @computers = @computers.select{|s| s.proce_marca_id == 1}
-      end
-      if params[:search][:proce_id] == 'intel'
-        @computers = @computers.select{|s| s.proce_marca_id == 2}
-      end
-    end
-  
-    #FILTRO POR MARCA
-    if params[:search][:marca_id] != ""
-      @computers = @computers.select{|s| s.marca_id.to_s == params[:search][:marca_id]}
-    end
-    
-    #FILTRO POR TAMAÑO DE PANTALLA
-    if params[:search][:screen_size] != ""
-      @computers = @computers.select{|s| s.screen_size.to_s == params[:search][:screen_size]}
-    end
-    
-    #FILTRO POR SISTEMA OPERATIVO
-    if params[:search][:sist_operativo_id] != ""
-      @computers = @computers.select{|s| s.sist_operativo_id.to_s == params[:search][:sist_operativo_id]}
-    end
-    
-    respond_to do |format|
-      format.js #search.js.erb
-    end
   end
   
   def create
@@ -220,6 +175,81 @@ class ComputersController < ApplicationController
       redirect_to :action => 'new'
     else
       redirect_to :action => 'error'
+    end
+  end
+
+  private
+
+  def search params = {}
+    
+    computers = sort(params[:search][:sort], params[:search][:direction])
+    
+    #FILTRO POR CATEGORIA
+    if params[:search][:category] == "any"
+      #no se hace nada
+    else
+      computers = computers.select{|s| s.categoria == params[:search][:category]}
+    end
+    
+    #FILTRO POR MARCA DE PROCESADOR
+    if params[:search][:proce_id] == "any"
+      #no se hace nada
+    else
+      computers = computers.select{|s| s.proce_marca_id.to_s == params[:search][:proce_id]}
+    end
+  
+    #FILTRO POR MARCA
+    if params[:search][:marca_id] != ""
+      computers = computers.select{|s| s.marca_id.to_s == params[:search][:marca_id]}
+    end
+    
+    #FILTRO POR TAMAÑO DE PANTALLA
+    if params[:search][:screen_size] != ""
+      computers = computers.select{|s| s.screen_size.to_s == params[:search][:screen_size]}
+    end
+    
+    #FILTRO POR SISTEMA OPERATIVO
+    if params[:search][:sist_operativo_id] != ""
+      computers = computers.select{|s| s.sist_operativo_id.to_s == params[:search][:sist_operativo_id]}
+    end
+    
+
+    #entregar los primeros 20 resultados
+    computers = computers.first(20)
+  end
+
+  def sort(column, direction)
+    #sort by column
+    categoria = Categoria.where(:nombre => 'computadores')
+    case column
+    when 'marca_id'
+      computers = Computer.find_by_sql("SELECT * FROM computers, marcas WHERE computers.marca_id = marcas.id ORDER BY marcas.nombre_marca "+ direction) 
+    when 'categoria'
+      computers = Computer.find_by_sql("SELECT * FROM computers, computers_categories WHERE computers.categoria = computers_categories.id ORDER BY computers_categories.category " + direction)
+    when 'modelo'
+      computers = Computer.find(:all, :order => 'modelo ' + direction)
+    when 'screen_size'
+      computers = Computer.find_by_sql("SELECT * FROM computers, display_sizes WHERE computers.screen_size = display_sizes.id ORDER BY display_sizes.size " + direction)
+    when 'precio'
+      computers = Computer.find(:all, :order => 'precio ' + direction)
+    else
+      computers = Computer.find_by_sql("SELECT * FROM computers, marcas WHERE computers.marca_id = marcas.id ORDER BY marcas.nombre_marca ASC") 
+    end
+  end
+
+  def sort_column
+    if params[:search]
+      Computer.column_names.include?(params[:search][:sort]) ? params[:search][:sort] : "marca_id"
+    else
+      'marca_id'
+    end
+  end
+
+  def sort_direction
+    if params[:search]
+      %w[asc desc].include?(params[:search][:direction]) ? params[:search][:direction] : "asc"
+    else
+      'asc'
     end
   end
 end
