@@ -1,0 +1,84 @@
+<div class="container">
+	<h1>Ando Viendo - Computadores</h1>
+	<div class="row">
+		<div class="span3">
+			<div class="well sidebar-nav">
+				<h4>Detalles de Busqueda</h4>
+				<%= form_for :search, :remote => true, :url => {:action => "index"}, :html => {:id => 'search_form'} do |s| %>
+					<table class="table table-condensed nav-table">
+						<%= s.hidden_field :sort, :value => 'marca_id', :id => 'sort_field'%>
+						<%= s.hidden_field :direction, :value => 'asc', :id => 'direction_field'%>
+						<tr>
+							<th colspan="2">Categoria</th>
+						</tr>
+						<tr>
+							<td><%= s.radio_button :category, :any, :checked => true, :class => 'product_ft'%></td>
+							<td>Todas</td>
+						</tr>
+						<tr>
+							<td><%= s.radio_button :category, 1, :class => 'product_ft'%></td>
+							<td>All In One</td>
+						</tr>
+						<tr>
+							<td><%= s.radio_button :category, 2, :class => 'product_ft'%></td>
+							<td>Notebook</td>
+						</tr>
+						<tr>
+							<td><%= s.radio_button :category, 3, :class => 'product_ft'%></td>
+							<td>Ultrabook</td>
+						</tr>
+						<tr>
+							<td><%= s.radio_button :category, 4, :class => 'product_ft'%></td>
+							<td>Netbook</td>
+						</tr>
+						<tr>
+							<td><%= s.radio_button :category, 5, :class => 'product_ft'%></td>
+							<td>Desktop</td>
+						</tr>
+						<tr>
+							<th colspan="2">Procesador</th>
+						</tr>
+						<tr>
+							<td><%= s.radio_button :proce_id, :any, :checked => true, :class => 'product_ft'%></td>
+							<td>Todas</td>
+						</tr>
+						<tr>
+							<td><%= s.radio_button :proce_id, 1, :class => 'product_ft'%></td>
+							<td>AMD</td>
+						</tr>
+						<tr>
+							<td><%= s.radio_button :proce_id, 2, :class => 'product_ft'%></td>
+							<td>Intel</td>
+						</tr>
+						<tr>
+							<th colspan="2">Marca</th>
+						</tr>
+						<tr>
+							<td colspan="2"><%= s.select :marca_id, marcas_select('computadores','ASC'),{:prompt => 'Todas'}, {:class => 'product_ft_select'}%></td>
+						</tr>
+						<tr>
+							<th colspan="2">Tamaño de Pantalla</th>
+						</tr>
+						<tr>
+								<td colspan="2"><%= s.select :screen_size , display_size_select('computadores', 'ASC'),{:prompt => 'Todas'}, {:class => 'product_ft_select'}%></td>
+						</tr>
+						<tr>
+							<th colspan="2">Sistema Operativo</th>
+						</tr>
+						<tr>
+							<td colspan="2"><%= s.select :sist_operativo_id, ComputersSo.all.collect{|m| [m.sist_operativo, m.id]},{:prompt => 'Todos'}, {:class => 'product_ft_select'}%></td>
+						</tr>
+					</table>
+				<% end %>
+			</div>
+		</div>
+		<div class="span9">
+			<%= form_tag select_for_compare_computers_path, :remote => true, :id => 'select_products_form' do %>
+				<%= render :partial => 'computers_table'%>
+			<% end %>
+		</div>
+	</div>
+	<%= form_tag compare_computers_path do %>
+		<%= render :partial => 'selected_items_toolbar'%>
+	<% end %>
+</div>

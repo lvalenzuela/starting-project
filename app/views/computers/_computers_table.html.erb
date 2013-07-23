@@ -3,12 +3,12 @@
 		<thead>
 			<th></th>
 			<th></th>
-			<th>Imagen</th>
-			<th>Marca</th>
-			<th>Categoria</th>
-			<th>Modelo</th>
-			<th>Tamaño</th>
-			<th>Precio de Referencia</th>
+			<th><%= sortable("img_ref", "Imagen")%></th>
+			<th><%= sortable("marca_id", "Marca")%></th>
+			<th><%= sortable("categoria", "Categoría")%></th>
+			<th><%= sortable("modelo", "Modelo") %></th>
+			<th><%= sortable("screen_size", "Tamaño") %></th>
+			<th><%= sortable("precio", "Precio de Referencia") %></th>
 		</thead>
 		<tbody>
 			<% if !@computers.empty? %>

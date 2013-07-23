@@ -1,12 +1,10 @@
 class Computer < ActiveRecord::Base
 	belongs_to :computers_bluetooth
-  belongs_to :computers_categories
+  belongs_to :computers_category
 	belongs_to :marca
   belongs_to :computers_memoria
 	belongs_to :computers_proce
-  belongs_to :computers_screen_resol
-	belongs_to :computers_screen_size
-  belongs_to :computers_screen_type
+
 	belongs_to :computers_so
   belongs_to :computers_wifi
 

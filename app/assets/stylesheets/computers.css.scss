@@ -2,33 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.input-table td{
-  text-align: center;
-  vertical-align: middle;
+.product-table th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
 }
 
-.input-table th{
-  text-align: center;
+.product-table th .asc {
+  background-image: url(/images/up_arrow.gif);
 }
 
-.product-table td{
-  text-align: center;
-  vertical-align: middle;
-}
-
-.product-table th{
-  text-align: center;
-}
-
-.product-table{
-  border: solid 1px #ccc
-}
-.nav-table th{
-  border-bottom: solid 1px #ccc;
-}
-
-.nav-table td{
-  border-top: none;
+.product-table th .desc {
+  background-image: url(/images/down_arrow.gif);
 }
 
 
