@@ -15,7 +15,6 @@
 //= require jquery-ui
 //= require bootstrap
 //= require_tree .
-//
 
 //Cambiar imagenes de productos
 $(function(){

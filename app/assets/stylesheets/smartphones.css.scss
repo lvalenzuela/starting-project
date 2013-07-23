@@ -1,4 +1,30 @@
 // Place all the styles related to the smartphones controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-//*= require jquery.ui.slider
+//*= require jquery.ui.all
+
+.slider-label{
+  font-size: 8pt;
+  font-weight: bold;
+  background-color: white;
+}
+
+.slider-label-left{
+  float: left;
+}
+
+.slider-label-right{
+  float: right;
+}
+
+/*
+ * 
+ *.slider-label-medida{
+  display: block;
+  text-align: center
+}
+*/
+
+#label-slider-span{
+  text-align: center;
+}
